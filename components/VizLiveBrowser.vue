@@ -39,7 +39,8 @@ onBeforeUnmount(() => {
         <span class="status-dot" :class="{ live: showLive && loaded }" aria-hidden="true" />
         <span class="state-label">{{ showLive ? (loaded ? 'LIVE' : 'LOADING') : 'PREVIEW' }}</span>
         <span class="address">cholmes.github.io/stlouis-data-browser/…/transportation…</span>
-        <a class="open-link" :href="browserUrl" target="_blank" rel="noopener noreferrer">
+        <a class="open-link source-link" :href="browserUrl" target="_blank" rel="noopener noreferrer"
+           aria-label="Open the St. Louis transportation catalog in a new tab" @click.stop>
           <span>OPEN</span><lucide-external-link aria-hidden="true" />
         </a>
       </div>

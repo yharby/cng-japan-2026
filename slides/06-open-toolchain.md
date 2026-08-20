@@ -32,5 +32,11 @@ hideInToc: true
 [Sources]
 - https://github.com/portolan-sdi
 - https://portolan-sdi.org/
+- https://github.com/portolan-sdi/portolan-spec
+- https://github.com/portolan-sdi/portolan-cli
+- https://github.com/portolan-sdi/rashid
+- https://github.com/portolan-sdi/portolan-registry
+- https://github.com/portolan-sdi/portolan-browser
+- https://github.com/portolan-sdi/portolan-skills
 - https://github.com/portolan-sdi/portolan-ops/blob/main/copy/messaging.md
 -->

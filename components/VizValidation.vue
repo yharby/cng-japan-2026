@@ -8,17 +8,23 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="Rashid separates machine-checkable publication rules from human judgment. Release 0.1.1 has 125 requirements and current main has 126. Click one highlights structure and metadata checks, click two highlights data plus optional schema and live checks, and click three highlights human review.">
       <text x="400" y="28" text-anchor="middle" class="kicker">WHAT MACHINES CAN CHECK · WHAT PEOPLE MUST JUDGE</text>
 
       <g class="status">
-        <rect x="42" y="45" width="326" height="46" rx="12" class="status-release" />
-        <text x="62" y="74" class="status-text release-text">RELEASE v0.1.1</text>
+        <a href="https://github.com/portolan-sdi/portolan-spec/releases/tag/v0.1.1" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open Portolan specification release 0.1.1 in a new tab" @click.stop>
+        <rect x="42" y="45" width="326" height="46" rx="12" class="status-release link-target" />
+        <text x="62" y="74" class="status-text release-text link-label">RELEASE v0.1.1</text>
         <text x="338" y="74" text-anchor="end" class="status-number">125</text>
-        <rect x="432" y="45" width="326" height="46" rx="12" class="status-main" />
-        <text x="452" y="74" class="status-text main-text">MAIN · +1 UNRELEASED</text>
+        </a>
+        <a href="https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/requirements.yaml" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open the current Portolan requirements file in a new tab" @click.stop>
+        <rect x="432" y="45" width="326" height="46" rx="12" class="status-main link-target" />
+        <text x="452" y="74" class="status-text main-text link-label">MAIN · +1 UNRELEASED</text>
         <text x="738" y="74" text-anchor="end" class="status-number main-number">126</text>
+        </a>
       </g>
 
       <text x="42" y="124" class="section-label">MACHINE-CHECKABLE</text>
@@ -26,9 +32,12 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       <path d="M202 211 L214 221 L202 231 M466 211 L478 221 L466 231" class="flow" />
 
       <g class="rashid">
+        <a href="https://github.com/portolan-sdi/rashid" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open the Rashid validator repository in a new tab" @click.stop>
         <circle cx="98" cy="221" r="56" class="rashid-disc" />
         <lucide-badge-check x="70" y="188" width="56" height="56" class="rashid-icon" />
-        <text x="98" y="258" text-anchor="middle" class="rashid-name">rashid</text>
+        <text x="98" y="258" text-anchor="middle" class="rashid-name link-label">rashid</text>
+        </a>
       </g>
 
       <g class="machine-step" :class="{ visited: s >= 1, active: s === 1 }">

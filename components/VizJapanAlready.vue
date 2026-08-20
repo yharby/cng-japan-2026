@@ -8,40 +8,49 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="Three independent examples feed one shared conclusion. JAXA publishes static COG and STAC, GSI publishes PMTiles, and Pacific Spatial converts PLATEAU for 211 cities to GeoParquet.">
       <text x="400" y="30" text-anchor="middle" class="kicker">THREE INDEPENDENT EXAMPLES</text>
 
       <g transform="translate(145 185)" class="example" :class="{ on: s >= 1 }">
-        <text y="-108" text-anchor="middle" class="org">JAXA</text>
-        <circle r="76" class="disc" />
+        <a href="https://data.earth.jaxa.jp/en/" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open the JAXA Earth data catalog in a new tab" @click.stop>
+        <text y="-108" text-anchor="middle" class="org link-label">JAXA</text>
+        <circle r="76" class="disc link-target" />
         <lucide-satellite x="-38" y="-38" width="76" height="76" class="example-icon" />
         <g class="details">
           <text y="101" text-anchor="middle" class="metric">80 collections</text>
           <text y="127" text-anchor="middle" class="detail">static COG + STAC</text>
         </g>
+        </a>
       </g>
 
       <g transform="translate(400 185)" class="example" :class="{ on: s >= 2 }">
-        <text y="-108" text-anchor="middle" class="org">GSI</text>
-        <circle r="76" class="disc" />
+        <a href="https://github.com/gsi-cyberjapan/optimal_bvmap" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open GSI's PMTiles trial repository in a new tab" @click.stop>
+        <text y="-108" text-anchor="middle" class="org link-label">GSI</text>
+        <circle r="76" class="disc link-target" />
         <lucide-layout-grid x="-38" y="-38" width="76" height="76" class="example-icon" />
         <path d="M-44 50 H44" class="archive" />
         <g class="details">
           <text y="101" text-anchor="middle" class="metric">PMTiles archive</text>
           <text y="127" text-anchor="middle" class="detail">trial since 2023</text>
         </g>
+        </a>
       </g>
 
       <g transform="translate(655 185)" class="example" :class="{ on: s >= 3 }">
-        <text y="-108" text-anchor="middle" class="org org-small">PACIFIC SPATIAL</text>
-        <circle r="76" class="disc" />
+        <a href="https://source.coop/repositories/pacificspatial/flateau/description" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open Pacific Spatial's Flateau dataset on Source Cooperative in a new tab" @click.stop>
+        <text y="-108" text-anchor="middle" class="org org-small link-label">PACIFIC SPATIAL</text>
+        <circle r="76" class="disc link-target" />
         <lucide-building-2 x="-38" y="-38" width="76" height="76" class="example-icon" />
         <g class="details">
           <text y="101" text-anchor="middle" class="metric">211 cities</text>
           <text y="127" text-anchor="middle" class="detail">PLATEAU → GeoParquet</text>
           <text y="149" text-anchor="middle" class="credit">Hiroo Imaki and team</text>
         </g>
+        </a>
       </g>
 
       <!-- A bracket, not a rail: the examples support one shared pattern. -->

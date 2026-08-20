@@ -16,7 +16,7 @@ const steps = [
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="A continuous evidence flow: catalog, inspect schema and CRS, query with an early filter and limit, reuse PMTiles and style, then prove the answer with SQL and a map. The skill supplies instructions and checks. DuckDB and MapLibre do the execution.">
       <text x="400" y="34" text-anchor="middle" class="eyebrow">QUESTION → EVIDENCE</text>
 
@@ -38,17 +38,29 @@ const steps = [
 
       <g class="engine duck" :class="{ on: s >= 2 }">
         <line x1="400" y1="246" x2="400" y2="274" />
-        <text x="400" y="302" text-anchor="middle">DuckDB</text>
+        <a href="https://duckdb.org/docs/stable/core_extensions/httpfs/https" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" :class="{ 'is-disabled': s < 2 }" :tabindex="s >= 2 ? 0 : -1"
+           aria-label="Open DuckDB HTTP file documentation in a new tab" @click.stop>
+          <text x="400" y="302" text-anchor="middle" class="link-label">DuckDB</text>
+        </a>
       </g>
       <g class="engine map" :class="{ on: s >= 3 }">
         <line x1="564" y1="246" x2="564" y2="274" />
-        <text x="564" y="302" text-anchor="middle">MapLibre</text>
+        <a href="https://maplibre.org/" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" :class="{ 'is-disabled': s < 3 }" :tabindex="s >= 3 ? 0 : -1"
+           aria-label="Open the MapLibre website in a new tab" @click.stop>
+          <text x="564" y="302" text-anchor="middle" class="link-label">MapLibre</text>
+        </a>
       </g>
 
       <g class="manual">
         <path d="M72 334 V354 H728 V334" />
-        <text x="400" y="390" text-anchor="middle">Skill = instructions + checks</text>
+        <a href="https://github.com/portolan-sdi/portolan-skills/blob/main/skills/reading-portolan/SKILL.md"
+           target="_blank" rel="noopener noreferrer" class="svg-source-link"
+           aria-label="Open the reading-portolan SKILL.md file in a new tab" @click.stop>
+        <text x="400" y="390" text-anchor="middle" class="link-label">Skill = instructions + checks</text>
         <text x="400" y="424" text-anchor="middle" class="manual-note">The skill guides. The engines execute.</text>
+        </a>
       </g>
     </svg>
   </div>

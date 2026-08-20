@@ -8,7 +8,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="Portolan does not replace existing formats, specifications, or standards. It is an opinionated and checkable publishing practice built from STAC, cloud-native formats, HTTP range requests, and object storage. Its goals are AI-first access, easy implementation, scalability, low cost, and sovereignty.">
       <text x="400" y="31" text-anchor="middle" class="kicker">EXISTING PIECES, CHECKABLE PRACTICE</text>
 
@@ -19,20 +19,47 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
       <g class="building-blocks" :class="{ on: s >= 1 }">
         <text x="75" y="78" class="section-label">EXISTING BUILDING BLOCKS</text>
-        <text x="75" y="125" class="block-title">STAC 1.1</text>
-        <text x="75" y="164" class="block-copy">GeoParquet · COG · PMTiles</text>
-        <text x="75" y="198" class="block-copy">HTTP range requests</text>
-        <text x="75" y="232" class="block-copy">Object storage</text>
+        <a href="https://github.com/radiantearth/stac-spec" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open the STAC specification in a new tab" @click.stop>
+          <text x="75" y="125" class="block-title link-label">STAC 1.1</text>
+        </a>
+        <a href="https://geoparquet.org/" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open GeoParquet documentation in a new tab" @click.stop>
+          <text x="75" y="164" class="block-copy link-label">GeoParquet</text>
+        </a>
+        <text x="183" y="164" class="block-copy">·</text>
+        <a href="https://docs.ogc.org/is/21-026/21-026.html" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open the COG standard in a new tab" @click.stop>
+          <text x="201" y="164" class="block-copy link-label">COG</text>
+        </a>
+        <text x="244" y="164" class="block-copy">·</text>
+        <a href="https://docs.protomaps.com/pmtiles/" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open PMTiles documentation in a new tab" @click.stop>
+          <text x="262" y="164" class="block-copy link-label">PMTiles</text>
+        </a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests"
+           target="_blank" rel="noopener noreferrer" class="svg-source-link"
+           aria-label="Open the HTTP range request documentation in a new tab" @click.stop>
+          <text x="75" y="198" class="block-copy link-label">HTTP range requests</text>
+        </a>
+        <a href="https://cloudnativegeo.org/about/" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open the Cloud Native Geospatial object storage overview in a new tab" @click.stop>
+          <text x="75" y="232" class="block-copy link-label">Object storage</text>
+        </a>
         <path d="M75 253 H329" class="under-rule" />
       </g>
 
       <g class="practice" :class="{ on: s >= 2 }">
-        <rect x="438" y="68" width="287" height="196" rx="5" />
+        <a href="https://github.com/portolan-sdi/portolan-spec/blob/main/README.md"
+           target="_blank" rel="noopener noreferrer" class="svg-source-link"
+           aria-label="Open the Portolan specification in a new tab" @click.stop>
+        <rect x="438" y="68" width="287" height="196" rx="5" class="link-target" />
         <image href="/portolan-mark.svg" x="457" y="91" width="48" height="48" preserveAspectRatio="xMidYMid meet" />
-        <text x="518" y="124" class="practice-name">PORTOLAN</text>
+        <text x="518" y="124" class="practice-name link-label">PORTOLAN</text>
         <text x="582" y="168" text-anchor="middle" class="practice-title">OPINIONATED</text>
         <text x="582" y="196" text-anchor="middle" class="practice-title">PUBLISHING PRACTICE</text>
         <text x="582" y="230" text-anchor="middle" class="practice-copy">publish · update · use</text>
+        </a>
       </g>
 
       <g class="goals" :class="{ on: s >= 3 }">

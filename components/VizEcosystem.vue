@@ -6,18 +6,18 @@ const { isPrintMode } = useNav()
 const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 const steps = [
-  { x: 72, name: 'portolan-spec', role: 'DEFINES', at: 1 },
-  { x: 203, name: 'portolan-cli', role: 'BUILDS', at: 1 },
-  { x: 334, name: 'rashid', role: 'VALIDATES', at: 2 },
-  { x: 465, name: 'STATIC HTTP', role: 'PUBLISHES', at: 2 },
-  { x: 580, name: 'registry', role: 'REGISTERS', at: 3 },
-  { x: 735, name: 'browser', role: 'EXPLORES', at: 3 },
+  { x: 72, name: 'portolan-spec', role: 'DEFINES', at: 1, url: 'https://github.com/portolan-sdi/portolan-spec' },
+  { x: 203, name: 'portolan-cli', role: 'BUILDS', at: 1, url: 'https://github.com/portolan-sdi/portolan-cli' },
+  { x: 334, name: 'rashid', role: 'VALIDATES', at: 2, url: 'https://github.com/portolan-sdi/rashid' },
+  { x: 465, name: 'STATIC HTTP', role: 'PUBLISHES', at: 2, url: 'https://www.rfc-editor.org/rfc/rfc9110.html' },
+  { x: 580, name: 'registry', role: 'REGISTERS', at: 3, url: 'https://github.com/portolan-sdi/portolan-registry' },
+  { x: 735, name: 'browser', role: 'EXPLORES', at: 3, url: 'https://github.com/portolan-sdi/portolan-browser' },
 ]
 </script>
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="The Portolan lifecycle is: the specification defines, the CLI builds, rashid validates, static HTTP publishes, the registry registers, and the browser explores. Portolan Skills supports agent work across build, validate and publish.">
       <text x="400" y="34" text-anchor="middle" class="kicker">ONE OPEN LIFECYCLE</text>
 
@@ -27,17 +27,23 @@ const steps = [
 
       <g v-for="(step, i) in steps" :key="step.name" class="step"
          :class="{ on: s >= step.at }" :transform="`translate(${step.x} 183)`">
-        <circle r="35" class="step-disc" />
+        <a :href="step.url" target="_blank" rel="noopener noreferrer" class="svg-source-link"
+           :aria-label="`Open ${step.name} source in a new tab`" @click.stop>
+        <circle r="35" class="step-disc link-target" />
         <text y="7" text-anchor="middle" class="step-num">{{ i + 1 }}</text>
-        <text y="-68" text-anchor="middle" class="step-name">{{ step.name }}</text>
+        <text y="-68" text-anchor="middle" class="step-name link-label">{{ step.name }}</text>
         <text y="76" text-anchor="middle" class="step-role">{{ step.role }}</text>
+        </a>
       </g>
 
       <g class="skills" :class="{ on: s >= 3 }">
         <path d="M177 310 V331 H530 V310" class="skills-bracket" />
         <path d="M203 310 V275 M334 310 V275 M465 310 V275" class="skills-link" />
-        <text x="353" y="368" text-anchor="middle" class="skills-title">portolan-skills</text>
+        <a href="https://github.com/portolan-sdi/portolan-skills" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open the Portolan Skills repository in a new tab" @click.stop>
+        <text x="353" y="368" text-anchor="middle" class="skills-title link-label">portolan-skills</text>
         <text x="353" y="396" text-anchor="middle" class="skills-copy">agent support for build · validate · publish</text>
+        </a>
       </g>
 
       <g class="outcome">

@@ -32,4 +32,8 @@ hideInToc: true
 [Sources]
 - https://portolan-sdi.org/
 - https://github.com/portolan-sdi/portolan-registry
+- https://github.com/portolan-sdi/portolan-registry/blob/main/exports/catalogs.json
+- https://data.source.coop/nlebovits/pergamino-ide/catalog.json
+- https://data.source.coop/nlebovits/moldova-geodata/catalog.json
+- https://data.source.coop/nlebovits/microsoft-ml-road-detections/catalog.json
 -->

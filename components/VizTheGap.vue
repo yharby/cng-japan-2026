@@ -8,27 +8,34 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="One STAC item describes and links to a data asset. Portolan makes practical publishing choices explicit across layout and access, documentation and license, provenance, formats, and hosting.">
       <g class="envelope" :class="{ on: s >= 2 }">
         <rect x="34" y="43" width="732" height="374" rx="28" />
       </g>
 
       <g class="stac" :class="{ on: s >= 1 }">
-        <rect x="100" y="91" width="220" height="158" rx="18" class="item" />
-        <text x="210" y="130" text-anchor="middle" class="box-title">STAC Item</text>
+        <a href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md"
+           target="_blank" rel="noopener noreferrer" class="svg-source-link"
+           aria-label="Open the STAC Item specification in a new tab" @click.stop>
+        <rect x="100" y="91" width="220" height="158" rx="18" class="item link-target" />
+        <text x="210" y="130" text-anchor="middle" class="box-title link-label">STAC Item</text>
         <path d="M158 192 C178 151 242 151 262 192 C240 222 180 222 158 192 Z" class="footprint" />
         <circle cx="210" cy="188" r="8" class="pin" />
         <text x="210" y="232" text-anchor="middle" class="box-note">metadata + geometry</text>
+        </a>
 
         <path d="M340 170 H460" class="arrow" />
         <path d="M446 159 L460 170 L446 181" class="arrow" />
         <text x="400" y="150" text-anchor="middle" class="arrow-label">asset href</text>
 
-        <rect x="480" y="91" width="220" height="158" rx="18" class="asset" />
+        <a href="https://geoparquet.org/" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open GeoParquet documentation for the illustrative data.parquet asset in a new tab" @click.stop>
+        <rect x="480" y="91" width="220" height="158" rx="18" class="asset link-target" />
         <lucide-file-json-2 x="558" y="120" width="64" height="64" class="file-icon" />
-        <text x="590" y="207" text-anchor="middle" class="file-label">data.parquet</text>
+        <text x="590" y="207" text-anchor="middle" class="file-label link-label">data.parquet</text>
         <text x="590" y="232" text-anchor="middle" class="address">https://…</text>
+        </a>
       </g>
 
       <g class="additions" :class="{ on: s >= 2 }">

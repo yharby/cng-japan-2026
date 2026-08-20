@@ -133,7 +133,37 @@ async function walk(colorScheme) {
           rootFilter: getComputedStyle(document.documentElement).filter,
         }
       })
+      const sourceLinks = await page.locator(`${selector} .source-link, ${selector} .svg-source-link`).evaluateAll((links) =>
+        links.map((link) => ({
+          href: link.getAttribute('href') ?? '',
+          label: link.getAttribute('aria-label') || (link.textContent ?? '').trim(),
+          target: link.getAttribute('target') ?? '',
+          rel: link.getAttribute('rel') ?? '',
+          disabled: link.classList.contains('is-disabled'),
+          tabIndex: link.tabIndex,
+          svgRole: link.closest('svg')?.getAttribute('role') ?? '',
+        })),
+      )
       const screenshotBytes = (await page.screenshot()).length
+
+      for (const link of sourceLinks) {
+        if (!/^(https:|mailto:)/.test(link.href)) {
+          note(`slide ${slide.n} has a non-absolute source link, ${link.href || '(empty)'}`)
+        }
+        if (!link.label) note(`slide ${slide.n} has a source link without an accessible name, ${link.href}`)
+        if (link.href.startsWith('https:') && link.target !== '_blank') {
+          note(`slide ${slide.n} source link does not open in a new tab, ${link.href}`)
+        }
+        if (link.href.startsWith('https:') && (!link.rel.includes('noopener') || !link.rel.includes('noreferrer'))) {
+          note(`slide ${slide.n} source link is missing noopener/noreferrer, ${link.href}`)
+        }
+        if (link.disabled && link.tabIndex !== -1) {
+          note(`slide ${slide.n} hidden source link remains keyboard-focusable, ${link.href}`)
+        }
+        if (link.svgRole === 'img') {
+          note(`slide ${slide.n} interactive SVG is flattened with role=img, ${link.href}`)
+        }
+      }
 
       if (state.rootFilter !== 'none') {
         note(`slide ${slide.n} has a filter on the root element, ${state.rootFilter}`)

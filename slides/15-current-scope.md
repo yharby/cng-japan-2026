@@ -29,4 +29,11 @@ hideInToc: true
 [Sources]
 - https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/formats.md
 - https://github.com/portolan-sdi/portolan-spec/blob/main/specs/incubating/README.md
+- https://geoparquet.org/
+- https://docs.ogc.org/is/21-026/21-026.html
+- https://parquet.apache.org/docs/file-format/
+- https://docs.protomaps.com/pmtiles/
+- https://copc.io/
+- https://github.com/zarr-developers/geozarr-spec
+- https://github.com/stac-utils/stac-geoparquet
 -->

@@ -30,5 +30,8 @@ layout: default
 
 [Sources]
 - https://github.com/portolan-sdi/portolan-spec/tree/main/examples/catalog/portolan-reference/boundaries/netherlands-provinces
+- https://github.com/portolan-sdi/portolan-spec/blob/main/examples/catalog/portolan-reference/boundaries/netherlands-provinces/collection.json
+- https://github.com/portolan-sdi/portolan-spec/blob/main/examples/catalog/portolan-reference/boundaries/netherlands-provinces/README.md
+- https://github.com/portolan-sdi/portolan-spec/blob/main/examples/catalog/portolan-reference/boundaries/netherlands-provinces/AGENTS.md
 - https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/core.md
 -->

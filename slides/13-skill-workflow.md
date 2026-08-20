@@ -35,4 +35,5 @@ hideInToc: true
 [Sources]
 - https://github.com/portolan-sdi/portolan-skills/blob/main/skills/reading-portolan/SKILL.md
 - https://duckdb.org/docs/stable/core_extensions/httpfs/https
+- https://maplibre.org/
 -->

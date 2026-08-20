@@ -6,22 +6,22 @@ const { isPrintMode } = useNav()
 const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 const current = [
-  ['GeoParquet', 'vector data'],
-  ['COG', 'raster data'],
-  ['Parquet', 'companion tables'],
-  ['PMTiles', 'visualization derivative'],
+  ['GeoParquet', 'vector data', 'https://geoparquet.org/'],
+  ['COG', 'raster data', 'https://docs.ogc.org/is/21-026/21-026.html'],
+  ['Parquet', 'companion tables', 'https://parquet.apache.org/docs/file-format/'],
+  ['PMTiles', 'visualization derivative', 'https://docs.protomaps.com/pmtiles/'],
 ]
 
 const later = [
-  ['COPC', 'point clouds'],
-  ['GeoZarr', 'multidimensional arrays'],
-  ['STAC–GeoParquet', 'full catalog index'],
+  ['COPC', 'point clouds', 'https://copc.io/'],
+  ['GeoZarr', 'multidimensional arrays', 'https://github.com/zarr-developers/geozarr-spec'],
+  ['STAC–GeoParquet', 'full catalog index', 'https://github.com/stac-utils/stac-geoparquet'],
 ]
 </script>
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="A clear scope boundary. Portolan currently validates GeoParquet vectors, COG rasters, companion Parquet tables, and PMTiles visualization derivatives. It does not yet define normative rules for COPC, GeoZarr, or a full STAC-GeoParquet catalog index.">
       <text x="400" y="34" text-anchor="middle" class="version">IMPLEMENTED SCOPE · v0.1.1</text>
 
@@ -37,7 +37,11 @@ const later = [
       <g class="items" :class="{ on: s >= 1 }">
         <g v-for="(item, i) in current" :key="item[0]" :transform="`translate(58 ${166 + i * 66})`">
           <lucide-circle-check-big x="0" y="-21" width="28" height="28" class="scope-icon current-icon" />
-          <text x="42" y="0" class="item-title">{{ item[0] }}</text>
+          <a :href="item[2]" target="_blank" rel="noopener noreferrer" class="svg-source-link"
+             :class="{ 'is-disabled': s < 1 }" :tabindex="s >= 1 ? 0 : -1"
+             :aria-label="`Open ${item[0]} documentation in a new tab`" @click.stop>
+          <text x="42" y="0" class="item-title link-label">{{ item[0] }}</text>
+          </a>
           <text x="42" y="25" class="item-note">{{ item[1] }}</text>
         </g>
       </g>
@@ -45,7 +49,11 @@ const later = [
       <g class="items" :class="{ on: s >= 2 }">
         <g v-for="(item, i) in later" :key="item[0]" :transform="`translate(444 ${178 + i * 82})`">
           <lucide-circle-minus x="0" y="-21" width="28" height="28" class="scope-icon later-icon" />
-          <text x="42" y="0" class="item-title">{{ item[0] }}</text>
+          <a :href="item[2]" target="_blank" rel="noopener noreferrer" class="svg-source-link"
+             :class="{ 'is-disabled': s < 2 }" :tabindex="s >= 2 ? 0 : -1"
+             :aria-label="`Open ${item[0]} documentation in a new tab`" @click.stop>
+          <text x="42" y="0" class="item-title link-label">{{ item[0] }}</text>
+          </a>
           <text x="42" y="25" class="item-note">{{ item[1] }}</text>
         </g>
         <text x="444" y="414" class="honesty">Roadmap ≠ implemented scope</text>

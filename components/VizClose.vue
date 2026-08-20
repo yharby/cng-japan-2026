@@ -8,7 +8,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="Portolan's closing idea has three parts: use an open file format, give it a stable URL, and follow checkable rules. A large QR call to action links to portolan-sdi.org and invites the audience to publish one dataset.">
       <text x="400" y="34" text-anchor="middle" class="kicker">A SMALL, REPEATABLE CONTRACT</text>
 
@@ -25,14 +25,18 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       <text x="400" y="278" text-anchor="middle" class="word">STABLE URL</text>
       <text x="620" y="278" text-anchor="middle" class="word accent-text">CHECKABLE RULES</text>
 
+      <a href="https://portolan-sdi.org/" target="_blank" rel="noopener noreferrer"
+         class="svg-source-link" :class="{ 'is-disabled': s < 1 }"
+         :tabindex="s >= 1 ? 0 : -1" aria-label="Open the Portolan website in a new tab" @click.stop>
       <g class="action" :class="{ on: s >= 1 }">
         <rect x="144" y="314" width="512" height="116" rx="22" class="action-card" />
         <image href="/qr-portolan.svg" x="162" y="330" width="84" height="84" preserveAspectRatio="xMidYMid meet" />
         <line x1="268" y1="334" x2="268" y2="410" class="action-divider" />
-        <text x="294" y="365" class="site">portolan-sdi.org</text>
+        <text x="294" y="365" class="site link-label">portolan-sdi.org</text>
         <text x="294" y="398" class="invite">Publish one dataset</text>
         <image href="/portolan-mark.svg" x="608" y="350" width="30" height="30" preserveAspectRatio="xMidYMid meet" />
       </g>
+      </a>
     </svg>
   </div>
 </template>

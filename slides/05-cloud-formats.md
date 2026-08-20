@@ -37,6 +37,11 @@ layout: default
 - https://docs.ogc.org/is/21-026/21-026.html
 - https://guide.cloudnativegeo.org/
 - https://www.rfc-editor.org/rfc/rfc9110
+- https://www.rfc-editor.org/rfc/rfc9113.html
+- https://www.rfc-editor.org/rfc/rfc9114.html
+- https://duckdb.org/docs/stable/core_extensions/httpfs/https
+- https://qgis.org/
+- https://docs.xarray.dev/
 - docs/reference/cng-japan/research-arrow-parquet.md
 - docs/reference/cng-japan/research-http-range.md
 -->

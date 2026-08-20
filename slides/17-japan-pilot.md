@@ -35,4 +35,6 @@ layout: default
 - https://github.com/portolan-sdi/portolan-skills/blob/main/skills/portolan-bootstrap/SKILL.md
 - https://github.com/portolan-sdi/portolan-skills/blob/main/skills/register-catalog/SKILL.md
 - https://github.com/portolan-sdi/portolan-registry
+- https://github.com/portolan-sdi/rashid
+- https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/core.md
 -->

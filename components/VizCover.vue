@@ -8,23 +8,32 @@ const ready = computed(() => isPrintMode.value || true)
 
 <template>
   <div class="stage cover-stage" :class="{ ready }">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="Portolan: An SDI Without Servers, presented at Cloud Native Geospatial Japan 2026 by Youssef Harby, Software Engineer at CARTO.">
       <path d="M76 64 H724" class="cover-rule" />
 
+      <a href="https://portolan-sdi.org/" target="_blank" rel="noopener noreferrer"
+         class="svg-source-link" aria-label="Open the Portolan website in a new tab" @click.stop>
       <g class="portolan-lockup">
         <image href="/portolan-mark.svg" x="642" y="104" width="62" height="62" preserveAspectRatio="xMidYMid meet" />
-        <text x="673" y="188" text-anchor="middle">Portolan</text>
+        <text x="673" y="188" text-anchor="middle" class="link-label">Portolan</text>
       </g>
+      </a>
 
       <text x="76" y="142" class="event">CLOUD NATIVE GEOSPATIAL JAPAN 2026</text>
       <text x="76" y="181" class="place">JAMSTEC Yokohama · 24 August 2026</text>
 
       <g class="speaker">
         <text x="76" y="323">Youssef Harby</text>
-        <text x="76" y="358" class="speaker-role">Software Engineer at CARTO</text>
-        <text x="76" y="391" class="speaker-email">youssef@carto.com</text>
-        <image href="/carto-logo-positive.svg" x="612" y="332" width="112" height="43" preserveAspectRatio="xMidYMid meet" class="carto-logo" />
+        <a href="https://carto.com/" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open the CARTO website in a new tab" @click.stop>
+          <text x="76" y="358" class="speaker-role link-label">Software Engineer at CARTO</text>
+          <image href="/carto-logo-positive.svg" x="612" y="332" width="112" height="43" preserveAspectRatio="xMidYMid meet" class="carto-logo" />
+        </a>
+        <a href="mailto:youssef@carto.com" class="svg-source-link"
+           aria-label="Email Youssef Harby" @click.stop>
+          <text x="76" y="391" class="speaker-email link-label">youssef@carto.com</text>
+        </a>
       </g>
     </svg>
   </div>

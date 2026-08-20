@@ -8,12 +8,15 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="Object storage principles on the left and an HTTP byte range request on the right. The final note separates byte ranges from HTTP multiplexing.">
       <path d="M401 42 V389" class="divider" />
 
       <g class="object-side" :class="{ on: s >= 1 }">
-        <text x="200" y="39" text-anchor="middle" class="section-title">OBJECT STORAGE</text>
+        <a href="https://cloudnativegeo.org/about/" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open the Cloud Native Geospatial object storage overview in a new tab" @click.stop>
+          <text x="200" y="39" text-anchor="middle" class="section-title link-label">OBJECT STORAGE</text>
+        </a>
         <path d="M75 91 H325 V167 C325 189 269 207 200 207 C131 207 75 189 75 167 Z" class="bucket" />
         <path d="M75 91 C75 69 131 51 200 51 C269 51 325 69 325 91 C325 113 269 131 200 131 C131 131 75 113 75 91 Z" class="bucket-top" />
         <text x="200" y="153" text-anchor="middle" class="bucket-label">ONE OBJECT</text>
@@ -32,7 +35,11 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       </g>
 
       <g class="range-side" :class="{ on: s >= 2 }">
-        <text x="602" y="39" text-anchor="middle" class="section-title">HTTP BYTE RANGES</text>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests"
+           target="_blank" rel="noopener noreferrer" class="svg-source-link"
+           aria-label="Open the HTTP range request documentation in a new tab" @click.stop>
+          <text x="602" y="39" text-anchor="middle" class="section-title link-label">HTTP BYTE RANGES</text>
+        </a>
         <rect x="454" y="66" width="296" height="112" rx="14" class="request-box" />
         <text x="480" y="102" class="mono strong">GET /data.parquet</text>
         <text x="480" y="136" class="mono">Range bytes=840000-1099999</text>
@@ -48,7 +55,11 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
       <g class="protocol-note" :class="{ on: s >= 3 }">
         <path d="M76 421 H724" />
-        <text x="400" y="447" text-anchor="middle">HTTP/1.1 supports ranges · HTTP/2 AND HTTP/3 improve multiplexing · neither creates an index</text>
+        <a href="https://www.rfc-editor.org/rfc/rfc9110.html" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" :class="{ 'is-disabled': s < 3 }" :tabindex="s >= 3 ? 0 : -1"
+           aria-label="Open the HTTP semantics specification in a new tab" @click.stop>
+          <text x="400" y="447" text-anchor="middle" class="link-label">HTTP/1.1 supports ranges · HTTP/2 AND HTTP/3 improve multiplexing · neither creates an index</text>
+        </a>
       </g>
     </svg>
   </div>

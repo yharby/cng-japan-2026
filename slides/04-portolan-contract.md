@@ -28,5 +28,11 @@ layout: default
 - https://github.com/portolan-sdi/portolan-spec/blob/main/README.md
 - https://github.com/portolan-sdi/portolan-spec/blob/main/stac/README.md
 - https://github.com/portolan-sdi/portolan-ops/blob/main/copy/messaging.md
+- https://github.com/radiantearth/stac-spec
+- https://geoparquet.org/
+- https://docs.ogc.org/is/21-026/21-026.html
+- https://docs.protomaps.com/pmtiles/
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests
+- https://cloudnativegeo.org/about/
 - Speaker-provided positioning and design goals
 -->

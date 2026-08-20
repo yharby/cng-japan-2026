@@ -6,16 +6,16 @@ const { isPrintMode } = useNav()
 const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 const gates = [
-  { title: 'PREPARE', ja: '準備', note: 'convert + document', x: 122, reveal: 1 },
-  { title: 'VALIDATE', ja: '検証', note: 'rashid check', x: 308, reveal: 2 },
-  { title: 'PUBLISH', ja: '公開', note: 'HTTPS · range · CORS', x: 494, reveal: 3 },
-  { title: 'REGISTER', ja: '登録', note: 'registry pull request', x: 680, reveal: 4 },
+  { title: 'PREPARE', ja: '準備', note: 'convert + document', x: 122, reveal: 1, url: 'https://github.com/portolan-sdi/portolan-skills/blob/main/skills/portolan-bootstrap/SKILL.md' },
+  { title: 'VALIDATE', ja: '検証', note: 'rashid check', x: 308, reveal: 2, url: 'https://github.com/portolan-sdi/rashid' },
+  { title: 'PUBLISH', ja: '公開', note: 'HTTPS · range · CORS', x: 494, reveal: 3, url: 'https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/core.md' },
+  { title: 'REGISTER', ja: '登録', note: 'registry pull request', x: 680, reveal: 4, url: 'https://github.com/portolan-sdi/portolan-skills/blob/main/skills/register-catalog/SKILL.md' },
 ]
 </script>
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="Choose the first Japanese pilot by agreeing a candidate dataset, an accountable publisher, and a public URL. Then pass four gates: prepare, validate, publish over HTTPS with range requests and CORS, and register. Success means a clear license, a rashid pass, working range requests and CORS, and a registry pull request.">
       <g class="proposal">
         <text x="400" y="32" text-anchor="middle" class="eyebrow">AGREE THE PILOT BEFORE BUILDING IT</text>
@@ -35,11 +35,15 @@ const gates = [
         <g v-if="i > 0" class="gate-link" :class="{ on: s >= gate.reveal }">
           <line :x1="gates[i - 1].x + 42" y1="242" :x2="gate.x - 42" y2="242" />
         </g>
-        <circle :cx="gate.x" cy="242" r="39" class="gate-disc" />
+        <a :href="gate.url" target="_blank" rel="noopener noreferrer" class="svg-source-link"
+           :class="{ 'is-disabled': s < gate.reveal }" :tabindex="s >= gate.reveal ? 0 : -1"
+           :aria-label="`Open the ${gate.title.toLowerCase()} instructions in a new tab`" @click.stop>
+        <circle :cx="gate.x" cy="242" r="39" class="gate-disc link-target" />
         <text :x="gate.x" y="250" text-anchor="middle" class="gate-num">{{ i + 1 }}</text>
-        <text :x="gate.x" y="178" text-anchor="middle" class="gate-title">{{ gate.title }}</text>
+        <text :x="gate.x" y="178" text-anchor="middle" class="gate-title link-label">{{ gate.title }}</text>
         <text :x="gate.x" y="202" text-anchor="middle" class="gate-ja">{{ gate.ja }}</text>
         <text :x="gate.x" y="304" text-anchor="middle" class="gate-note">{{ gate.note }}</text>
+        </a>
       </g>
 
       <g class="success" :class="{ on: s >= 4 }">

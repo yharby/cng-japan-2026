@@ -11,11 +11,13 @@ const phases = [
   { name: 'IMPROVE', hint: 'repair + review', count: 2, x: 470, y: 260, reveal: 3, start: 86, skills: ['portolan-migrate', 'portolan-thumbnails'] },
   { name: 'NETWORK', hint: 'register + respond', count: 2, x: 40, y: 260, reveal: 4, start: 86, skills: ['register-catalog', 'report-catalog-issue'] },
 ]
+
+const skillUrl = (skill: string) => `https://github.com/portolan-sdi/portolan-skills/blob/main/skills/${skill}/SKILL.md`
 </script>
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="Ten Portolan skills form a lifecycle. Build flows to Use, Use to Improve, Improve to Network, and Network back to Build. The four phases contain four, two, two and two exact skill files.">
       <defs>
         <marker id="cycle-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -48,7 +50,11 @@ const phases = [
           <g class="skill-list">
             <g v-for="(skill, i) in phase.skills" :key="skill">
               <circle cx="30" :cy="phase.start + i * 23 - 5" r="4" class="skill-dot" />
-              <text x="45" :y="phase.start + i * 23" class="skill-name">{{ skill }}</text>
+              <a :href="skillUrl(skill)" target="_blank" rel="noopener noreferrer" class="svg-source-link"
+                 :class="{ 'is-disabled': s < phase.reveal }" :tabindex="s >= phase.reveal ? 0 : -1"
+                 :aria-label="`Open ${skill} SKILL.md in a new tab`" @click.stop>
+                <text x="45" :y="phase.start + i * 23" class="skill-name link-label">{{ skill }}</text>
+              </a>
             </g>
           </g>
         </g>

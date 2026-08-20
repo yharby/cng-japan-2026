@@ -138,6 +138,55 @@ html.dark {
   opacity: 0.6;
 }
 
+/* Native anchors keep source links usable in the live deck and as PDF link
+   annotations. The cue stays restrained so diagrams remain the visual focus. */
+.slidev-layout .source-link {
+  color: inherit;
+  text-decoration-color: color-mix(in srgb, var(--c-portolan) 72%, transparent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
+}
+
+.slidev-layout .source-link:hover {
+  color: var(--c-portolan);
+}
+
+.slidev-layout .source-link:focus-visible {
+  border-radius: 2px;
+  outline: 3px solid var(--c-portolan);
+  outline-offset: 3px;
+}
+
+.slidev-layout .svg-source-link {
+  cursor: pointer;
+}
+
+.slidev-layout .svg-source-link .link-label {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--c-portolan) 72%, transparent);
+  text-decoration-thickness: 1.25px;
+  text-underline-offset: 4px;
+}
+
+.slidev-layout .svg-source-link:hover .link-label,
+.slidev-layout .svg-source-link:focus-visible .link-label {
+  fill: var(--c-portolan) !important;
+  text-decoration-color: var(--c-portolan);
+}
+
+.slidev-layout .svg-source-link:hover .link-target,
+.slidev-layout .svg-source-link:focus-visible .link-target {
+  stroke: var(--c-portolan) !important;
+}
+
+.slidev-layout .svg-source-link:focus-visible {
+  outline: none;
+}
+
+.slidev-layout .svg-source-link.is-disabled {
+  pointer-events: none;
+}
+
 .slidev-layout .bi {
   flex: 0 0 auto;
   display: grid;

@@ -8,17 +8,24 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="img"
+    <svg class="canvas" viewBox="0 0 800 460" role="group"
          aria-label="Two legacy download paths. A national CSV must be downloaded and parsed before a small row selection. A non cloud optimized JAXA GeoTIFF tile must be opened as one strip before a small raster window can be analyzed.">
       <path d="M400 56 V376" class="divider" />
 
       <g class="lane vector" :class="{ on: s >= 1 }">
         <text x="201" y="42" text-anchor="middle" class="lane-title">VECTOR AND TABLE DATA</text>
-        <text x="201" y="68" text-anchor="middle" class="lane-source">e-Stat population mesh CSV</text>
+        <a href="https://www.e-stat.go.jp/gis/statmap-search?aggregateUnit=S&amp;datum=2011&amp;page=1&amp;serveyId=S002005112020&amp;statsId=T001140&amp;toukeiCode=00200521&amp;toukeiYear=2020&amp;type=1"
+           target="_blank" rel="noopener noreferrer" class="svg-source-link"
+           aria-label="Open the e-Stat population mesh source page in a new tab" @click.stop>
+          <text x="201" y="68" text-anchor="middle" class="lane-source link-label">e-Stat population mesh CSV</text>
+        </a>
 
         <path d="M54 102 H258 L294 138 V302 H54 Z" class="file" />
         <path d="M258 102 V138 H294" class="fold" />
-        <text x="174" y="139" text-anchor="middle" class="file-name">national.csv</text>
+        <a href="https://www.rfc-editor.org/rfc/rfc4180" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" aria-label="Open the CSV format documentation in a new tab" @click.stop>
+          <text x="174" y="139" text-anchor="middle" class="file-name link-label">national.csv</text>
+        </a>
         <text x="174" y="171" text-anchor="middle" class="scenario">2.4 GB example</text>
         <g class="rows">
           <path d="M84 204 H264 M84 232 H264 M84 260 H264" />
@@ -44,7 +51,11 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
       <g class="lane raster" :class="{ on: s >= 2 }">
         <text x="602" y="42" text-anchor="middle" class="lane-title">RASTER DATA</text>
-        <text x="602" y="68" text-anchor="middle" class="lane-source">JAXA AW3D30 GeoTIFF</text>
+        <a href="https://www.eorc.jaxa.jp/ALOS/en/aw3d30/aw3d30v31_product_e.pdf"
+           target="_blank" rel="noopener noreferrer" class="svg-source-link"
+           aria-label="Open the JAXA AW3D30 product description PDF in a new tab" @click.stop>
+          <text x="602" y="68" text-anchor="middle" class="lane-source link-label">JAXA AW3D30 GeoTIFF</text>
+        </a>
 
         <rect x="452" y="102" width="300" height="200" rx="10" class="raster-frame" />
         <path d="M452 127 H752 M452 152 H752 M452 177 H752 M452 202 H752 M452 227 H752 M452 252 H752 M452 277 H752" class="strips" />
