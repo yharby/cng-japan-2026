@@ -4,8 +4,9 @@
 // coordinates in source finds some overflow, only rendering finds the rest.
 //
 // Two things this got wrong once, both silent.
-//   - The click index is a QUERY parameter, `/7?clicks=3`. The path form
-//     `/7/3` is a 404 page that screenshots perfectly happily.
+//   - The deck uses `routerMode: hash`, so the slide route lives after the
+//     hash and the click index is a QUERY parameter inside it, `/#/7?clicks=3`.
+//     The path form `/7` silently serves slide 1 and screenshots happily.
 //   - Slidev keeps neighbouring slides in the DOM, so `.slidev-page` matches
 //     more than one element and the first is often the previous slide. Always
 //     select `.slidev-page-<n>`.
@@ -36,7 +37,7 @@ const page = await browser.newPage({
 
 for (const spec of SLIDES) {
   const sel = `.slidev-page-${spec.n}`
-  await page.goto(`${base}/${spec.n}?clicks=${spec.clicks}`, { waitUntil: 'networkidle' })
+  await page.goto(`${base}/#/${spec.n}?clicks=${spec.clicks}`, { waitUntil: 'networkidle' })
   await page.waitForSelector(sel, { timeout: 15000 })
   // Entrances run about 500ms and some loops are slower, so settle before the
   // shot or the frame catches a half drawn diagram.

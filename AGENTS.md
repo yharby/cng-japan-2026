@@ -46,7 +46,7 @@
 - `components/`: Vue visualizations; most use Slidev `useNav()` for click states.
 - `styles/`: global palette, bilingual typography, and slide CSS.
 - `public/`: static logos, portrait, and QR assets.
-- `scripts/`: source validation and optional visual QA utilities.
+- `scripts/`: source validation, the `smoke.mjs` render check, and optional visual QA utilities.
 - `og-image.png`: committed social preview generated from the cover.
 
 ## Editorial Rules
@@ -80,10 +80,14 @@
 - Develop: `pnpm dev`; public deck is `/`, presenter mode is `/#/presenter/`.
 - Validate source: `pnpm validate`.
 - Production build: `pnpm build`.
-- Reproduce Pages: `pnpm build --base /cng-japan-2026/ --without-notes`.
-- Preview production: `pnpm preview`.
+- Reproduce Pages: `pnpm build:pages`.
+- Preview production: `pnpm preview`; it derives the base from `dist/index.html`.
+- Render check: `pnpm smoke`, or `pnpm smoke <url>` against a deployment.
+- Full check: `pnpm test` runs validate, build, and smoke.
 - Export main talk: `pnpm export`.
-- Before committing, require `pnpm validate`, a successful Pages-base build, and visual inspection of changed slides.
+- Before committing, require `pnpm test` and visual inspection of changed slides.
+- Never serve a base-prefixed build at `/`. Every asset 404s, `#app` stays empty, and the page is blank with no error. That is what `preview.mjs` and `smoke.mjs` exist to prevent.
+- The QA scripts drive hash routes, `/#/<n>?clicks=<k>`. The path form silently serves slide 1.
 
 ## Deployment
 - `.github/workflows/deploy.yml` deploys every push to `main` via GitHub Pages Actions.
@@ -91,4 +95,5 @@
 - The workflow builds with `/${{ github.event.repository.name }}/` and excludes presenter notes.
 - Keep `routerMode: hash`; it makes deep links reliable on static GitHub Pages hosting.
 - Keep Pages permissions limited to `contents: read`, `pages: write`, and `id-token: write`.
+- Keep the smoke steps in the workflow. A Slidev build exits 0 with a broken base, so only a render check catches a blank deploy.
 - Keep the DOMPurify override until upstream ranges are patched; monitor the unpatched `image-size` alert inherited through PPTXGenJS.

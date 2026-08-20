@@ -14,7 +14,7 @@ const page = await browser.newPage({ viewport: { width, height } })
 
 for (const spec of SLIDES) {
   const sel = `.slidev-page-${spec.n}`
-  await page.goto(`${base}/${spec.n}?clicks=${spec.clicks}`, { waitUntil: 'networkidle' })
+  await page.goto(`${base}/#/${spec.n}?clicks=${spec.clicks}`, { waitUntil: 'networkidle' })
   await page.waitForSelector(sel, { state: 'attached', timeout: 15000 })
   await page.waitForTimeout(900)
   const bad = await page.evaluate((sel) => {

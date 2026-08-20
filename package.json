@@ -10,10 +10,12 @@
   "scripts": {
     "dev": "slidev --open",
     "build": "slidev build --out dist",
-    "preview": "vite preview",
+    "build:pages": "slidev build --out dist --base /cng-japan-2026/ --without-notes",
+    "preview": "node scripts/preview.mjs",
     "export": "mkdir -p dist && slidev export --output dist/cng-japan-2026.pdf --per-slide --range 1-16 --wait 1500 --timeout 60000",
     "validate": "node scripts/validate-deck.mjs",
-    "test": "pnpm validate"
+    "smoke": "node scripts/smoke.mjs",
+    "test": "pnpm validate && pnpm build && pnpm smoke"
   },
   "dependencies": {
     "@slidev/cli": "52.19.0",

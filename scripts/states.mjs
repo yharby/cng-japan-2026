@@ -28,7 +28,7 @@ const page = await browser.newPage({
 for (const spec of SLIDES.filter((slide) => slide.n >= start && slide.n <= end)) {
   const sel = `.slidev-page-${spec.n}`
   for (let click = 0; click <= spec.clicks; click++) {
-    await page.goto(`${base}/${spec.n}?clicks=${click}`, { waitUntil: 'networkidle' })
+    await page.goto(`${base}/#/${spec.n}?clicks=${click}`, { waitUntil: 'networkidle' })
     await page.waitForSelector(`${sel} .canvas`, { timeout: 15000 })
     await page.waitForTimeout(700)
     const n = String(spec.n).padStart(2, '0')
