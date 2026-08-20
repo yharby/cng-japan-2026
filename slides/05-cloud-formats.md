@@ -14,9 +14,6 @@ layout: default
 </div>
 
 <!--
-[Say in Japanese]
-「クラウドネイティブ地理空間形式で、部分読み取りが実用的になります。」
-
 [Say in English]
 "Object storage supplies the scalable address. The file format supplies the map of the bytes."
 

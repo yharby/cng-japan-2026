@@ -15,9 +15,6 @@ hideInToc: true
 </div>
 
 <!--
-[Say in Japanese]
-「10個のスキルが、公開から利用までを支えます。」
-
 [Say in English]
 "The repository now has ten open skills for a repeatable lifecycle. We build a catalog, use it, improve it, and connect it to the wider network. Feedback from the network starts the next build cycle."
 

@@ -10,9 +10,6 @@ class: bio-slide
 <VizBio />
 
 <!--
-[Say in Japanese]
-「ユセフ・ハルビーです。CARTOでソフトウェアエンジニアをしています。」
-
 [Say in English]
 "I am Youssef Harby, a Software Engineer at CARTO. I am an OSGeo Charter Member, an OGC Member, and a Cloud-Native Geospatial Member. I build and contribute to open cloud-native geospatial tools. The QR code opens my projects and writing."
 

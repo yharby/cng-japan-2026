@@ -14,9 +14,6 @@ layout: default
 </div>
 
 <!--
-[Say in Japanese]
-「AIファーストとは、AIが推測で答えることではありません。公開されたリンクをたどり、計算を実行し、根拠を示せることです。」
-
 [Say in English]
 "Let us make AI-first concrete with an operational question. A team is planning a one-percent field-survey pilot within five kilometers of Tsukuba Station. They ask how many candidate visits to budget. The answer is not in the language model. The model must find and run a trustworthy path to it."
 

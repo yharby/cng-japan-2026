@@ -14,9 +14,6 @@ layout: default
 </div>
 
 <!--
-[Say in Japanese]
-「答えはモデルの記憶ではなく、公開されたGeoParquetから計算されました。」
-
 [Say in English]
 "This is the real experiment, run on 21 August 2026 with DuckDB 1.5.5 against the live Japan GeoParquet over HTTPS. The business question is how many candidate visits to budget for a simple one-percent field-survey pilot. The compact terminal on screen shows the important operations; here is the exact query."
 

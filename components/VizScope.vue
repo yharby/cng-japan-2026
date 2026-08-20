@@ -8,7 +8,7 @@ const { tr } = useDeckLocale()
 const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 const current = computed(() => [
-  ['GeoParquet', tr('vector data', 'ベクターデータ'), 'https://geoparquet.org/'],
+  ['GeoParquet', tr('vectors + raster item mirrors', 'ベクター + ラスターItem mirror'), 'https://geoparquet.org/'],
   ['COG', tr('raster data', 'ラスターデータ'), 'https://docs.ogc.org/is/21-026/21-026.html'],
   ['Parquet', tr('companion tables', '補助テーブル'), 'https://parquet.apache.org/docs/file-format/'],
   ['PMTiles', tr('visualization derivative', '可視化用派生データ'), 'https://docs.protomaps.com/pmtiles/'],
@@ -24,8 +24,8 @@ const later = computed(() => [
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('A clear scope boundary. Portolan currently validates GeoParquet vectors, COG rasters, companion Parquet tables, and PMTiles visualization derivatives. It does not yet define normative rules for COPC, GeoZarr, or a full STAC-GeoParquet catalog index.', '明確な対象範囲です。Portolanは現在、GeoParquetベクター、COGラスター、補助Parquetテーブル、PMTiles可視化用派生データを検証します。COPC、GeoZarr、完全なSTAC-GeoParquetカタログ索引の規範ルールはまだ定義していません。')">
-      <text x="400" y="34" text-anchor="middle" class="version">{{ tr('IMPLEMENTED SCOPE · v0.1.1', '実装済みの範囲 · v0.1.1') }}</text>
+         :aria-label="tr('A clear scope boundary for Portolan 0.1.2. Portolan currently validates GeoParquet vectors and raster item mirrors, COG rasters, companion Parquet tables, and PMTiles visualization derivatives. It does not yet define complete normative rules for COPC, GeoZarr, or a full STAC-GeoParquet catalog index.', 'Portolan 0.1.2の明確な対象範囲です。Portolanは現在、GeoParquetベクターとラスターItem mirror、COGラスター、補助Parquetテーブル、PMTiles可視化用派生データを検証します。COPC、GeoZarr、完全なSTAC-GeoParquetカタログ索引の完全な規範ルールはまだ定義していません。')">
+      <text x="400" y="34" text-anchor="middle" class="version">{{ tr('IMPLEMENTED SCOPE · v0.1.2', '実装済みの範囲 · v0.1.2') }}</text>
 
       <line x1="400" y1="62" x2="400" y2="424" class="boundary" />
       <circle cx="400" cy="78" r="8" class="boundary-dot" />

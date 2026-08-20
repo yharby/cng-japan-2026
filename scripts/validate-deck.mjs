@@ -25,7 +25,7 @@ export const SLIDES = slideFiles.map((file, index) => {
     file,
     comp: source.match(/<(Viz[A-Za-z]+)\b/)?.[1] ?? null,
     clicks: Number(frontmatter.match(/^clicks:\s*(\d+)\s*$/m)?.[1] ?? 0),
-    appendix: index >= DECK.mainSlides,
+    appendix: index >= DECK.mainSlides && index + 1 !== DECK.closingSlide,
   }
 })
 
@@ -253,9 +253,12 @@ function checkSlide(spec, errors, warnings) {
   }
 
   if (!spec.appendix) {
-    for (const marker of ['[Say in Japanese]', '[Say in English]', '[Sources]']) {
+    for (const marker of ['[Say in English]', '[Sources]']) {
       if (!body.includes(marker)) errors.push(`${label}: speaker notes are missing ${marker}`)
     }
+  }
+  if (body.includes('[Say in Japanese]')) {
+    errors.push(`${label}: presenter scripts must remain English-only; remove [Say in Japanese]`)
   }
 
   const clickMarkers = [...body.matchAll(/\[Click\s+(\d+)\]/g)].map((m) => Number(m[1]))
@@ -361,6 +364,9 @@ export function checkDeck() {
 
   if (SLIDES.length < DECK.mainSlides) {
     errors.push(`slides.md declares ${SLIDES.length} slides, fewer than the ${DECK.mainSlides}-slide main talk`)
+  }
+  if (DECK.closingSlide > SLIDES.length) {
+    errors.push(`closing slide ${DECK.closingSlide} is outside the ${SLIDES.length}-slide deck`)
   }
 
   let corpus = rootSource

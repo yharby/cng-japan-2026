@@ -14,9 +14,6 @@ layout: default
 </div>
 
 <!--
-[Say in Japanese]
-「必要なデータは少しでも、従来のファイルでは全体のダウンロードから始まることがあります。」
-
 [Say in English]
 "Start with two ordinary questions. On the left, I need a small subset from a national table. On the right, I need one raster window. The 2.4 gigabyte CSV is an illustrative national-file scenario, not a measured e-Stat file size. The access pattern is the point."
 

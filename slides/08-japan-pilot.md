@@ -9,9 +9,6 @@ layout: default
 <VizJapanPilot />
 
 <!--
-[Say in Japanese]
-「日本パイロットの成果物は、公開カタログ1つです。」
-
 [Say in English]
 "This replaces two abstract slides with one testable proposal. The Japanese examples are candidate inputs, not Portolan deployments and not commitments."
 

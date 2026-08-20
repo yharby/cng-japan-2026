@@ -10,9 +10,6 @@ class: cover-slide
 <VizCover />
 
 <!--
-[Say in Japanese]
-「Portolan、サーバーを必要としないSDIについてお話しします。」
-
 [Say in English]
 "Welcome. I am Youssef Harby, a Software Engineer at CARTO. This talk is about Portolan: an SDI without servers. We will start with the cost of downloading files, then build the path to Portolan one layer at a time."
 

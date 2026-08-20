@@ -11,84 +11,70 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('Portolan does not replace existing formats, specifications, or standards. It is an opinionated and checkable publishing practice built from STAC, cloud-native formats, HTTP range requests, and object storage. Its goals are AI-first access, easy implementation, scalability, low cost, and sovereignty.', 'Portolanは既存の形式・仕様・標準を置き換えません。STAC、クラウドネイティブ形式、HTTPレンジリクエスト、オブジェクトストレージを組み合わせた、明確で検証可能な公開手法です。目標はAIファースト、実装容易性、拡張性、低コスト、主権です。')">
-      <text x="400" y="31" text-anchor="middle" class="kicker">{{ tr('EXISTING PIECES, CHECKABLE PRACTICE', '既存要素を、検証可能な公開手法へ') }}</text>
+         :aria-label="tr('Portolan combines existing standards and infrastructure into one repeatable publish, update, and use lifecycle. Publishers convert and describe data, preserve provenance and revalidate updates, and let software, people, and agents use the same static publication. The design goals are AI-first, easy to implement, scalable, lower operating cost, and sovereign deployment.', 'Portolanは既存の標準とインフラを、公開・更新・利用の反復可能なライフサイクルにまとめます。公開者はデータを変換して記述し、来歴を保ちながら更新を再検証し、ソフトウェア・人・エージェントが同じ静的公開物を利用できるようにします。設計目標はAIファースト、実装容易性、拡張性、運用コスト低減、主権的な展開です。')">
+      <defs>
+        <marker id="contract-arrow" viewBox="0 0 8 8" markerWidth="8" markerHeight="8"
+                refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+          <path d="M1 1 L7 4 L1 7" class="marker-head" />
+        </marker>
+      </defs>
 
-      <!-- Draw the relationship first so the arrow stays behind both ideas. -->
-      <path d="M347 164 H423" class="flow" />
-      <path d="M415 158 L423 164 L415 170" class="flow" />
-      <text x="385" y="143" text-anchor="middle" class="flow-label">{{ tr('COMBINES', '組み合わせる') }}</text>
+      <text x="400" y="27" text-anchor="middle" class="kicker">{{ tr('ONE PRACTICE ACROSS THE DATA LIFECYCLE', 'データのライフサイクルを一つの実践で') }}</text>
 
-      <g class="building-blocks" :class="{ on: s >= 1 }">
-        <text x="75" y="78" class="section-label">{{ tr('EXISTING BUILDING BLOCKS', '既存の構成要素') }}</text>
-        <a href="https://github.com/radiantearth/stac-spec" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr('Open the STAC specification in a new tab', 'STAC仕様を新しいタブで開く')" @click.stop>
-          <text x="75" y="125" class="block-title link-label">STAC 1.1</text>
-        </a>
-        <a href="https://geoparquet.org/" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr('Open GeoParquet documentation in a new tab', 'GeoParquetの文書を新しいタブで開く')" @click.stop>
-          <text x="75" y="164" class="block-copy link-label">GeoParquet</text>
-        </a>
-        <text x="183" y="164" class="block-copy">·</text>
-        <a href="https://docs.ogc.org/is/21-026/21-026.html" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr('Open the COG standard in a new tab', 'COG標準を新しいタブで開く')" @click.stop>
-          <text x="201" y="164" class="block-copy link-label">COG</text>
-        </a>
-        <text x="244" y="164" class="block-copy">·</text>
-        <a href="https://docs.protomaps.com/pmtiles/" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr('Open PMTiles documentation in a new tab', 'PMTilesの文書を新しいタブで開く')" @click.stop>
-          <text x="262" y="164" class="block-copy link-label">PMTiles</text>
-        </a>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests"
-           target="_blank" rel="noopener noreferrer" class="svg-source-link"
-           :aria-label="tr('Open the HTTP range request documentation in a new tab', 'HTTPレンジリクエストの文書を新しいタブで開く')" @click.stop>
-          <text x="75" y="198" class="block-copy link-label">{{ tr('HTTP range requests', 'HTTPレンジリクエスト') }}</text>
-        </a>
-        <a href="https://cloudnativegeo.org/about/" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr('Open the Cloud Native Geospatial object storage overview in a new tab', 'Cloud Native Geospatialのオブジェクトストレージ解説を新しいタブで開く')" @click.stop>
-          <text x="75" y="232" class="block-copy link-label">{{ tr('Object storage', 'オブジェクトストレージ') }}</text>
-        </a>
-        <path d="M75 253 H329" class="under-rule" />
+      <!-- Connectors precede nodes so they remain behind the content. -->
+      <path d="M267 150 H306 M497 150 H536" class="flow" marker-end="url(#contract-arrow)" />
+
+      <g class="phase publish" :class="{ on: s >= 1, active: s === 1 }">
+        <rect x="38" y="67" width="229" height="201" rx="20" class="phase-body" />
+        <text x="62" y="101" class="phase-num">01</text>
+        <text x="106" y="101" class="phase-title">{{ tr('PUBLISH', '公開') }}</text>
+        <path d="M62 119 H243" class="phase-rule" />
+        <text x="62" y="151" class="phase-copy">{{ tr('convert to open formats', 'オープン形式へ変換') }}</text>
+        <text x="62" y="184" class="phase-copy">{{ tr('write STAC + docs', 'STAC + 文書を作成') }}</text>
+        <text x="62" y="217" class="phase-copy">{{ tr('check + upload', '検証 + アップロード') }}</text>
+        <text x="62" y="250" class="phase-result">{{ tr('STATIC PUBLICATION', '静的な公開物') }}</text>
       </g>
 
-      <g class="practice" :class="{ on: s >= 2 }">
-        <a href="https://github.com/portolan-sdi/portolan-spec/blob/main/README.md"
-           target="_blank" rel="noopener noreferrer" class="svg-source-link"
-           :aria-label="tr('Open the Portolan specification in a new tab', 'Portolan仕様を新しいタブで開く')" @click.stop>
-        <rect x="438" y="68" width="287" height="196" rx="5" class="link-target" />
-        <image href="/portolan-mark.svg" x="457" y="91" width="48" height="48" preserveAspectRatio="xMidYMid meet" />
-        <text x="518" y="124" class="practice-name link-label">PORTOLAN</text>
-        <text x="582" y="168" text-anchor="middle" class="practice-title">{{ tr('OPINIONATED', '明確な方針を持つ') }}</text>
-        <text x="582" y="196" text-anchor="middle" class="practice-title">{{ tr('PUBLISHING PRACTICE', '公開手法') }}</text>
-        <text x="582" y="230" text-anchor="middle" class="practice-copy">{{ tr('publish · update · use', '公開 · 更新 · 利用') }}</text>
-        </a>
+      <g class="phase update" :class="{ on: s >= 2, active: s === 2 }">
+        <rect x="306" y="67" width="191" height="201" rx="20" class="phase-body" />
+        <text x="330" y="101" class="phase-num">02</text>
+        <text x="374" y="101" class="phase-title">{{ tr('UPDATE', '更新') }}</text>
+        <path d="M330 119 H473" class="phase-rule" />
+        <text x="330" y="151" class="phase-copy">{{ tr('change the source', '原典を更新') }}</text>
+        <text x="330" y="184" class="phase-copy">{{ tr('preserve provenance', '来歴を保持') }}</text>
+        <text x="330" y="217" class="phase-copy">{{ tr('recheck + sync', '再検証 + 同期') }}</text>
+        <text x="330" y="250" class="phase-result">{{ tr('STABLE LINKS', '安定リンク') }}</text>
+      </g>
+
+      <g class="phase use" :class="{ on: s >= 3, active: s === 3 }">
+        <rect x="536" y="67" width="226" height="201" rx="20" class="phase-body" />
+        <text x="560" y="101" class="phase-num">03</text>
+        <text x="604" y="101" class="phase-title">{{ tr('USE', '利用') }}</text>
+        <path d="M560 119 H738" class="phase-rule" />
+        <text x="560" y="151" class="phase-copy">{{ tr('discover the catalog', 'カタログを発見') }}</text>
+        <text x="560" y="184" class="phase-copy">{{ tr('range-read the assets', 'Assetを範囲読込') }}</text>
+        <text x="560" y="217" class="phase-copy">{{ tr('cite sources + limits', '出典 + 限界を提示') }}</text>
+        <text x="560" y="250" class="phase-result">{{ tr('ONE SOURCE FOR ALL', '全員が同じ公開物を利用') }}</text>
+      </g>
+
+      <g class="identity" :class="{ on: s >= 1 }">
+        <image href="/portolan-mark.svg" x="42" y="293" width="42" height="42" preserveAspectRatio="xMidYMid meet" />
+        <text x="98" y="310" class="identity-title">PORTOLAN</text>
+        <text x="98" y="333" class="identity-copy">{{ tr('opinionated · checkable · no new data format', '明確な方針 · 検証可能 · 新しいデータ形式ではない') }}</text>
+        <text x="758" y="321" text-anchor="end" class="foundation">STAC 1.1.0 · GeoParquet · COG · HTTP · {{ tr('object storage', 'オブジェクトストレージ') }}</text>
       </g>
 
       <g class="goals" :class="{ on: s >= 3 }">
-        <text x="400" y="309" text-anchor="middle" class="goals-label">{{ tr('DESIGNED FOR', '設計目標') }}</text>
-        <path d="M63 331 H737" class="goals-rule" />
-
-        <g transform="translate(92 370)">
-          <text text-anchor="middle">{{ tr('AI-FIRST', 'AI第一') }}</text>
-          <path d="M-34 17 H34" />
-        </g>
-        <g transform="translate(246 359)">
-          <text text-anchor="middle">{{ tr('EASY TO', '実装') }}</text>
-          <text y="25" text-anchor="middle">{{ tr('IMPLEMENT', 'しやすい') }}</text>
-          <path d="M-49 43 H49" />
-        </g>
-        <g transform="translate(400 370)">
-          <text text-anchor="middle">{{ tr('SCALABLE', '拡張可能') }}</text>
-          <path d="M-39 17 H39" />
-        </g>
-        <g transform="translate(550 370)">
-          <text text-anchor="middle">{{ tr('LOW COST', '低コスト') }}</text>
-          <path d="M-41 17 H41" />
-        </g>
-        <g transform="translate(704 370)">
-          <text text-anchor="middle">{{ tr('SOVEREIGN', '主権') }}</text>
-          <path d="M-45 17 H45" />
-        </g>
+        <path d="M42 360 H758" class="goals-rule" />
+        <foreignObject x="42" y="377" width="716" height="76">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="goal-row">
+            <div class="goal-item">{{ tr('AI-FIRST', 'AI第一') }}</div>
+            <div class="goal-item">{{ tr('EASY TO IMPLEMENT', '実装しやすい') }}</div>
+            <div class="goal-item">{{ tr('SCALABLE', '拡張可能') }}</div>
+            <div class="goal-item">{{ tr('LOW COST', '低コスト') }}</div>
+            <div class="goal-item">{{ tr('SOVEREIGN', '主権') }}</div>
+          </div>
+        </foreignObject>
       </g>
     </svg>
   </div>
@@ -96,24 +82,27 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 <style scoped>
 @keyframes contract-focus {
-  from { opacity: 0.38; transform: translateY(7px); }
-  to { opacity: 1; }
+  from { opacity: 0.28; transform: translateY(7px); }
+  to { opacity: 1; transform: none; }
 }
 
-.kicker { fill: var(--c-portolan); font-size: 18px; font-weight: 900; letter-spacing: 0.075em; }
-.flow { fill: none; stroke: var(--c-portolan); stroke-width: var(--w-connector-active); stroke-linecap: round; stroke-linejoin: round; }
-.flow-label { fill: var(--c-portolan); font-size: 11px; font-weight: 900; letter-spacing: 0.06em; }
-.building-blocks, .practice, .goals { opacity: 0.42; }
-.building-blocks.on, .practice.on, .goals.on { animation: contract-focus 430ms ease-out both; }
-.section-label, .goals-label { fill: var(--c-muted); font-size: 15px; font-weight: 900; letter-spacing: 0.075em; }
-.block-title { fill: var(--c-fg); font-size: 37px; font-weight: 900; }
-.block-copy { fill: var(--c-muted); font-size: 18px; font-weight: 750; }
-.under-rule { stroke: var(--c-line); stroke-width: 3; }
-.practice rect { fill: var(--c-panel); stroke: var(--c-portolan); stroke-width: 4; }
-.practice-name { fill: var(--c-fg); font-size: 22px; font-weight: 900; letter-spacing: 0.06em; }
-.practice-title { fill: var(--c-fg); font-size: 22px; font-weight: 900; letter-spacing: 0.035em; }
-.practice-copy { fill: var(--c-portolan); font-size: 17px; font-weight: 850; }
+.kicker { fill: var(--c-portolan); font-size: 16px; font-weight: 900; letter-spacing: 0.075em; }
+.flow { fill: none; stroke: var(--c-portolan); stroke-width: var(--w-connector-active); stroke-linecap: round; }
+.marker-head { fill: none; stroke: var(--c-portolan); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.phase, .identity, .goals { opacity: 0.28; }
+.phase.on, .identity.on, .goals.on { animation: contract-focus 430ms ease-out both; }
+.phase-body { fill: var(--c-panel); stroke: var(--c-line); stroke-width: 3; }
+.phase.active .phase-body { stroke: var(--c-accent); }
+.phase-num { fill: var(--c-accent); font-size: 15px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', monospace; }
+.phase-title { fill: var(--c-fg); font-size: 20px; font-weight: 900; letter-spacing: 0.05em; }
+.phase-rule { stroke: var(--c-line); stroke-width: 2; }
+.phase.active .phase-rule { stroke: var(--c-accent); }
+.phase-copy { fill: var(--c-fg); font-size: 14px; font-weight: 780; }
+.phase-result { fill: var(--c-portolan); font-size: 11px; font-weight: 900; letter-spacing: 0.065em; }
+.identity-title { fill: var(--c-fg); font-size: 19px; font-weight: 900; letter-spacing: 0.06em; }
+.identity-copy { fill: var(--c-muted); font-size: 11px; font-weight: 800; }
+.foundation { fill: var(--c-muted); font-size: 11px; font-weight: 850; }
 .goals-rule { stroke: var(--c-line); stroke-width: 3; }
-.goals text { fill: var(--c-fg); font-size: 19px; font-weight: 900; letter-spacing: 0.025em; }
-.goals path { stroke: var(--c-accent); stroke-width: 4; stroke-linecap: round; }
+.goal-row { display: flex; align-items: stretch; justify-content: space-between; gap: 12px; height: 100%; }
+.goal-item { display: flex; align-items: center; justify-content: center; flex: 1; padding: 0 4px 9px; border-bottom: 4px solid var(--c-accent); color: var(--c-fg); font-size: 13px; font-weight: 900; line-height: 1.15; text-align: center; letter-spacing: 0.025em; }
 </style>

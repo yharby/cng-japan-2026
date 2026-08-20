@@ -14,9 +14,6 @@ layout: default
 </div>
 
 <!--
-[Say in Japanese]
-「オブジェクトストレージとHTTPのバイト範囲を使うと、必要な部分だけを取得できます。」
-
 [Say in English]
 "The first change is the storage model. An object has a stable key and is read through HTTP. The publisher can use a commercial cloud, a domestic provider, or a self-hosted S3-compatible system. Cloud native describes the access pattern, not the landlord."
 

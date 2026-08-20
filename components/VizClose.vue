@@ -11,8 +11,8 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr(`Portolan's closing idea has three parts: use an open file format, give it a stable URL, and follow checkable rules. A large QR call to action links to portolan-sdi.org and invites the audience to publish one dataset.`, 'Portolanの結論は3つです。オープン形式を使い、安定URLを与え、検証可能なルールに従います。大きなQRコードはportolan-sdi.orgへリンクし、1つのデータセットを公開するよう促します。')">
-      <text x="400" y="34" text-anchor="middle" class="kicker">{{ tr('A SMALL, REPEATABLE CONTRACT', '小さく、繰り返せる約束') }}</text>
+         :aria-label="tr(`Thank you and questions. Portolan's closing idea has three parts: use an open file format, give it a stable URL, and follow checkable rules. A large QR call to action links to portolan-sdi.org and invites the audience to publish one dataset.`, 'ありがとうございました。質疑応答です。Portolanの結論は3つです。オープン形式を使い、安定URLを与え、検証可能なルールに従います。大きなQRコードはportolan-sdi.orgへリンクし、1つのデータセットを公開するよう促します。')">
+      <text x="400" y="34" text-anchor="middle" class="kicker">{{ tr('THANK YOU · Q&A', 'ありがとうございました · 質疑応答') }}</text>
 
       <path d="M180 170 H620" class="rail" />
       <circle cx="180" cy="170" r="76" class="disc" />

@@ -3,34 +3,31 @@ clicks: 3
 layout: default
 ---
 
-# Publishing rules are machine-checkable
-<p class="ja">ルールは、検証できて初めて意味があります。</p>
+# Portolan separates machine checks from publisher judgment
+<p class="ja">Portolanは、機械検証と公開者の判断を分けます。</p>
 
 <VizValidation />
 
 <div class="bi">
-  <span class="en">Released v0.1.1 has 125 requirements. Current main has 126, including one unreleased organization rule.</span>
-  <span class="deck-ja">リリース版v0.1.1は125要件、mainは未リリースの組織ルールを含む126要件です。</span>
+  <span class="en">Released v0.1.2 has 128 requirements. 106 are validator-enforced and 22 are process-enforced.</span>
+  <span class="deck-ja">リリース版v0.1.2は128要件です。106件はバリデーター、22件は公開プロセスで確認します。</span>
 </div>
 
 <!--
-[Say in Japanese]
-「ルールは、検証できて初めて意味があります。」
-
 [Say in English]
-"A publishing rule is useful when we can test it. Rashid checks the catalog structure, metadata, and real data bytes. Publishers can also run schema and live hosting checks. But people still judge meaning, translation quality, and publishing decisions."
+"Release 0.1.2 has 128 normative requirements. The manifest assigns 106 to deterministic validator enforcement and 22 to publishing process. That boundary tells us what Rashid can prove and what the publisher must still own."
 
 [Click 1]
-"First, Rashid checks structure and metadata."
+"First, Rashid checks the STAC tree, required files, roles, license, provenance, and other metadata rules."
 
 [Click 2]
-"Next, it checks the real data bytes. Schema and live checks are optional."
+"Next, it can inspect real GeoParquet and COG bytes. Schema and live hosting passes add deeper checks for data shape, range support, CORS, and actual URLs."
 
 [Click 3]
-"People still review meaning and quality."
+"The publisher still judges upstream meaning, translation quality, whether the license really applies to the chosen asset, and whether publication is responsible. Machine conformance is necessary; it is not editorial judgment."
 
 [Sources]
-- https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/requirements.yaml
-- https://github.com/portolan-sdi/portolan-spec/releases/tag/v0.1.1
-- https://github.com/portolan-sdi/rashid
+- https://github.com/portolan-sdi/portolan-spec/blob/v0.1.2/specs/portolan/requirements.yaml
+- https://github.com/portolan-sdi/portolan-spec/releases/tag/v0.1.2
+- https://github.com/portolan-sdi/rashid/releases/tag/v0.1.7
 -->

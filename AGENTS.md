@@ -17,7 +17,15 @@
 - Prefer “lower operating cost” and “sovereign deployment” in explanations.
 - Portolan reduces always-on infrastructure; publishing, governance, and operations remain.
 
-## Main Narrative (slides 1–18)
+## Current Technical Baseline
+- These facts were verified against the upstream projects on 21 August 2026; recheck them before changing version labels or command examples.
+- Portolan Spec is **v0.1.2** and remains pre-1.0. The released manifest contains **128 requirements: 106 validator-enforced and 22 process-enforced**.
+- STAC **1.1.0** is the object-model baseline. Use the official STAC artwork stored as `public/stac-logo.png`; its upstream source is `https://stacspec.org/public/images-original/STAC-04.png`.
+- The data-publisher CLI examples follow the released **portolan-cli v0.7.0** workflow. PyPI currently selects v0.7.0 as stable, while **v1.0.0a0** is explicitly alpha.
+- Keep the publisher flow concrete: `init` → `add` → `check --fix` → `push`; use `sync` for the later publisher-controlled update round trip.
+- Do not present CLI automation as removing publisher responsibility. The publisher still controls source data, metadata, credentials, destination, update timing, review, and release decisions.
+
+## Main Narrative (slides 1–17, then slide 25)
 1. Cover: exact agenda title, event, speaker, CARTO identity.
 2. Minimal bio: portrait, role, email.
 3. Legacy files: a small subset can require downloading the whole CSV/GeoTIFF.
@@ -34,13 +42,22 @@
 14. Show the Japanese field-boundary catalog example.
 15. Explain what happens behind an AI-agent question: discover the catalog, inspect metadata, plan a query, compute with DuckDB, and report sources and limits.
 16. Show the real Tsukuba Station experiment and distinguish a computed result from model output.
-17. Be explicit about remaining infrastructure and publishing work.
-18. Close with one action: publish one dataset using open files, stable URLs, and checkable rules.
+17. Compare a horizontal static-first portal architecture with a service-first portal, then make remaining publishing, operational, and governance work explicit.
+25. Close with Q&A and one action: publish one dataset using open files, stable URLs, and checkable rules.
 
 ## Appendix
-- Slides 19–25 contain toolchain, scale examples, live catalog, skills, and install/scope details.
-- Keep appendix slides after the 18-slide talk; `deck.config.mjs` defines the 18-slide export boundary.
+- The appendix is intentionally ordered from evidence to implementation detail:
+  18. Live catalog: begin with a concrete publication before listing tools.
+  19. Open toolchain: show the replaceable implementation pieces.
+  20. Skill workflow: show how an agent follows the publication contract.
+  21. Ten skills: inventory the supporting capabilities only after the workflow is understood.
+  22. Three scales: retain the broader scale comparison as optional depth.
+  23. Publisher CLI: show the released publish and update commands.
+  24. Current scope: separate implemented validation from roadmap formats.
+- Keep appendix slides between the 17-slide main narrative and the final closing slide. `deck.config.mjs` defines both the main narrative boundary and the closing-slide position for validation.
+- All export commands include the complete 25-slide presentation, including the appendix. Do not restore an `--range 1-18` restriction in `scripts/export.mjs`.
 - Do not move product inventories or install instructions into the main story unless talk duration changes.
+- Do not delete a main slide merely to shorten the talk. First consolidate repeated claims inside its visualization or speaker notes; delete only when the slide has no distinct narrative job.
 
 ## Source Layout
 - `slides.md`: deck configuration and definitive slide order.
@@ -61,9 +78,12 @@
 - Keep one idea per slide and reveal causality left-to-right.
 - Preserve the vector/raster parallel where it explains the same access problem.
 - Keep Japanese subtitles readable and consistent; they support rather than replace English titles.
+- Keep presenter scripts English-only. Do not add `[Say in Japanese]` blocks; Japanese remains audience-facing in subtitles, diagrams, and localized deck views.
 - Never call the five goals “ideologies.”
 - Never imply the Japanese examples are Portolan deployments.
 - Do not claim servers disappear; object storage, CDN, IAM, DNS, monitoring, and publishing jobs still exist.
+- Slide 17 is the architecture and honesty checkpoint. Preserve its horizontal arrows: source → publish job → object storage/open assets → STAC → clients, with optional compute branching on demand. Contrast that with files/database → GIS server → gateway → APIs/tiles → clients.
+- On slide 17, say that the query path can shrink; never imply that infrastructure or human accountability disappears.
 - Keep factual claims source-backed in speaker notes; preserve the `[Sources]` section format.
 - Public access is not license clearance. Only Green sources from `docs/data-license-audit.md` may appear as conversion, reuse, or pilot examples. Before proposing one, verify the exact asset or STAC collection license, upstream providers, attribution, modification notice, and commercial-use terms.
 - Keep illustrative filenames visibly distinct from real downloadable assets. Do not infer a data license from a software repository license, a host, or a logo.
@@ -77,6 +97,7 @@
 - One dominant headline; avoid duplicate titles or competing callouts.
 - Use `v-click` states to reveal a sequence, not decoration.
 - Reuse existing components and assets before creating new visual systems.
+- When a component reads `$clicks` through `useNav()`, keep the matching `clicks:` count in the slide frontmatter. The opening frame may be intentionally muted; visually inspect the final revealed state as well.
 
 ## Common Changes
 - Add a slide: create `slides/NN-name.md`, create/reuse a component, then add a `src` entry in `slides.md`.
@@ -93,8 +114,8 @@
 - Preview production: `pnpm preview`; Vite uses the same base as the build.
 - Render check: `pnpm smoke`, or `pnpm smoke <url>` against a deployment.
 - Full check: `pnpm test` runs validate, build, and smoke.
-- Export main talk: `pnpm export`.
-- Export Japanese main talk: `pnpm export:ja`; export both languages: `pnpm export:all`.
+- Export the full English presentation: `pnpm export` or `pnpm export:en`.
+- Export the full Japanese presentation: `pnpm export:ja`; export both complete 25-slide presentations: `pnpm export:all`.
 - Before committing, require `pnpm test` and visual inspection of changed slides.
 - Do not override the production base on the command line. `deck.config.mjs` is the source of truth.
 - Restart `pnpm preview` after rebuilding; a preview is a view of one completed static artifact.

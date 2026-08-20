@@ -13,7 +13,6 @@ const result = spawnSync('pnpm', [
   'exec', 'slidev', 'export',
   '--output', output,
   '--per-slide',
-  '--range', `1-${DECK.mainSlides}`,
   '--wait', '1500',
   '--timeout', '60000',
 ], {

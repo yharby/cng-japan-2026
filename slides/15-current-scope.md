@@ -10,25 +10,22 @@ hideInToc: true
 <VizScope />
 
 <div class="bi">
-  <span class="en">Current conformance covers GeoParquet vectors, COG rasters, companion Parquet tables, and PMTiles visualization derivatives.</span>
-  <span class="deck-ja">現在の適合性検証はGeoParquet、COG、付随Parquetテーブル、PMTiles可視化派生物を対象とします。</span>
+  <span class="en">v0.1.2 covers GeoParquet vectors and raster item mirrors, COG, companion Parquet tables, and PMTiles derivatives.</span>
+  <span class="deck-ja">v0.1.2はGeoParquetベクターとラスターItem mirror、COG、付随Parquetテーブル、PMTiles派生物を対象とします。</span>
 </div>
 
 <!--
-[Say in Japanese]
-「今、検証できる範囲と、まだ決まっていない範囲を分けます。」
-
 [Say in English]
-"This line is important. It separates what Portolan can validate now from what has no normative rules yet."
+"This line is important. It separates what Portolan 0.1.2 can validate now from work that is still incubating or incomplete."
 
 [Click 1]
-"Today, that means GeoParquet for vectors, COG for raster, Parquet companion tables, and PMTiles as a visualization derivative."
+"Today, that means GeoParquet for vectors and raster item mirrors, COG for raster data, Parquet companion tables, and PMTiles as a visualization derivative."
 
 [Click 2]
 "COPC, GeoZarr, and a full STAC-GeoParquet catalog index are later work. A roadmap is not the same as implemented scope."
 
 [Sources]
-- https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/formats.md
+- https://github.com/portolan-sdi/portolan-spec/blob/v0.1.2/specs/portolan/formats.md
 - https://github.com/portolan-sdi/portolan-spec/blob/main/specs/incubating/README.md
 - https://geoparquet.org/
 - https://docs.ogc.org/is/21-026/21-026.html

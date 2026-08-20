@@ -3,30 +3,29 @@ clicks: 3
 layout: default
 ---
 
-# Portolan does not replace existing standards
-<p class="ja">Portolanは既存の標準を置き換えるものではありません。</p>
+# Portolan connects the pieces across publish · update · use
+<p class="ja">Portolanは、公開・更新・利用を一つの流れにつなぎます。</p>
 
 <VizPortolanContract />
 
 <!--
-[Say in Japanese]
-「Portolanは、既存の標準を置き換えるものではありません。既存の標準、形式、インフラを組み合わせる、実践的な公開方法です。」
-
 [Say in English]
-"Portolan does not replace existing data formats or geospatial standards. It is an opinionated, checkable STAC publishing profile and practice: a clear way to publish plain geospatial files in storage you control, connect them into a searchable network, and keep the publish, update, and use lifecycle predictable. Portolan documents a pre-1.0 ruleset, but it does not ask the community to replace STAC, GeoParquet, COG, HTTP, or object storage."
+"Here is the big picture. Portolan is an opinionated, checkable STAC publishing profile and practice. It connects the pieces we have just built into one repeatable lifecycle: publish, update, and use. It does not introduce a new data format or replace STAC, GeoParquet, COG, HTTP, or object storage."
 
 [Click 1]
-"The building blocks already exist: STAC, GeoParquet, COG, PMTiles, HTTP range requests, and object storage."
+"Publish means convert the data to an open cloud-native format, describe it with STAC and documentation, validate it, and upload a static publication to storage the publisher controls."
 
 [Click 2]
-"Portolan makes practical choices about how those pieces work together. The choices are documented and checkable, so teams can follow the same publishing practice."
+"Update follows the same contract. Change the source, preserve license and provenance, regenerate affected artifacts, check them again, and sync them without inventing a second delivery path."
 
 [Click 3]
-"The practice is designed around five goals, not guarantees: AI-first access, easy implementation, scalability, lower operating cost, and the ability to host under your own control."
+"Use begins at the same catalog for software, people, and AI agents. The five design goals are directions, not guarantees: AI-first access, easy implementation, scalability, lower operating cost, and sovereign deployment."
 
 [Sources]
-- https://github.com/portolan-sdi/portolan-spec/blob/main/README.md
-- https://github.com/portolan-sdi/portolan-spec/blob/main/stac/README.md
+- https://github.com/portolan-sdi/portolan-spec/releases/tag/v0.1.2
+- https://github.com/portolan-sdi/portolan-spec/blob/v0.1.2/README.md
+- https://github.com/portolan-sdi/portolan-spec/blob/v0.1.2/stac/README.md
+- https://github.com/portolan-sdi/portolan-cli/blob/v0.7.0/README.md
 - https://github.com/portolan-sdi/portolan-ops/blob/main/copy/messaging.md
 - https://github.com/radiantearth/stac-spec
 - https://geoparquet.org/

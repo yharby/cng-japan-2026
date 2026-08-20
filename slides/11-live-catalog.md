@@ -15,9 +15,6 @@ hideInToc: true
 </div>
 
 <!--
-[Say in Japanese]
-「これはデモ用の画像ではなく、実際に使えるカタログです。」
-
 [Say in English]
 "This preview gives us a reliable starting point. The real Portolan Browser reads the GHSL static catalog: twelve five-year population collections, 3,984 COG items, and an explicit CC BY 4.0 license on every collection."
 

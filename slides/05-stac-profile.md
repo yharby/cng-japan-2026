@@ -9,20 +9,20 @@ layout: default
 <VizTheGap />
 
 <!--
-[Say in Japanese]
-「STACはデータと資産へのリンクを記述します。Portolanは、その公開方法を明確にします。」
-
 [Say in English]
-"STAC already does an important job. It describes a dataset and links to the real asset. Portolan applies an opinionated profile to that same STAC publication. It makes layout and access, documentation and license, provenance, formats, and hosting behavior explicit."
+"STAC already gives us the durable object model: Catalog, Collection, Item, Asset, metadata, and links. Portolan keeps those same STAC 1.1.0 objects and adds a versioned publishing profile. Release 0.1.2 is still pre-1.0, so the schema URI records exactly which contract a catalog follows."
 
 [Click 1]
-"Inside the profile, STAC still does its normal job: metadata and geometry point to the real asset URL."
+"STAC continues to do its normal job: describe and link the catalog, collections, items, and assets. The original STAC mark on this slide comes from the official STAC site."
 
 [Click 2]
-"Portolan defines practical publishing choices around the same data. Publishers run Rashid before publishing and can add live hosting checks when needed."
+"Portolan makes six families of publishing choices explicit: structure and links, formats and statistics, access and hosting, license and provenance, README and AGENTS documentation, and visualization. A catalog declares the versioned Portolan schema URI, and Rashid checks the deterministic parts of that contract."
 
 [Sources]
 - https://github.com/radiantearth/stac-spec
-- https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/core.md
-- https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/formats.md
+- https://stacspec.org/public/images-original/STAC-04.png
+- https://github.com/portolan-sdi/portolan-spec/releases/tag/v0.1.2
+- https://github.com/portolan-sdi/portolan-spec/blob/v0.1.2/specs/portolan/core.md
+- https://github.com/portolan-sdi/portolan-spec/blob/v0.1.2/specs/portolan/formats.md
+- https://github.com/portolan-sdi/portolan-spec/blob/v0.1.2/specs/portolan/requirements.yaml
 -->

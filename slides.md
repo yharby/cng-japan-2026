@@ -89,7 +89,7 @@ src: ./slides/16-honest-work.md
 ---
 
 ---
-src: ./slides/18-close.md
+src: ./slides/11-live-catalog.md
 ---
 
 ---
@@ -97,11 +97,7 @@ src: ./slides/06-open-toolchain.md
 ---
 
 ---
-src: ./slides/10-three-scales.md
----
-
----
-src: ./slides/11-live-catalog.md
+src: ./slides/13-skill-workflow.md
 ---
 
 ---
@@ -109,7 +105,7 @@ src: ./slides/12-ten-skills.md
 ---
 
 ---
-src: ./slides/13-skill-workflow.md
+src: ./slides/10-three-scales.md
 ---
 
 ---
@@ -118,4 +114,8 @@ src: ./slides/14-get-started.md
 
 ---
 src: ./slides/15-current-scope.md
+---
+
+---
+src: ./slides/18-close.md
 ---

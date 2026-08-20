@@ -11,21 +11,24 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('Rashid separates machine-checkable publication rules from human judgment. Release 0.1.1 has 125 requirements and current main has 126. Click one highlights structure and metadata checks, click two highlights data plus optional schema and live checks, and click three highlights human review.', 'Rashidは機械で検証できる公開ルールと人の判断を分けます。リリース0.1.1は125要件、現在のmainは126要件です。クリック1で構造とメタデータ、2で実データと任意のschema・live検査、3で人による確認を強調します。')">
+         :aria-label="tr('Portolan release 0.1.2 contains 128 requirements: 106 are assigned to deterministic validator enforcement and 22 to publishing process. Rashid checks catalog structure, metadata, and real data bytes, while publishers still judge source meaning, translation quality, and publishing decisions.', 'Portolanリリース0.1.2には128要件があり、106件は決定的なバリデーター検証、22件は公開プロセスに割り当てられています。Rashidはカタログ構造、メタデータ、実データのバイト列を検査し、原典の意味、翻訳品質、公開判断は公開者が引き続き評価します。')">
       <text x="400" y="28" text-anchor="middle" class="kicker">{{ tr('WHAT MACHINES CAN CHECK · WHAT PEOPLE MUST JUDGE', '機械が検証すること · 人が判断すること') }}</text>
 
       <g class="status">
-        <a href="https://github.com/portolan-sdi/portolan-spec/releases/tag/v0.1.1" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr('Open Portolan specification release 0.1.1 in a new tab', 'Portolan仕様リリース0.1.1を新しいタブで開く')" @click.stop>
+        <a href="https://github.com/portolan-sdi/portolan-spec/releases/tag/v0.1.2" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" :aria-label="tr('Open Portolan specification release 0.1.2 in a new tab', 'Portolan仕様リリース0.1.2を新しいタブで開く')" @click.stop>
         <rect x="42" y="45" width="326" height="46" rx="12" class="status-release link-target" />
-        <text x="62" y="74" class="status-text release-text link-label">{{ tr('RELEASE v0.1.1', 'リリース v0.1.1') }}</text>
-        <text x="338" y="74" text-anchor="end" class="status-number">125</text>
+        <text x="62" y="63" class="status-text release-text link-label">{{ tr('RELEASE v0.1.2', 'リリース v0.1.2') }}</text>
+        <text x="338" y="81" text-anchor="end" class="status-number">128</text>
         </a>
         <a href="https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/requirements.yaml" target="_blank" rel="noopener noreferrer"
            class="svg-source-link" :aria-label="tr('Open the current Portolan requirements file in a new tab', '現在のPortolan要件ファイルを新しいタブで開く')" @click.stop>
         <rect x="432" y="45" width="326" height="46" rx="12" class="status-main link-target" />
-        <text x="452" y="74" class="status-text main-text link-label">{{ tr('MAIN · +1 UNRELEASED', 'MAIN · 未リリース +1') }}</text>
-        <text x="738" y="74" text-anchor="end" class="status-number main-number">126</text>
+        <path d="M595 51 V85" class="status-divider" />
+        <text x="452" y="63" class="status-text main-text link-label">{{ tr('VALIDATOR', '検証') }}</text>
+        <text x="568" y="82" text-anchor="end" class="status-number validator-number">106</text>
+        <text x="616" y="63" class="status-text process-text">{{ tr('PROCESS', 'プロセス') }}</text>
+        <text x="738" y="82" text-anchor="end" class="status-number process-number">22</text>
         </a>
       </g>
 
@@ -75,12 +78,15 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .kicker { fill: var(--c-muted); font-size: 17px; font-weight: 900; letter-spacing: 0.075em; }
 .status-release, .status-main { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 2; }
 .status-release { stroke: var(--c-ok); }
-.status-main { stroke: var(--c-warn); }
-.status-text { font-size: 14px; font-weight: 900; letter-spacing: 0.055em; }
+.status-main { stroke: var(--c-portolan); }
+.status-text { font-size: 10.5px; font-weight: 900; letter-spacing: 0.055em; }
 .release-text { fill: var(--c-ok); }
-.main-text { fill: var(--c-warn); }
+.main-text { fill: var(--c-portolan); }
+.process-text { fill: var(--c-warn); }
 .status-number { fill: var(--c-fg); font-size: 24px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', monospace; }
-.main-number { fill: var(--c-warn); }
+.validator-number { fill: var(--c-portolan); }
+.process-number { fill: var(--c-warn); }
+.status-divider { stroke: var(--c-line); stroke-width: 2; }
 .section-label { fill: var(--c-muted); font-size: 14px; font-weight: 900; letter-spacing: 0.1em; }
 .flow { fill: none; stroke: var(--c-line); stroke-width: var(--w-connector); stroke-linecap: round; stroke-linejoin: round; }
 .rashid-disc { fill: var(--c-fg); }

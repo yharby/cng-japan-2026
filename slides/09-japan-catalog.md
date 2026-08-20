@@ -14,9 +14,6 @@ layout: default
 </div>
 
 <!--
-[Say in Japanese]
-「日本のデータは、すでにPortolanカタログから利用できます。」
-
 [Say in English]
 "Here is a real catalog path. We start at catalog JSON, open the Japan STAC Item JSON, and reach two useful assets. The item has more than 5.3 million field boundaries under CC BY 4.0. Credit belongs to Fields of the World, Taylor Geospatial Institute, and Microsoft AI for Good Research Lab. This is global research data, not Japanese government data."
 

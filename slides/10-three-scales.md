@@ -15,9 +15,6 @@ hideInToc: true
 </div>
 
 <!--
-[Say in Japanese]
-「同じ仕組みを、市、国、世界規模で使えます。」
-
 [Say in English]
 "These are exact, reusable publications rather than catalog roots with mixed terms. Each card links directly to the metadata that governs the displayed data."
 

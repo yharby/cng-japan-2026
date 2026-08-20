@@ -15,9 +15,6 @@ hideInToc: true
 </div>
 
 <!--
-[Say in Japanese]
-「Portolanは一つのポータルではなく、六つのオープンなプロジェクトです。」
-
 [Say in English]
 "Portolan is more than one repository now, so let me show the lifecycle instead of a list of projects. The specification defines the contract. The CLI builds the catalog. Rashid validates it. Static HTTP publishes it. The registry records the public catalog, and the browser lets people explore it. Portolan Skills supports an agent across build, validate, and publish."
 

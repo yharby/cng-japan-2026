@@ -14,9 +14,6 @@ layout: default
 </div>
 
 <!--
-[Say in Japanese]
-「高速に読めるファイルがあっても、それだけではデータセットを説明できません。」
-
 [Say in English]
 "Now the bucket fills with GeoParquet files, COGs, map files, thumbnails, and partitions. The bytes are easier to read, but the collection is still a pile of object keys."
 

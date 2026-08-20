@@ -14,9 +14,6 @@ layout: default
 </div>
 
 <!--
-[Say in Japanese]
-「一つの公開データに、三つの分かりやすい入口があります。」
-
 [Say in English]
 "One Portolan collection has three clear entrances. Software reads collection JSON. People read the README. AI agents read AGENTS dot md. All three entrances lead to the same published data, maps, styles, thumbnail, and original source."
 

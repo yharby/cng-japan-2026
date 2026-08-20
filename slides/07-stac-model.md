@@ -14,9 +14,6 @@ layout: default
 </div>
 
 <!--
-[Say in Japanese]
-「STACは、JSONのリンクでカタログ、コレクション、アイテム、アセットを整理します。」
-
 [Say in English]
 "STAC gives us a small, open metadata model. It does not move the data. It links to the files where they already live."
 

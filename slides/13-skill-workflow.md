@@ -15,9 +15,6 @@ hideInToc: true
 </div>
 
 <!--
-[Say in Japanese]
-「スキルは魔法ではありません。AIが安全に作業するための、手順書です。」
-
 [Say in English]
 "A skill is not a new engine. It is a work manual for the AI. We start at the catalog and follow its links."
 

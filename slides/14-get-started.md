@@ -4,31 +4,29 @@ layout: default
 hideInToc: true
 ---
 
-# Start with skills or the command line
-<p class="ja">AIエージェントでも、コマンドラインでも始められます。</p>
+# Publish and update with the Portolan CLI
+<p class="ja">Portolan CLIで公開し、同じ流れで更新できます。</p>
 
 <VizGetStarted />
 
 <div class="bi">
-  <span class="en">Use the skills for guided work. Use rashid directly today for the released conformance check.</span>
-  <span class="deck-ja">ガイド付き作業にはスキルを使い、現行リリースの適合性検証にはrashidを直接使います。</span>
+  <span class="en">Initialize → add → convert and check → push. Later, sync repeats the publisher-controlled round trip.</span>
+  <span class="deck-ja">初期化 → 追加 → 変換・検証 → push。以後はsyncで公開者管理の往復処理を繰り返します。</span>
 </div>
 
 <!--
-[Say in Japanese]
-「AIのスキルでも、検証コマンドでも、今日から始められます。」
-
 [Say in English]
-"Here is one path you can run today. With Claude, add the Portolan marketplace, install the plugin, and ask for the reading skill. Gemini, Codex, and other agents can use the same SKILL dot md files."
+"For data publishers, this is the released command-line path. PyPI currently selects 0.7.0 as the stable version; 1.0.0a0 is an alpha release and current main continues to move. The core publisher commands shown here are documented in both the published 0.7.0 README and the current repository."
 
 [Click 1]
-"The second path is also ready today. Install rashid, then check a local catalog. Exit zero means no MUST rule was broken."
+"Initialize the catalog and license, add a dataset, run check with fix to convert and validate it, then push the static catalog to object storage. The publisher supplies the data, metadata choices, credentials, and destination."
 
 [Click 2]
-"The Portolan CLI publishing flow is on current main and is planned for version 1.0. I show it separately because it is not the stable starting point yet."
+"Later, sync performs the round trip described by the CLI: pull, initialize, scan, check, and push. Automation does not remove the release decision; the publisher still controls the update schedule and reviews the result."
 
 [Sources]
-- https://github.com/portolan-sdi/portolan-skills/blob/main/README.md
-- https://github.com/portolan-sdi/portolan-cli
-- https://github.com/portolan-sdi/rashid
+- https://github.com/portolan-sdi/portolan-cli/blob/v0.7.0/README.md
+- https://github.com/portolan-sdi/portolan-cli/blob/main/README.md
+- https://github.com/portolan-sdi/portolan-cli/releases/tag/v1.0.0a0
+- https://pypi.org/project/portolan-cli/
 -->
