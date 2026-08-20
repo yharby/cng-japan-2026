@@ -91,3 +91,4 @@
 - The workflow builds with `/${{ github.event.repository.name }}/` and excludes presenter notes.
 - Keep `routerMode: hash`; it makes deep links reliable on static GitHub Pages hosting.
 - Keep Pages permissions limited to `contents: read`, `pages: write`, and `id-token: write`.
+- Keep the DOMPurify override until upstream ranges are patched; monitor the unpatched `image-size` alert inherited through PPTXGenJS.
