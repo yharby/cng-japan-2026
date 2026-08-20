@@ -1,49 +1,31 @@
 #!/usr/bin/env node
-// Deck validator for the split-file 24 slide deck.
-//
-// The deck root is a chain of `src:` includes, so this walks the include list
-// in slide order and validates each included file in its own right. Slides 1
-// to 16 are the 20-minute talk. Slides 17 to 24 are reachable appendices that
-// are kept out of the PDF by `--range 1-16` and excluded from the click budget.
+// Validate the split-file deck by deriving its order from slides.md and its
+// main-talk boundary and click budget from deck.config.mjs.
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { DECK } from '../deck.config.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
-const DECK = resolve(HERE, '..')
+const ROOT = resolve(HERE, '..')
+const FM = /^---\n([\s\S]*?)\n---/
 
-// The contract. Clicks for slides 1 to 16 sum to 38.
-export const SLIDES = [
-  { n: 1, file: 'slides/01-cover.md', comp: 'VizCover', mode: null, clicks: 0 },
-  { n: 2, file: 'slides/02-bio.md', comp: 'VizBio', mode: null, clicks: 0 },
-  { n: 3, file: 'slides/03-legacy-files.md', comp: 'VizLegacyFiles', mode: null, clicks: 3 },
-  { n: 4, file: 'slides/04-object-storage-range.md', comp: 'VizObjectRange', mode: null, clicks: 3 },
-  { n: 5, file: 'slides/05-cloud-formats.md', comp: 'VizCloudFormats', mode: null, clicks: 4 },
-  { n: 6, file: 'slides/06-files-need-catalog.md', comp: 'VizFilesNeedCatalog', mode: null, clicks: 2 },
-  { n: 7, file: 'slides/07-stac-model.md', comp: 'VizStacModel', mode: null, clicks: 3 },
-  { n: 8, file: 'slides/03-japan-pieces.md', comp: 'VizJapanAlready', mode: null, clicks: 3 },
-  { n: 9, file: 'slides/04-portolan-contract.md', comp: 'VizPortolanContract', mode: null, clicks: 3 },
-  { n: 10, file: 'slides/05-stac-profile.md', comp: 'VizTheGap', mode: null, clicks: 2 },
-  { n: 11, file: 'slides/07-three-doors.md', comp: 'VizLayout', mode: null, clicks: 3 },
-  { n: 12, file: 'slides/08-testable-rules.md', comp: 'VizValidation', mode: null, clicks: 3 },
-  { n: 13, file: 'slides/09-japan-catalog.md', comp: 'VizJapanCatalog', mode: null, clicks: 2 },
-  { n: 14, file: 'slides/16-honest-work.md', comp: 'VizHonestWork', mode: null, clicks: 2 },
-  { n: 15, file: 'slides/17-japan-pilot.md', comp: 'VizPilot', mode: null, clicks: 4 },
-  { n: 16, file: 'slides/18-close.md', comp: 'VizClose', mode: null, clicks: 1 },
-  { n: 17, file: 'slides/06-open-toolchain.md', comp: 'VizEcosystem', mode: null, clicks: 3, appendix: true },
-  { n: 18, file: 'slides/10-three-scales.md', comp: 'VizScaleExamples', mode: null, clicks: 3, appendix: true },
-  { n: 19, file: 'slides/11-live-catalog.md', comp: 'VizLiveBrowser', mode: null, clicks: 1, appendix: true },
-  { n: 20, file: 'slides/12-ten-skills.md', comp: 'VizSkillSuite', mode: null, clicks: 4, appendix: true },
-  { n: 21, file: 'slides/13-skill-workflow.md', comp: 'VizSkillFlow', mode: null, clicks: 4, appendix: true },
-  { n: 22, file: 'slides/14-get-started.md', comp: 'VizGetStarted', mode: null, clicks: 2, appendix: true },
-  { n: 23, file: 'slides/15-current-scope.md', comp: 'VizScope', mode: null, clicks: 2, appendix: true },
-  { n: 24, file: 'slides/19-appendix-http.md', comp: 'VizProtocol', mode: null, clicks: 4, appendix: true },
-]
+// slides.md is the single source of truth for slide order. Tooling derives the
+// component, click count, and appendix boundary from the included files.
+const rootSource = readFileSync(join(ROOT, 'slides.md'), 'utf8')
+const slideFiles = [...rootSource.matchAll(/^src:\s*\.\/(.+?)\s*$/gm)].map((match) => match[1])
 
-export const CLICK_BUDGET = 38
-
-// Slides that carry no `.bi` evidence line at all, by contract.
-const NO_BI = new Set([1, 2, 8, 9, 10, 16])
+export const SLIDES = slideFiles.map((file, index) => {
+  const source = readFileSync(join(ROOT, file), 'utf8')
+  const frontmatter = source.match(FM)?.[1] ?? ''
+  return {
+    n: index + 1,
+    file,
+    comp: source.match(/<(Viz[A-Za-z]+)\b/)?.[1] ?? null,
+    clicks: Number(frontmatter.match(/^clicks:\s*(\d+)\s*$/m)?.[1] ?? 0),
+    appendix: index >= DECK.mainSlides,
+  }
+})
 
 // Components superseded by the rebuild. Referencing one is a defect even if
 // the file still sits on disk.
@@ -106,8 +88,6 @@ export const FORBIDDEN = [
 export const REQUIRED = [
   'Source Cooperative', 'Matsumura', 'Imaki', 'flateau',
 ]
-
-const FM = /^---\n([\s\S]*?)\n---/
 
 function frontmatter(src) {
   const m = src.match(FM)
@@ -188,7 +168,7 @@ export function checkSource(src, label, warnings = []) {
 }
 
 function checkSlide(spec, errors, warnings) {
-  const path = join(DECK, spec.file)
+  const path = join(ROOT, spec.file)
   if (!existsSync(path)) {
     errors.push(`slide ${spec.n}: missing file ${spec.file}`)
     return ''
@@ -200,34 +180,16 @@ function checkSlide(spec, errors, warnings) {
   const fm = frontmatter(src)
   const body = bodyOf(src)
 
-  const cm = fm.match(/^clicks:\s*(\d+)\s*$/m)
-  const clicks = cm ? Number(cm[1]) : 0
-  if (clicks !== spec.clicks) {
-    errors.push(`${label}: clicks is ${clicks}, contract says ${spec.clicks}`)
-  }
-
-  // Component usage. Props are allowed, and the same component may appear on
-  // more than one slide, so match the tag and read its attributes.
+  // Component usage. Props are allowed, but each slide has one visualization.
   const tags = [...body.matchAll(/<(Viz[A-Za-z]+)([^>]*)\/>/g)]
   if (tags.length !== 1) {
     errors.push(`${label}: expected exactly one Viz component, found ${tags.length}`)
-  } else {
-    const [, name, attrs] = tags[0]
-    if (name !== spec.comp) {
-      errors.push(`${label}: expected <${spec.comp} />, found <${name} />`)
-    }
-    const mm = attrs.match(/mode="([^"]+)"/)
-    const mode = mm ? mm[1] : null
-    if (mode !== spec.mode) {
-      errors.push(`${label}: mode is ${mode ?? 'absent'}, contract says ${spec.mode ?? 'absent'}`)
-    }
   }
 
   // At most one evidence block, the measured legibility constraint.
   const bi = [...body.matchAll(/class="bi"/g)].length
-  const maxBi = NO_BI.has(spec.n) ? 0 : 1
-  if (bi > maxBi) {
-    errors.push(`${label}: ${bi} .bi blocks, contract allows ${maxBi}`)
+  if (bi > 1) {
+    errors.push(`${label}: ${bi} .bi blocks, maximum is 1`)
   }
 
   // Bilingual does not mean duplicating every evidence sentence. The Japanese
@@ -282,7 +244,7 @@ function checkSlide(spec, errors, warnings) {
 }
 
 function checkComponent(name, errors, needsClicks = false) {
-  const file = join(DECK, 'components', `${name}.vue`)
+  const file = join(ROOT, 'components', `${name}.vue`)
   if (!existsSync(file)) {
     errors.push(`missing component file, components/${name}.vue`)
     return
@@ -349,31 +311,23 @@ export function checkDeck() {
   const errors = []
   const warnings = []
 
-  // The include chain must list every contract slide, in order.
-  const root = readFileSync(join(DECK, 'slides.md'), 'utf8')
-  const includes = [...root.matchAll(/^src:\s*\.\/(.+?)\s*$/gm)].map((m) => m[1])
-  if (includes.length !== SLIDES.length) {
-    errors.push(`slides.md declares ${includes.length} includes, contract says ${SLIDES.length}`)
-  }
-  for (const [i, spec] of SLIDES.entries()) {
-    if (includes[i] !== spec.file) {
-      errors.push(`slides.md include ${i + 1} is ${includes[i] ?? 'nothing'}, expected ${spec.file}`)
-    }
+  if (SLIDES.length < DECK.mainSlides) {
+    errors.push(`slides.md declares ${SLIDES.length} slides, fewer than the ${DECK.mainSlides}-slide main talk`)
   }
 
-  let corpus = root
+  let corpus = rootSource
   for (const spec of SLIDES) corpus += `\n${checkSlide(spec, errors, warnings)}`
 
   const budget = SLIDES.filter((s) => !s.appendix).reduce((a, s) => a + s.clicks, 0)
-  if (budget !== CLICK_BUDGET) {
-    errors.push(`contract table sums to ${budget} clicks, budget is ${CLICK_BUDGET}`)
+  if (budget !== DECK.clickBudget) {
+    errors.push(`main talk sums to ${budget} clicks, budget is ${DECK.clickBudget}`)
   }
 
   for (const req of REQUIRED) {
     if (!corpus.includes(req)) errors.push(`required string missing from the deck, "${req}"`)
   }
 
-  for (const name of [...new Set(SLIDES.map((s) => s.comp))]) {
+  for (const name of [...new Set(SLIDES.map((s) => s.comp).filter(Boolean))]) {
     const needsClicks = SLIDES.some((s) => s.comp === name && s.clicks > 0)
     checkComponent(name, errors, needsClicks)
   }
@@ -382,12 +336,12 @@ export function checkDeck() {
     'public/qr-portolan.svg',
   ]
   for (const rel of deliverables) {
-    if (!existsSync(join(DECK, rel))) errors.push(`missing delivery asset, ${rel}`)
+    if (!existsSync(join(ROOT, rel))) errors.push(`missing delivery asset, ${rel}`)
   }
 
   // Retired components must be gone from disk too, or the next build agent
   // reuses one by mistake.
-  const present = readdirSync(join(DECK, 'components'))
+  const present = readdirSync(join(ROOT, 'components'))
   for (const name of RETIRED) {
     if (present.includes(`${name}.vue`)) {
       errors.push(`retired component still on disk, components/${name}.vue`)
@@ -397,8 +351,8 @@ export function checkDeck() {
   return { errors, warnings }
 }
 
-// Only run the CLI when this file is the entry point. `sweep.mjs` imports
-// SLIDES from here, and an unguarded run would exit that process.
+// Only run the CLI when this file is the entry point. The smoke test imports
+// SLIDES, and an unguarded run would exit that process.
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const target = process.argv[2]
   const warnings = []

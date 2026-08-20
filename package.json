@@ -8,11 +8,10 @@
     "node": ">=20.19.0"
   },
   "scripts": {
-    "dev": "slidev --open",
-    "build": "slidev build --out dist",
-    "build:pages": "slidev build --out dist --base /cng-japan-2026/ --without-notes",
-    "preview": "node scripts/preview.mjs",
-    "export": "mkdir -p dist && slidev export --output dist/cng-japan-2026.pdf --per-slide --range 1-16 --wait 1500 --timeout 60000",
+    "dev": "slidev",
+    "build": "slidev build --out dist --without-notes",
+    "preview": "vite preview",
+    "export": "node scripts/export.mjs",
     "validate": "node scripts/validate-deck.mjs",
     "smoke": "node scripts/smoke.mjs",
     "test": "pnpm validate && pnpm build && pnpm smoke"

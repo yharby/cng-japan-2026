@@ -37,16 +37,18 @@
 
 ## Appendix
 - Slides 17–24 contain toolchain, scale examples, live catalog, skills, install/scope details, and HTTP background.
-- Keep appendix slides after the 16-slide talk; `package.json` exports only slides 1–16.
+- Keep appendix slides after the 16-slide talk; `deck.config.mjs` defines the 16-slide export boundary.
 - Do not move product inventories or install instructions into the main story unless talk duration changes.
 
 ## Source Layout
 - `slides.md`: deck configuration and definitive slide order.
+- `deck.config.mjs`: shared deployment base, main-slide boundary, click budget, and output paths.
+- `vite.config.mjs`: applies the shared base to production builds and previews while keeping development at `/`.
 - `slides/`: one Markdown source per slide, including speaker notes and `[Sources]` blocks.
 - `components/`: Vue visualizations; most use Slidev `useNav()` for click states.
-- `styles/`: global palette, bilingual typography, and slide CSS.
+- `style.css`: the single global palette, typography, and layout entrypoint.
 - `public/`: static logos, portrait, and QR assets.
-- `scripts/`: source validation, the `smoke.mjs` render check, and optional visual QA utilities.
+- `scripts/`: export, source validation, and the all-slide render check.
 - `og-image.png`: committed social preview generated from the cover.
 
 ## Editorial Rules
@@ -62,7 +64,7 @@
 
 ## Visual Rules
 - Canvas is 16:9; validate at 1280×720 and presentation distance.
-- Use the existing navy, red, green, and neutral palette in `styles/palette.css`.
+- Use the existing navy, red, green, and neutral variables in `style.css`.
 - Prefer diagrams, flows, and restrained cards over dense bullet lists.
 - One dominant headline; avoid duplicate titles or competing callouts.
 - Use `v-click` states to reveal a sequence, not decoration.
@@ -72,28 +74,28 @@
 - Add a slide: create `slides/NN-name.md`, create/reuse a component, then add a `src` entry in `slides.md`.
 - Remove a slide: remove its `src` entry first; delete files only if they are no longer referenced.
 - Reorder slides only in `slides.md`; then update the narrative list and main-slide count here if needed.
-- If the main talk count changes, update the export `--range` in `package.json` and click budget in `scripts/validate-deck.mjs`.
+- If the main talk count or click budget changes, update it once in `deck.config.mjs`.
 - Keep repository-relative/public asset paths compatible with the `/cng-japan-2026/` Pages base.
 
 ## Commands and QA
 - Install: `pnpm install` (Node >=20.19, pnpm version pinned in `package.json`).
 - Develop: `pnpm dev`; public deck is `/`, presenter mode is `/#/presenter/`.
 - Validate source: `pnpm validate`.
-- Production build: `pnpm build`.
-- Reproduce Pages: `pnpm build:pages`.
-- Preview production: `pnpm preview`; it derives the base from `dist/index.html`.
+- Production/Pages build: `pnpm build`.
+- Preview production: `pnpm preview`; Vite uses the same base as the build.
 - Render check: `pnpm smoke`, or `pnpm smoke <url>` against a deployment.
 - Full check: `pnpm test` runs validate, build, and smoke.
 - Export main talk: `pnpm export`.
 - Before committing, require `pnpm test` and visual inspection of changed slides.
-- Never serve a base-prefixed build at `/`. Every asset 404s, `#app` stays empty, and the page is blank with no error. That is what `preview.mjs` and `smoke.mjs` exist to prevent.
-- The QA scripts drive hash routes, `/#/<n>?clicks=<k>`. The path form silently serves slide 1.
+- Do not override the production base on the command line. `deck.config.mjs` is the source of truth.
+- Restart `pnpm preview` after rebuilding; a preview is a view of one completed static artifact.
+- Browser QA must use hash routes, `/#/<n>?clicks=<k>`.
 
 ## Deployment
 - `.github/workflows/deploy.yml` deploys every push to `main` via GitHub Pages Actions.
 - Do not commit `dist/` or use a `gh-pages` branch.
-- The workflow builds with `/${{ github.event.repository.name }}/` and excludes presenter notes.
+- The workflow runs the same `pnpm build` used locally; the shared config supplies the Pages base and excludes presenter notes.
 - Keep `routerMode: hash`; it makes deep links reliable on static GitHub Pages hosting.
 - Keep Pages permissions limited to `contents: read`, `pages: write`, and `id-token: write`.
-- Keep the smoke steps in the workflow. A Slidev build exits 0 with a broken base, so only a render check catches a blank deploy.
+- Keep the smoke step in the workflow. It asserts the configured base, same-origin assets, mounted app, visible slide geometry, and a non-blank screenshot.
 - Keep the DOMPurify override until upstream ranges are patched; monitor the unpatched `image-size` alert inherited through PPTXGenJS.

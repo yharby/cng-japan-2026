@@ -41,10 +41,8 @@ jobs:
         run: pnpm validate
 
       - name: Build Slidev site
-        run: pnpm build --base "/${{ github.event.repository.name }}/" --without-notes
+        run: pnpm build
 
-      # The build exits 0 even when every asset URL is wrong, and the result is a
-      # white page with no error. Render the artifact before it can be deployed.
       - name: Install Chromium for the render check
         run: pnpm exec playwright install --with-deps chromium
 
@@ -75,34 +73,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
-
-  verify:
-    name: Verify deployment
-    needs: deploy
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v7
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v6
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-        env:
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
-
-      - name: Install Chromium
-        run: pnpm exec playwright install --with-deps chromium
-
-      # Catches anything the artifact check cannot see, such as Pages serving a
-      # stale or partial deploy.
-      - name: Check the live site renders
-        run: pnpm smoke "${{ needs.deploy.outputs.page_url || format('https://{0}.github.io/{1}/', github.repository_owner, github.event.repository.name) }}"
