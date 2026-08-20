@@ -33,6 +33,4 @@ layout: default
 - https://cloudnativegeo.org/about/
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests
 - https://www.rfc-editor.org/rfc/rfc9110.html
-- docs/reference/cng-japan/research-object-storage.md
-- docs/reference/cng-japan/research-http-range.md
 -->

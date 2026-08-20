@@ -49,7 +49,7 @@ src: ./slides/07-stac-model.md
 ---
 
 ---
-src: ./slides/03-japan-pieces.md
+src: ./slides/08-japan-pilot.md
 ---
 
 ---
@@ -74,10 +74,6 @@ src: ./slides/09-japan-catalog.md
 
 ---
 src: ./slides/16-honest-work.md
----
-
----
-src: ./slides/17-japan-pilot.md
 ---
 
 ---

@@ -28,5 +28,4 @@ layout: default
 
 [Sources]
 - https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/core.md
-- docs/reference/cng-japan/research-room-and-portolan.md
 -->

@@ -3,8 +3,8 @@ clicks: 4
 layout: default
 ---
 
-# GeoParquet and COG make partial reads practical
-<p class="ja">クラウドネイティブ形式は、必要なバイトの場所を示します。</p>
+# Cloud-native geospatial formats make partial reads practical
+<p class="ja">クラウドネイティブ地理空間形式で、部分読み取りが実用的になります。</p>
 
 <VizCloudFormats />
 
@@ -15,7 +15,7 @@ layout: default
 
 <!--
 [Say in Japanese]
-「クラウドネイティブ形式は、必要なデータがファイル内のどこにあるかを示します。」
+「クラウドネイティブ地理空間形式で、部分読み取りが実用的になります。」
 
 [Say in English]
 "Object storage supplies the scalable address. The file format supplies the map of the bytes."
@@ -43,6 +43,4 @@ layout: default
 - https://duckdb.org/docs/stable/core_extensions/httpfs/https
 - https://qgis.org/
 - https://docs.xarray.dev/
-- docs/reference/cng-japan/research-arrow-parquet.md
-- docs/reference/cng-japan/research-http-range.md
 -->

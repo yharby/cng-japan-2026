@@ -34,5 +34,4 @@ layout: default
 - https://docs.ogc.org/is/21-026/21-026.html
 - https://docs.protomaps.com/pmtiles/
 - https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types#webp_image
-- docs/reference/cng-japan/research-stac.md
 -->

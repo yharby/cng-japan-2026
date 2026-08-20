@@ -8,16 +8,16 @@ const { tr } = useDeckLocale()
 const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 const scopes = computed(() => [
-  { kind: tr('CITY', '都市'), name: 'PERGAMINO', features: '1.0M', collections: tr('183 collections', '183 コレクション'), x: 42, reveal: 1, url: 'https://data.source.coop/nlebovits/pergamino-ide/catalog.json' },
-  { kind: tr('COUNTRY', '国'), name: 'MOLDOVA', features: '21.2M', collections: tr('75 collections', '75 コレクション'), x: 286, reveal: 2, url: 'https://data.source.coop/nlebovits/moldova-geodata/catalog.json' },
-  { kind: tr('GLOBAL', '世界'), name: 'MICROSOFT ROADS', features: '256.6M', collections: tr('1 collection', '1 コレクション'), x: 530, reveal: 3, url: 'https://data.source.coop/nlebovits/microsoft-ml-road-detections/catalog.json' },
+  { kind: tr('CITY', '都市'), name: 'PERGAMINO', features: '1.0M', collections: tr('183 collections', '183 コレクション'), license: tr('CC BY-SA · CHECK LAYER', 'CC BY-SA · レイヤ確認'), licenseTone: 'conditional', x: 42, reveal: 1, url: 'https://data.source.coop/nlebovits/pergamino-ide/catalog.json' },
+  { kind: tr('COUNTRY', '国'), name: 'MOLDOVA', features: '21.2M', collections: tr('75 collections', '75 コレクション'), license: tr('LICENSE UNCONFIRMED', 'ライセンス未確認'), licenseTone: 'blocked', x: 286, reveal: 2, url: 'https://data.source.coop/nlebovits/moldova-geodata/catalog.json' },
+  { kind: tr('GLOBAL', '世界'), name: 'MICROSOFT ROADS', features: '256.6M', collections: tr('1 collection', '1 コレクション'), license: 'ODbL 1.0 · SHARE ALIKE', licenseTone: 'cleared', x: 530, reveal: 3, url: 'https://data.source.coop/nlebovits/microsoft-ml-road-detections/catalog.json' },
 ])
 </script>
 
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('Three equal registry examples show the same static catalog and cloud-native asset pattern at city, country and global scope. Feature totals are secondary. Registry discovery is not a Portolan conformance result.', '都市・国・世界の3つのレジストリ例は、同じ静的カタログとクラウドネイティブ資産のパターンを示します。フィーチャ数は参考値で、レジストリでの発見はPortolan準拠を意味しません。')">
+         :aria-label="tr('Three equal registry examples show the same static catalog and cloud-native asset pattern at city, country and global scope. Their reuse rights differ: Pergamino must be checked per layer, Moldova is unconfirmed, and Microsoft Roads uses ODbL share alike. Registry discovery is neither a license clearance nor a Portolan conformance result.', '都市・国・世界の3つのレジストリ例は同じ静的カタログとクラウドネイティブ資産のパターンを示しますが、再利用条件は異なります。Pergaminoはレイヤごとの確認が必要、Moldovaは未確認、Microsoft RoadsはODbLの継承条件があります。レジストリ掲載はライセンス確認でもPortolan準拠でもありません。')">
       <text x="400" y="27" text-anchor="middle" class="kicker">{{ tr('REGISTRY EXAMPLES · 18 AUGUST 2026', 'レジストリ例 · 2026年8月18日') }}</text>
 
       <g v-for="scope in scopes" :key="scope.kind" class="scope"
@@ -34,8 +34,9 @@ const scopes = computed(() => [
         <text x="20" y="137" class="features">{{ scope.features }}</text>
         <text x="20" y="160" class="feature-label">{{ tr('FEATURES', 'フィーチャ') }}</text>
         <text x="20" y="187" class="collection-count">{{ scope.collections }}</text>
+        <text x="20" y="209" class="license-status" :class="scope.licenseTone">{{ scope.license }}</text>
 
-        <text x="20" y="225" class="pattern-label">{{ tr('THE SAME PATTERN', '同じパターン') }}</text>
+        <text x="20" y="229" class="pattern-label">{{ tr('THE SAME PATTERN', '同じパターン') }}</text>
         <rect x="20" y="239" width="83" height="39" rx="8" class="catalog-chip" />
         <text x="61" y="263" text-anchor="middle" class="catalog-text link-label">catalog.json</text>
         <path d="M108 258 H126 M119 252 L126 258 L119 264" class="mini-arrow" />
@@ -75,6 +76,10 @@ const scopes = computed(() => [
 .features { fill: var(--c-fg); font-size: 36px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', monospace; }
 .feature-label { fill: var(--c-accent); font-size: 13px; font-weight: 900; letter-spacing: 0.12em; }
 .collection-count { fill: var(--c-muted); font-size: 16px; font-weight: 800; }
+.license-status { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9px; font-weight: 850; letter-spacing: 0.015em; }
+.license-status.cleared { fill: var(--c-ok); }
+.license-status.conditional { fill: var(--c-warn); }
+.license-status.blocked { fill: var(--c-accent); }
 .pattern-label { fill: var(--c-muted); font-size: 12px; font-weight: 900; letter-spacing: 0.08em; }
 .catalog-chip { fill: var(--c-bg); stroke: var(--c-fg); stroke-width: 2; }
 .catalog-text { fill: var(--c-fg); font-size: 11px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', monospace; }

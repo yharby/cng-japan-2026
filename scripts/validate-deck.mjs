@@ -31,6 +31,7 @@ export const SLIDES = slideFiles.map((file, index) => {
 // the file still sits on disk.
 export const RETIRED = [
   'VizSilo', 'VizBucketScale', 'VizOnePattern', 'VizReveal', 'VizDecouple', 'VizTheBill', 'VizTwoJobs',
+  'VizJapanAlready', 'VizPilot',
 ]
 
 // Forbidden claims. Every entry traces to a correction made in review, so a

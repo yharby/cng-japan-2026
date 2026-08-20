@@ -35,4 +35,7 @@ layout: default
 - https://github.com/portolan-sdi/portolan-spec/blob/main/examples/catalog/portolan-reference/boundaries/netherlands-provinces/README.md
 - https://github.com/portolan-sdi/portolan-spec/blob/main/examples/catalog/portolan-reference/boundaries/netherlands-provinces/AGENTS.md
 - https://github.com/portolan-sdi/portolan-spec/blob/main/specs/portolan/core.md
+- https://api.pdok.nl/kadaster/bestuurlijkegebieden/ogc/v1?f=html&lang=en
+- https://www.pdok.nl/copyright
+- https://www.kadaster.nl/zakelijk/producten/percelen-en-grenzen/bestuurlijke-gebieden
 -->

@@ -64,6 +64,7 @@ onBeforeUnmount(() => {
             <rect x="28" y="295" width="158" height="12" rx="6" class="list-line active" />
             <rect x="28" y="322" width="184" height="12" rx="6" class="list-line" />
             <rect x="28" y="349" width="136" height="12" rx="6" class="list-line" />
+            <text x="28" y="389" class="reuse-warning">{{ tr('REUSE: VERIFY EACH COLLECTION', '再利用：各コレクションを確認') }}</text>
 
             <text x="276" y="50" class="catalog-kicker">{{ tr('TRANSPORTATION, INFRASTRUCTURE + UTILITIES', '交通・インフラ・ユーティリティ') }}</text>
             <text x="276" y="87" class="catalog-title">{{ tr('Catalog collections', 'カタログのコレクション') }}</text>
@@ -135,6 +136,7 @@ onBeforeUnmount(() => {
 .search-text { fill: var(--c-muted); font-size: 14px; font-weight: 700; }
 .list-line { fill: var(--c-fg); opacity: 0.2; }
 .list-line.active { fill: var(--c-accent); opacity: 1; }
+.reuse-warning { fill: var(--c-accent); font-size: 10px; font-weight: 900; letter-spacing: 0.035em; }
 .catalog-kicker { fill: var(--c-accent); font-size: 14px; font-weight: 900; letter-spacing: 0.055em; }
 .catalog-title { fill: var(--c-fg); font-size: 27px; font-weight: 900; }
 .catalog-rule { stroke: var(--c-line); stroke-width: 2; }

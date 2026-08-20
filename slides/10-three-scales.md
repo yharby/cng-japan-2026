@@ -19,16 +19,16 @@ hideInToc: true
 「同じ仕組みを、市、国、世界規模で使えます。」
 
 [Say in English]
-"The same simple pattern works at different scales: a static catalog points to cloud-native assets. Pergamino is a city example. Moldova is a country example. Microsoft Roads is global. The registry helps us discover them. It does not certify Portolan conformance."
+"The same static-catalog pattern exists at different scales, but discovery is not license clearance. Pergamino's municipal layers are CC BY-SA, while third-party layers need their own check. Moldova's mirror says its upstream license is unconfirmed, so do not republish it. Microsoft Roads is reusable under ODbL, including its share-alike obligations. The registry also does not certify Portolan conformance."
 
 [Click 1]
-"At city scale, here is Pergamino."
+"At city scale, Pergamino is usable only after selecting and checking an exact layer."
 
 [Click 2]
-"At country scale, here is Moldova."
+"At country scale, Moldova is useful to browse, but not cleared for a new mirror."
 
 [Click 3]
-"At global scale, here is Microsoft Roads."
+"At global scale, Microsoft Roads permits republishing under ODbL and its share-alike rules."
 
 [Sources]
 - https://portolan-sdi.org/
@@ -37,4 +37,9 @@ hideInToc: true
 - https://data.source.coop/nlebovits/pergamino-ide/catalog.json
 - https://data.source.coop/nlebovits/moldova-geodata/catalog.json
 - https://data.source.coop/nlebovits/microsoft-ml-road-detections/catalog.json
+- https://pergamino.ar/servicios/ide-pergamino/
+- https://data.source.coop/nlebovits/pergamino-ide/README.md
+- https://data.source.coop/nlebovits/moldova-geodata/README.md
+- https://github.com/microsoft/RoadDetections/blob/main/LICENSE
+- https://opendatacommons.org/licenses/odbl/1-0/
 -->

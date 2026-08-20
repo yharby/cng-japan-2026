@@ -17,7 +17,7 @@
 - Prefer “lower operating cost” and “sovereign deployment” in explanations.
 - Portolan reduces always-on infrastructure; publishing, governance, and operations remain.
 
-## Main Narrative (slides 1–16)
+## Main Narrative (slides 1–15)
 1. Cover: exact agenda title, event, speaker, CARTO identity.
 2. Minimal bio: portrait, role, email.
 3. Legacy files: a small subset can require downloading the whole CSV/GeoTIFF.
@@ -25,19 +25,18 @@
 5. GeoParquet + COG make practical partial reads for vector and raster data.
 6. Open files alone do not provide catalog discovery or metadata.
 7. STAC organizes Catalog → Collection → Item → Asset using linked JSON.
-8. Independent Japanese examples show the building blocks already work.
+8. Define one concrete Japanese pilot deliverable from a candidate input to a validated public catalog.
 9. Portolan combines those existing pieces into a publishing practice.
 10. STAC describes data; Portolan defines layout, access, docs, provenance, and hosting rules.
 11. One publication serves software, people, and AI agents.
 12. Publishing rules are machine-checkable; Rashid validates conformance.
 13. Show the Japanese field-boundary catalog example.
 14. Be explicit about remaining infrastructure and publishing work.
-15. Invite a small Japanese pilot.
-16. Close with one action: publish one dataset using open files, stable URLs, and checkable rules.
+15. Close with one action: publish one dataset using open files, stable URLs, and checkable rules.
 
 ## Appendix
-- Slides 17–23 contain toolchain, scale examples, live catalog, skills, and install/scope details.
-- Keep appendix slides after the 16-slide talk; `deck.config.mjs` defines the 16-slide export boundary.
+- Slides 16–22 contain toolchain, scale examples, live catalog, skills, and install/scope details.
+- Keep appendix slides after the 15-slide talk; `deck.config.mjs` defines the 15-slide export boundary.
 - Do not move product inventories or install instructions into the main story unless talk duration changes.
 
 ## Source Layout
@@ -51,6 +50,7 @@
 - `style.css`: the single global palette, typography, and layout entrypoint.
 - `public/`: static logos, portrait, and QR assets.
 - `scripts/`: export, source validation, and the all-slide render check.
+- `docs/data-license-audit.md`: reuse, conversion, attribution, and republication status for real datasets shown in the deck.
 - `og-image.png`: committed social preview generated from the cover.
 
 ## Editorial Rules
@@ -62,6 +62,9 @@
 - Never imply the Japanese examples are Portolan deployments.
 - Do not claim servers disappear; object storage, CDN, IAM, DNS, monitoring, and publishing jobs still exist.
 - Keep factual claims source-backed in speaker notes; preserve the `[Sources]` section format.
+- Public access is not license clearance. Before proposing a dataset for conversion or republication, verify the exact asset or STAC collection license, upstream providers, attribution, modification notice, commercial-use terms, and any share-alike or notification duty.
+- Keep illustrative filenames visibly distinct from real downloadable assets. Do not infer a data license from a software repository license, a host, or a logo.
+- Data licenses do not grant trademark rights. Keep JAXA, GSI, e-Stat, and other organization names typographic unless authorized logo use is documented.
 - Do not restore the obsolete bio, old email, or old role.
 
 ## Visual Rules

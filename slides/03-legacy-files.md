@@ -31,8 +31,10 @@ layout: default
 
 [Sources]
 - https://www.e-stat.go.jp/gis/statmap-search?aggregateUnit=S&datum=2011&page=1&serveyId=S002005112020&statsId=T001140&toukeiCode=00200521&toukeiYear=2020&type=1
+- https://www.e-stat.go.jp/en/terms-of-use
 - https://www.eorc.jaxa.jp/ALOS/en/aw3d30/aw3d30v31_product_e.pdf
+- https://www.eorc.jaxa.jp/ALOS/en/dataset/aw3d30/aw3d30_e.htm
+- https://earth.jaxa.jp/en/data/policy/
 - https://www.rfc-editor.org/rfc/rfc4180
 - https://wesmckinney.com/blog/apache-arrow-pandas-internals/
-- docs/reference/cng-japan/research-arrow-parquet.md
 -->

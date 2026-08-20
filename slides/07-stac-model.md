@@ -35,5 +35,4 @@ layout: default
 - https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md
 - https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md
 - https://github.com/radiantearth/stac-spec/blob/master/commons/assets.md
-- docs/reference/cng-japan/research-stac.md
 -->

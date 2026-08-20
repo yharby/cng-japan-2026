@@ -57,7 +57,7 @@ There is one production build. `vite.config.mjs` reads the public base from
 `/cng-japan-2026/` artifact. Development remains at `/`.
 
 `pnpm test` validates the source, builds the production artifact, and renders all
-23 slides without waiting for external iframe traffic. Each slide is rendered in
+22 slides without waiting for external iframe traffic. Each slide is rendered in
 English and Japanese, in both the light and dark colour schemes, and the test
 verifies presenter-to-audience synchronization without merging the two audience
 locales. This catches translation overflow as well as a component style escaping
@@ -67,7 +67,7 @@ its scope and blanking only one theme. To check a deployment:
 pnpm smoke https://yharby.github.io/cng-japan-2026/
 ```
 
-Export the 16-slide main talk to English, Japanese, or both PDFs:
+Export the 15-slide main talk to English, Japanese, or both PDFs:
 
 ```bash
 pnpm export:en
@@ -82,6 +82,7 @@ pnpm export:all
 - `slides/` contains individual slide sources and speaker notes.
 - `components/` contains the Vue visualizations.
 - `composables/useDeckLocale.ts` owns the per-window language state.
+- `docs/data-license-audit.md` records which real datasets may be converted or republished and under what conditions.
 - `global-top.vue` provides the audience language selector.
 - `style.css` contains all global presentation styles.
 - `public/` contains static images and the official CARTO and Portolan marks.
