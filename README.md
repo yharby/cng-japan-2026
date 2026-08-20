@@ -20,7 +20,7 @@ pnpm install
 pnpm dev
 ```
 
-Slidev opens the public presentation at `http://localhost:3030/`. Presenter mode is available at `http://localhost:3030/presenter/`.
+Slidev opens the public presentation at `http://localhost:3030/`. Presenter mode is available at `http://localhost:3030/#/presenter/`.
 
 ## Validation and builds
 
@@ -54,4 +54,4 @@ pnpm export
 
 ## Deployment
 
-Every push to `main` validates and builds the deck, then deploys the static SPA to GitHub Pages. The workflow uses the repository name as Slidev's base path so routes and assets work at `/cng-japan-2026/`.
+Every push to `main` validates and builds the deck, then deploys the static SPA to GitHub Pages. The workflow uses the repository name as Slidev's base path, and Slidev uses hash routing so deep links work reliably on static hosting.

@@ -5,6 +5,7 @@ titleTemplate: '%s'
 author: Youssef Harby
 info: CNG Japan 2026, JAMSTEC Yokohama, 24 August 2026
 transition: view-transition
+routerMode: hash
 mdc: true
 htmlAttrs:
   lang: en

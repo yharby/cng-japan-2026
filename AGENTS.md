@@ -77,7 +77,7 @@
 
 ## Commands and QA
 - Install: `pnpm install` (Node >=20.19, pnpm version pinned in `package.json`).
-- Develop: `pnpm dev`; public deck is `/`, presenter mode is `/presenter/`.
+- Develop: `pnpm dev`; public deck is `/`, presenter mode is `/#/presenter/`.
 - Validate source: `pnpm validate`.
 - Production build: `pnpm build`.
 - Reproduce Pages: `pnpm build --base /cng-japan-2026/ --without-notes`.
@@ -89,4 +89,5 @@
 - `.github/workflows/deploy.yml` deploys every push to `main` via GitHub Pages Actions.
 - Do not commit `dist/` or use a `gh-pages` branch.
 - The workflow builds with `/${{ github.event.repository.name }}/` and excludes presenter notes.
+- Keep `routerMode: hash`; it makes deep links reliable on static GitHub Pages hosting.
 - Keep Pages permissions limited to `contents: read`, `pages: write`, and `id-token: write`.
