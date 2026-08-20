@@ -44,6 +44,11 @@ The on-slide selector can also change either audience window independently.
 Slidev presenter mode synchronizes the slide and click state while the two
 audience windows retain their independent language choices. Two ordinary
 audience tabs do not control each other; the presenter view is the controller.
+Audience-facing titles, subtitles, and diagrams support English and Japanese;
+presenter scripts in the speaker notes are English-only.
+
+Slides 1–19 form the main narrative, slides 20–26 are optional appendix depth,
+and slide 27 closes with Q&A and one publishing action.
 
 ## Validate and build
 
@@ -57,7 +62,7 @@ There is one production build. `vite.config.mjs` reads the public base from
 `/cng-japan-2026/` artifact. Development remains at `/`.
 
 `pnpm test` validates the source, builds the production artifact, and renders all
-22 slides without waiting for external iframe traffic. Each slide is rendered in
+27 slides without waiting for external iframe traffic. Each slide is rendered in
 English and Japanese, in both the light and dark colour schemes, and the test
 verifies presenter-to-audience synchronization without merging the two audience
 locales. This catches translation overflow as well as a component style escaping
@@ -67,7 +72,7 @@ its scope and blanking only one theme. To check a deployment:
 pnpm smoke https://yharby.github.io/cng-japan-2026/
 ```
 
-Export the 15-slide main talk to English, Japanese, or both PDFs:
+Export the complete 27-slide presentation to English, Japanese, or both PDFs:
 
 ```bash
 pnpm export:en
@@ -75,17 +80,20 @@ pnpm export:ja
 pnpm export:all
 ```
 
+The generated files are `dist/cng-japan-2026.pdf` and
+`dist/cng-japan-2026-ja.pdf`. The `dist/` directory is not committed.
+
 ## Repository structure
 
 - `slides.md` defines the slide order and deck-level configuration.
-- `deck.config.mjs` defines shared build, export, and QA constants.
+- `deck.config.mjs` defines the main-narrative boundary, closing-slide position, click budget, and shared build, export, and QA constants.
 - `slides/` contains individual slide sources and speaker notes.
 - `components/` contains the Vue visualizations.
 - `composables/useDeckLocale.ts` owns the per-window language state.
 - `docs/data-license-audit.md` records which real datasets may be converted or republished and under what conditions.
 - `global-top.vue` provides the audience language selector.
 - `style.css` contains all global presentation styles.
-- `public/` contains static images and the official CARTO and Portolan marks.
+- `public/` contains static images, official CARTO and Portolan marks, the official STAC artwork, and the original generated STAC hero and Choice Chaos comic illustrations.
 - `scripts/` contains export, source validation, and the render smoke test.
 
 The Portolan mark follows the current solid two-pennant implementation from the
