@@ -1,40 +1,42 @@
 <script setup lang="ts">
 import { useNav } from '@slidev/client'
 import { computed } from 'vue'
+import { useDeckLocale } from '../composables/useDeckLocale'
 
 const { isPrintMode } = useNav()
+const { tr } = useDeckLocale()
 const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 </script>
 
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         aria-label="Two legacy download paths. A national CSV must be downloaded and parsed before a small row selection. A non cloud optimized JAXA GeoTIFF tile must be opened as one strip before a small raster window can be analyzed.">
+         :aria-label="tr('Two legacy download paths. A national CSV must be downloaded and parsed before a small row selection. A non cloud optimized JAXA GeoTIFF tile must be opened as one strip before a small raster window can be analyzed.', '従来型ファイルの2つの読み込み経路。全国CSVは少数行の抽出にも全体のダウンロードと解析が必要です。クラウド最適化されていないJAXA GeoTIFFは、小さな範囲の解析にもストリップ全体を開く必要があります。')">
       <path d="M400 56 V376" class="divider" />
 
       <g class="lane vector" :class="{ on: s >= 1 }">
-        <text x="201" y="42" text-anchor="middle" class="lane-title">VECTOR AND TABLE DATA</text>
+        <text x="201" y="42" text-anchor="middle" class="lane-title">{{ tr('VECTOR AND TABLE DATA', 'ベクター・表データ') }}</text>
         <a href="https://www.e-stat.go.jp/gis/statmap-search?aggregateUnit=S&amp;datum=2011&amp;page=1&amp;serveyId=S002005112020&amp;statsId=T001140&amp;toukeiCode=00200521&amp;toukeiYear=2020&amp;type=1"
            target="_blank" rel="noopener noreferrer" class="svg-source-link"
-           aria-label="Open the e-Stat population mesh source page in a new tab" @click.stop>
-          <text x="201" y="68" text-anchor="middle" class="lane-source link-label">e-Stat population mesh CSV</text>
+           :aria-label="tr('Open the e-Stat population mesh source page in a new tab', 'e-Stat人口メッシュのソースページを新しいタブで開く')" @click.stop>
+          <text x="201" y="68" text-anchor="middle" class="lane-source link-label">{{ tr('e-Stat population mesh CSV', 'e-Stat 人口メッシュ CSV') }}</text>
         </a>
 
         <path d="M54 102 H258 L294 138 V302 H54 Z" class="file" />
         <path d="M258 102 V138 H294" class="fold" />
         <a href="https://www.rfc-editor.org/rfc/rfc4180" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" aria-label="Open the CSV format documentation in a new tab" @click.stop>
+           class="svg-source-link" :aria-label="tr('Open the CSV format documentation in a new tab', 'CSV形式の文書を新しいタブで開く')" @click.stop>
           <text x="174" y="139" text-anchor="middle" class="file-name link-label">national.csv</text>
         </a>
-        <text x="174" y="171" text-anchor="middle" class="scenario">2.4 GB example</text>
+        <text x="174" y="171" text-anchor="middle" class="scenario">{{ tr('2.4 GB example', '2.4 GB の例') }}</text>
         <g class="rows">
           <path d="M84 204 H264 M84 232 H264 M84 260 H264" />
           <path d="M130 192 V274 M214 192 V274" />
         </g>
 
         <path d="M304 205 H362" class="flow" />
-        <path d="M349 194 L362 205 L349 216" class="flow" />
-        <text x="333" y="187" text-anchor="middle" class="flow-label">FULL READ</text>
+        <path d="M354 199 L362 205 L354 211" class="flow" />
+        <text x="333" y="187" text-anchor="middle" class="flow-label">{{ tr('FULL READ', '全読込') }}</text>
 
         <g transform="translate(312 231)">
           <rect width="70" height="28" rx="6" class="memory" />
@@ -45,15 +47,15 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
           <text x="35" y="95" text-anchor="middle">GeoPandas</text>
         </g>
 
-        <text x="201" y="341" text-anchor="middle" class="need">Need a few rows</text>
-        <text x="201" y="368" text-anchor="middle" class="cost">download · parse · allocate · filter</text>
+        <text x="201" y="341" text-anchor="middle" class="need">{{ tr('Need a few rows', '必要なのは数行だけ') }}</text>
+        <text x="201" y="368" text-anchor="middle" class="cost">{{ tr('download · parse · allocate · filter', '取得 · 解析 · メモリ確保 · 抽出') }}</text>
       </g>
 
       <g class="lane raster" :class="{ on: s >= 2 }">
-        <text x="602" y="42" text-anchor="middle" class="lane-title">RASTER DATA</text>
+        <text x="602" y="42" text-anchor="middle" class="lane-title">{{ tr('RASTER DATA', 'ラスターデータ') }}</text>
         <a href="https://www.eorc.jaxa.jp/ALOS/en/aw3d30/aw3d30v31_product_e.pdf"
            target="_blank" rel="noopener noreferrer" class="svg-source-link"
-           aria-label="Open the JAXA AW3D30 product description PDF in a new tab" @click.stop>
+           :aria-label="tr('Open the JAXA AW3D30 product description PDF in a new tab', 'JAXA AW3D30の製品説明PDFを新しいタブで開く')" @click.stop>
           <text x="602" y="68" text-anchor="middle" class="lane-source link-label">JAXA AW3D30 GeoTIFF</text>
         </a>
 
@@ -62,14 +64,14 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
         <rect x="614" y="189" width="54" height="42" rx="4" class="window" />
         <text x="641" y="216" text-anchor="middle" class="window-label">ROI</text>
         <path d="M641 236 V322" class="flow" />
-        <path d="M630 309 L641 322 L652 309" class="flow" />
-        <text x="641" y="345" text-anchor="middle" class="need">Need one window</text>
-        <text x="602" y="368" text-anchor="middle" class="cost">one strip · no overview preview · many tiles at scale</text>
+        <path d="M635 314 L641 322 L647 314" class="flow" />
+        <text x="641" y="345" text-anchor="middle" class="need">{{ tr('Need one window', '必要なのは一範囲だけ') }}</text>
+        <text x="602" y="368" text-anchor="middle" class="cost">{{ tr('one strip · no overview preview · many tiles at scale', '1ストリップ · 概観なし · 大規模では多数タイル') }}</text>
       </g>
 
       <g class="summary" :class="{ on: s >= 3 }">
         <rect x="84" y="397" width="632" height="47" rx="12" />
-        <text x="400" y="428" text-anchor="middle">SMALL QUESTION · LARGE DOWNLOAD · LARGE MEMORY</text>
+        <text x="400" y="428" text-anchor="middle">{{ tr('SMALL QUESTION · LARGE DOWNLOAD · LARGE MEMORY', '小さな問い · 大きな取得 · 大きなメモリ') }}</text>
       </g>
     </svg>
   </div>
@@ -96,7 +98,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .rows path { stroke-width: 4; }
 .file-name { fill: var(--c-fg); font-size: 22px; font-weight: 900; }
 .scenario { fill: var(--c-accent); font-size: 16px; font-weight: 900; }
-.flow { fill: none; stroke: var(--c-accent); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.flow { fill: none; stroke: var(--c-accent); stroke-width: var(--w-connector-active); stroke-linecap: round; stroke-linejoin: round; }
 .flow-label { fill: var(--c-accent); font-size: 11px; font-weight: 900; letter-spacing: 0.06em; }
 .memory { fill: var(--c-bg); stroke: var(--c-fg); stroke-width: 2; }
 .memory + text, .memory ~ text { fill: var(--c-fg); font-size: 11px; font-weight: 800; }

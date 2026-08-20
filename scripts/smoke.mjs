@@ -81,16 +81,17 @@ const failures = []
 // because `:global(html.dark) .carto-logo` compiled to plain `html.dark`, which
 // put `filter: brightness(0) invert(1)` on the whole document.
 const SCHEMES = ['light', 'dark']
+const LOCALES = ['en', 'ja']
 
 const browser = await chromium.launch()
 
-async function walk(colorScheme) {
+async function walk(colorScheme, deckLocale) {
   const context = await browser.newContext({
     viewport: { width: 1280, height: 720 },
     colorScheme,
   })
   const page = await context.newPage()
-  const note = (message) => failures.push(`[${colorScheme}] ${message}`)
+  const note = (message) => failures.push(`[${deckLocale}/${colorScheme}] ${message}`)
 
   page.on('response', (response) => {
     if (response.status() >= 400 && response.url().startsWith(baseUrl.origin)) {
@@ -110,6 +111,7 @@ async function walk(colorScheme) {
   try {
     for (const slide of SLIDES) {
       const url = new URL(baseUrl)
+      url.searchParams.set('lang', deckLocale)
       url.hash = `/${slide.n}`
       await page.goto(url.href, { waitUntil: 'domcontentloaded', timeout: 30000 })
 
@@ -131,6 +133,8 @@ async function walk(colorScheme) {
           // A filter on the root element repaints every pixel of the deck, so
           // it hides the slide while every other signal still looks healthy.
           rootFilter: getComputedStyle(document.documentElement).filter,
+          deckLocale: document.documentElement.dataset.deckLocale ?? '',
+          documentLang: document.documentElement.lang,
         }
       })
       const sourceLinks = await page.locator(`${selector} .source-link, ${selector} .svg-source-link`).evaluateAll((links) =>
@@ -168,6 +172,9 @@ async function walk(colorScheme) {
       if (state.rootFilter !== 'none') {
         note(`slide ${slide.n} has a filter on the root element, ${state.rootFilter}`)
       }
+      if (state.deckLocale !== deckLocale || state.documentLang !== deckLocale) {
+        note(`slide ${slide.n} resolved locale ${state.deckLocale}/${state.documentLang}, expected ${deckLocale}`)
+      }
 
       if (
         state.mounted === 0
@@ -189,8 +196,58 @@ async function walk(colorScheme) {
   }
 }
 
+async function verifyBilingualPresenterSync() {
+  const context = await browser.newContext({
+    viewport: { width: 1280, height: 720 },
+    colorScheme: 'light',
+  })
+  const english = await context.newPage()
+  const japanese = await context.newPage()
+  const presenter = await context.newPage()
+  const deckUrl = (lang, hash) => {
+    const url = new URL(baseUrl)
+    url.searchParams.set('lang', lang)
+    url.hash = hash
+    return url.href
+  }
+
+  try {
+    await english.goto(deckUrl('en', '/1'), { waitUntil: 'domcontentloaded', timeout: 30000 })
+    await japanese.goto(deckUrl('ja', '/1'), { waitUntil: 'domcontentloaded', timeout: 30000 })
+    await presenter.goto(deckUrl('en', '/presenter/'), { waitUntil: 'domcontentloaded', timeout: 30000 })
+
+    await english.locator('.slidev-page-1').waitFor({ state: 'visible', timeout: 15000 })
+    await japanese.locator('.slidev-page-1').waitFor({ state: 'visible', timeout: 15000 })
+    await presenter.bringToFront()
+    await presenter.keyboard.press('ArrowRight')
+
+    await Promise.all([
+      english.waitForFunction(() => location.hash.startsWith('#/2'), null, { timeout: 10000 }),
+      japanese.waitForFunction(() => location.hash.startsWith('#/2'), null, { timeout: 10000 }),
+    ])
+
+    const localeState = await Promise.all([english, japanese].map((page) => page.evaluate(() => ({
+      deckLocale: document.documentElement.dataset.deckLocale,
+      documentLang: document.documentElement.lang,
+    }))))
+    if (localeState[0].deckLocale !== 'en' || localeState[0].documentLang !== 'en') {
+      failures.push(`[sync] English audience locale changed: ${JSON.stringify(localeState[0])}`)
+    }
+    if (localeState[1].deckLocale !== 'ja' || localeState[1].documentLang !== 'ja') {
+      failures.push(`[sync] Japanese audience locale changed: ${JSON.stringify(localeState[1])}`)
+    }
+  } catch (error) {
+    failures.push(`[sync] ${error.message}`)
+  } finally {
+    await context.close()
+  }
+}
+
 try {
-  for (const scheme of SCHEMES) await walk(scheme)
+  for (const locale of LOCALES) {
+    for (const scheme of SCHEMES) await walk(scheme, locale)
+  }
+  await verifyBilingualPresenterSync()
 } finally {
   await browser.close()
   local?.server.close()
@@ -203,4 +260,4 @@ if (unique.length) {
   process.exit(1)
 }
 
-console.log(`PASS smoke: ${SLIDES.length} slides in ${SCHEMES.join(' and ')} at ${baseUrl.href}`)
+console.log(`PASS smoke: ${SLIDES.length} slides in ${LOCALES.join('/')} and ${SCHEMES.join('/')} at ${baseUrl.href}`)

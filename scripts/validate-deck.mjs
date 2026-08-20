@@ -192,12 +192,13 @@ function checkSlide(spec, errors, warnings) {
     errors.push(`${label}: ${bi} .bi blocks, maximum is 1`)
   }
 
-  // Bilingual does not mean duplicating every evidence sentence. The Japanese
-  // subtitle carries the takeaway; the optional English evidence line carries
-  // one precise proof point. This budget keeps the diagram at conference scale.
+  // The language switch shows one title and one evidence sentence at a time.
+  // Keep both translations in source so either audience window is complete.
   const visible = stripNotes(body)
   const jaParagraphs = [...visible.matchAll(/<p[^>]*class="[^"]*\bja\b[^"]*"[^>]*>/g)].length
-  const jaSpans = [...visible.matchAll(/<span[^>]*class="[^"]*\bja\b[^"]*"[^>]*>/g)].length
+  const jaSpans = [...visible.matchAll(/<span[^>]*class="([^"]*)"[^>]*>/g)]
+    .filter((match) => match[1].split(/\s+/).includes('ja')).length
+  const deckJaEvidence = [...visible.matchAll(/<span[^>]*class="[^"]*\bdeck-ja\b[^"]*"[^>]*>([^<]+)<\/span>/g)]
   if (jaParagraphs !== 1) {
     errors.push(`${label}: expected exactly one Japanese subtitle paragraph, found ${jaParagraphs}`)
   }
@@ -208,6 +209,12 @@ function checkSlide(spec, errors, warnings) {
   const evidence = [...visible.matchAll(/<span[^>]*class="[^"]*\ben\b[^"]*"[^>]*>([^<]+)<\/span>/g)]
   if (bi === 1 && evidence.length !== 1) {
     errors.push(`${label}: .bi must contain exactly one English evidence line`)
+  }
+  if (bi === 1 && deckJaEvidence.length !== 1) {
+    errors.push(`${label}: .bi must contain exactly one Japanese .deck-ja evidence line`)
+  }
+  if (bi === 0 && deckJaEvidence.length !== 0) {
+    errors.push(`${label}: Japanese evidence exists outside a .bi block`)
   }
   for (const [, copy] of evidence) {
     const words = copy.trim().split(/\s+/).filter(Boolean).length
@@ -262,6 +269,9 @@ function checkComponent(name, errors, needsClicks = false) {
   if (!body.includes('isPrintMode')) {
     errors.push(`${label}: does not use isPrintMode, the PDF captures a half drawn frame`)
   }
+  if (!body.includes('useDeckLocale') || !body.includes('tr(')) {
+    errors.push(`${label}: does not use the shared English/Japanese locale helper`)
+  }
   if (needsClicks && !body.includes('$clicks')) {
     errors.push(`${label}: slide declares clicks but the component never reads $clicks`)
   }
@@ -282,6 +292,9 @@ function checkComponent(name, errors, needsClicks = false) {
     .replace(/url\(#[^)]*\)/g, '')
   if (/#[0-9a-fA-F]{3,8}\b/.test(scanned)) {
     errors.push(`${label}: contains a hard coded hex color, dark mode will break`)
+  }
+  if (/[—–]/.test(scanned)) {
+    errors.push(`${label}: contains an em dash or en dash`)
   }
 
   // Vue renames scoped keyframes, so a keyframe and the animation using it

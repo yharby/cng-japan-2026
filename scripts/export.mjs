@@ -4,15 +4,21 @@ import { mkdirSync } from 'node:fs'
 import { dirname } from 'node:path'
 import { DECK } from '../deck.config.mjs'
 
-mkdirSync(dirname(DECK.exportFile), { recursive: true })
+const locale = process.argv[2] === 'ja' ? 'ja' : 'en'
+const output = locale === 'ja' ? DECK.exportFileJa : DECK.exportFile
+
+mkdirSync(dirname(output), { recursive: true })
 
 const result = spawnSync('pnpm', [
   'exec', 'slidev', 'export',
-  '--output', DECK.exportFile,
+  '--output', output,
   '--per-slide',
   '--range', `1-${DECK.mainSlides}`,
   '--wait', '1500',
   '--timeout', '60000',
-], { stdio: 'inherit' })
+], {
+  stdio: 'inherit',
+  env: { ...process.env, VITE_DECK_LOCALE: locale },
+})
 
 process.exit(result.status ?? 1)

@@ -4,4 +4,5 @@ export const DECK = Object.freeze({
   clickBudget: 38,
   dist: 'dist',
   exportFile: 'dist/cng-japan-2026.pdf',
+  exportFileJa: 'dist/cng-japan-2026-ja.pdf',
 })

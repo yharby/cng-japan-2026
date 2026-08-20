@@ -10,6 +10,7 @@ layout: default
 
 <div class="bi">
   <span class="en">Agree the dataset, publisher, and public URL before building the pilot.</span>
+  <span class="deck-ja">パイロット構築の前に、データセット、公開者、公開URLを合意します。</span>
 </div>
 
 <!--

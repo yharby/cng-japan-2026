@@ -1,45 +1,47 @@
 <script setup lang="ts">
 import { useNav } from '@slidev/client'
 import { computed } from 'vue'
+import { useDeckLocale } from '../composables/useDeckLocale'
 
 const { isPrintMode } = useNav()
+const { tr } = useDeckLocale()
 const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
-const current = [
-  ['GeoParquet', 'vector data', 'https://geoparquet.org/'],
-  ['COG', 'raster data', 'https://docs.ogc.org/is/21-026/21-026.html'],
-  ['Parquet', 'companion tables', 'https://parquet.apache.org/docs/file-format/'],
-  ['PMTiles', 'visualization derivative', 'https://docs.protomaps.com/pmtiles/'],
-]
+const current = computed(() => [
+  ['GeoParquet', tr('vector data', 'ベクターデータ'), 'https://geoparquet.org/'],
+  ['COG', tr('raster data', 'ラスターデータ'), 'https://docs.ogc.org/is/21-026/21-026.html'],
+  ['Parquet', tr('companion tables', '補助テーブル'), 'https://parquet.apache.org/docs/file-format/'],
+  ['PMTiles', tr('visualization derivative', '可視化用派生データ'), 'https://docs.protomaps.com/pmtiles/'],
+])
 
-const later = [
-  ['COPC', 'point clouds', 'https://copc.io/'],
-  ['GeoZarr', 'multidimensional arrays', 'https://github.com/zarr-developers/geozarr-spec'],
-  ['STAC–GeoParquet', 'full catalog index', 'https://github.com/stac-utils/stac-geoparquet'],
-]
+const later = computed(() => [
+  ['COPC', tr('point clouds', '点群'), 'https://copc.io/'],
+  ['GeoZarr', tr('multidimensional arrays', '多次元配列'), 'https://github.com/zarr-developers/geozarr-spec'],
+  ['STAC-GeoParquet', tr('full catalog index', '完全なカタログ索引'), 'https://github.com/stac-utils/stac-geoparquet'],
+])
 </script>
 
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         aria-label="A clear scope boundary. Portolan currently validates GeoParquet vectors, COG rasters, companion Parquet tables, and PMTiles visualization derivatives. It does not yet define normative rules for COPC, GeoZarr, or a full STAC-GeoParquet catalog index.">
-      <text x="400" y="34" text-anchor="middle" class="version">IMPLEMENTED SCOPE · v0.1.1</text>
+         :aria-label="tr('A clear scope boundary. Portolan currently validates GeoParquet vectors, COG rasters, companion Parquet tables, and PMTiles visualization derivatives. It does not yet define normative rules for COPC, GeoZarr, or a full STAC-GeoParquet catalog index.', '明確な対象範囲です。Portolanは現在、GeoParquetベクター、COGラスター、補助Parquetテーブル、PMTiles可視化用派生データを検証します。COPC、GeoZarr、完全なSTAC-GeoParquetカタログ索引の規範ルールはまだ定義していません。')">
+      <text x="400" y="34" text-anchor="middle" class="version">{{ tr('IMPLEMENTED SCOPE · v0.1.1', '実装済みの範囲 · v0.1.1') }}</text>
 
       <line x1="400" y1="62" x2="400" y2="424" class="boundary" />
       <circle cx="400" cy="78" r="8" class="boundary-dot" />
 
-      <text x="58" y="92" class="heading now">VALIDATED NOW</text>
-      <text x="58" y="120" class="heading-ja">現在、検証できる</text>
+      <text x="58" y="92" class="heading now">{{ tr('VALIDATED NOW', '現在検証可能') }}</text>
+      <text x="58" y="120" class="heading-ja">{{ tr('IMPLEMENTED', '実装済み') }}</text>
 
-      <text x="444" y="92" class="heading later">NO NORMATIVE RULES YET</text>
-      <text x="444" y="120" class="heading-ja">規範的なルールは未定</text>
+      <text x="444" y="92" class="heading later">{{ tr('NO NORMATIVE RULES YET', '規範ルールは未定') }}</text>
+      <text x="444" y="120" class="heading-ja">{{ tr('PLANNED, NOT IMPLEMENTED', '計画段階・未実装') }}</text>
 
       <g class="items" :class="{ on: s >= 1 }">
         <g v-for="(item, i) in current" :key="item[0]" :transform="`translate(58 ${166 + i * 66})`">
           <lucide-circle-check-big x="0" y="-21" width="28" height="28" class="scope-icon current-icon" />
           <a :href="item[2]" target="_blank" rel="noopener noreferrer" class="svg-source-link"
              :class="{ 'is-disabled': s < 1 }" :tabindex="s >= 1 ? 0 : -1"
-             :aria-label="`Open ${item[0]} documentation in a new tab`" @click.stop>
+             :aria-label="tr(`Open ${item[0]} documentation in a new tab`, `${item[0]}のドキュメントを新しいタブで開く`)" @click.stop>
           <text x="42" y="0" class="item-title link-label">{{ item[0] }}</text>
           </a>
           <text x="42" y="25" class="item-note">{{ item[1] }}</text>
@@ -51,12 +53,12 @@ const later = [
           <lucide-circle-minus x="0" y="-21" width="28" height="28" class="scope-icon later-icon" />
           <a :href="item[2]" target="_blank" rel="noopener noreferrer" class="svg-source-link"
              :class="{ 'is-disabled': s < 2 }" :tabindex="s >= 2 ? 0 : -1"
-             :aria-label="`Open ${item[0]} documentation in a new tab`" @click.stop>
+             :aria-label="tr(`Open ${item[0]} documentation in a new tab`, `${item[0]}のドキュメントを新しいタブで開く`)" @click.stop>
           <text x="42" y="0" class="item-title link-label">{{ item[0] }}</text>
           </a>
           <text x="42" y="25" class="item-note">{{ item[1] }}</text>
         </g>
-        <text x="444" y="414" class="honesty">Roadmap ≠ implemented scope</text>
+        <text x="444" y="414" class="honesty">{{ tr('Roadmap ≠ implemented scope', 'ロードマップ ≠ 実装済みの範囲') }}</text>
       </g>
     </svg>
   </div>

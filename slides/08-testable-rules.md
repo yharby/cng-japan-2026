@@ -10,6 +10,7 @@ layout: default
 
 <div class="bi">
   <span class="en">Released v0.1.1 has 125 requirements. Current main has 126, including one unreleased organization rule.</span>
+  <span class="deck-ja">リリース版v0.1.1は125要件、mainは未リリースの組織ルールを含む126要件です。</span>
 </div>
 
 <!--

@@ -10,6 +10,7 @@ layout: default
 
 <div class="bi">
   <span class="en">Traditional row files and non-optimized rasters make transfer and memory follow file size, not the subset requested.</span>
+  <span class="deck-ja">従来型の行データや未最適化のラスターでは、要求範囲ではなくファイルサイズに応じて転送量とメモリ使用量が増えます。</span>
 </div>
 
 <!--

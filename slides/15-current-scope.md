@@ -11,6 +11,7 @@ hideInToc: true
 
 <div class="bi">
   <span class="en">Current conformance covers GeoParquet vectors, COG rasters, companion Parquet tables, and PMTiles visualization derivatives.</span>
+  <span class="deck-ja">現在の適合性検証はGeoParquet、COG、付随Parquetテーブル、PMTiles可視化派生物を対象とします。</span>
 </div>
 
 <!--

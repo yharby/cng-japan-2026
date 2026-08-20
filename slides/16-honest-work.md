@@ -10,6 +10,7 @@ layout: default
 
 <div class="bi">
   <span class="en">Conversion, metadata, quality review, hosting, monitoring, updates, and people remain part of the product.</span>
+  <span class="deck-ja">変換、メタデータ、品質確認、ホスティング、監視、更新、そして人の作業は引き続き必要です。</span>
 </div>
 
 <!--

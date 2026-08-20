@@ -11,6 +11,7 @@ hideInToc: true
 
 <div class="bi">
   <span class="en">The St. Louis browser explores 67 collections from static catalog files and cloud-native assets.</span>
+  <span class="deck-ja">St. Louisブラウザでは、静的CatalogとクラウドネイティブAssetから67のCollectionを探索できます。</span>
 </div>
 
 <!--

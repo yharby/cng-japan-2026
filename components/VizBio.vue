@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { useNav } from '@slidev/client'
 import { computed } from 'vue'
+import { useDeckLocale } from '../composables/useDeckLocale'
 
 const { isPrintMode } = useNav()
+const { tr } = useDeckLocale()
 const ready = computed(() => isPrintMode.value || true)
 </script>
 
 <template>
   <div class="stage bio-stage" :class="{ ready }">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         aria-label="Youssef Harby is a Software Engineer at CARTO. Contact: youssef@carto.com.">
+         :aria-label="tr('Youssef Harby is a Software Engineer at CARTO. Contact: youssef@carto.com.', 'Youssef HarbyはCARTOのソフトウェアエンジニアです。連絡先: youssef@carto.com。')">
       <defs>
         <clipPath id="portrait-clip">
           <circle cx="160" cy="201" r="95" />
@@ -22,11 +24,11 @@ const ready = computed(() => isPrintMode.value || true)
       <path d="M286 92 H744" class="bio-rule" />
       <text x="286" y="152" class="name">Youssef Harby</text>
       <a href="https://carto.com/" target="_blank" rel="noopener noreferrer"
-         class="svg-source-link" aria-label="Open the CARTO website in a new tab" @click.stop>
-        <text x="286" y="196" class="role link-label">Software Engineer at CARTO</text>
+         class="svg-source-link" :aria-label="tr('Open the CARTO website in a new tab', 'CARTOのウェブサイトを新しいタブで開く')" @click.stop>
+        <text x="286" y="196" class="role link-label">{{ tr('Software Engineer at CARTO', 'CARTO ソフトウェアエンジニア') }}</text>
       </a>
       <a href="mailto:youssef@carto.com" class="svg-source-link"
-         aria-label="Email Youssef Harby" @click.stop>
+         :aria-label="tr('Email Youssef Harby', 'Youssef Harbyにメールする')" @click.stop>
         <text x="286" y="228" class="email link-label">youssef@carto.com</text>
       </a>
 
@@ -34,28 +36,28 @@ const ready = computed(() => isPrintMode.value || true)
       <lucide-users-round x="286" y="272" width="26" height="26" class="detail-icon" />
       <g class="memberships">
         <a href="https://www.osgeo.org/member/zakhary/" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" aria-label="Open Youssef Harby's OSGeo member profile in a new tab" @click.stop>
-          <text x="326" y="286" class="detail link-label">OSGeo Charter Member</text>
+           class="svg-source-link" :aria-label="tr(`Open Youssef Harby's OSGeo member profile in a new tab`, 'Youssef HarbyのOSGeo会員プロフィールを新しいタブで開く')" @click.stop>
+          <text x="326" y="286" class="detail link-label">{{ tr('OSGeo Charter Member', 'OSGeo Charter Member') }}</text>
         </a>
         <a href="https://www.ogc.org/about-ogc/members/" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" aria-label="Open the OGC membership page in a new tab" @click.stop>
-          <text x="326" y="316" class="detail link-label">OGC Member</text>
+           class="svg-source-link" :aria-label="tr('Open the OGC membership page in a new tab', 'OGC会員ページを新しいタブで開く')" @click.stop>
+          <text x="326" y="316" class="detail link-label">{{ tr('OGC Member', 'OGC Member') }}</text>
         </a>
         <text x="414" y="316" class="detail separator">·</text>
         <a href="https://cloudnativegeo.org/" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" aria-label="Open the Cloud-Native Geospatial website in a new tab" @click.stop>
-          <text x="430" y="316" class="detail link-label">Cloud-Native Geospatial Member</text>
+           class="svg-source-link" :aria-label="tr('Open the Cloud-Native Geospatial website in a new tab', 'Cloud-Native Geospatialのウェブサイトを新しいタブで開く')" @click.stop>
+          <text x="430" y="316" class="detail link-label">{{ tr('Cloud-Native Geospatial Member', 'Cloud-Native Geospatial Member') }}</text>
         </a>
       </g>
 
       <lucide-git-pull-request x="286" y="333" width="26" height="26" class="detail-icon contributor-icon" />
       <a href="https://github.com/yharby" target="_blank" rel="noopener noreferrer"
-         class="svg-source-link" aria-label="Open Youssef Harby's GitHub profile in a new tab" @click.stop>
-        <text x="326" y="350" class="contributor link-label">CNG builder · FOSS contributor</text>
+         class="svg-source-link" :aria-label="tr(`Open Youssef Harby's GitHub profile in a new tab`, 'Youssef HarbyのGitHubプロフィールを新しいタブで開く')" @click.stop>
+        <text x="326" y="350" class="contributor link-label">{{ tr('CNG builder · FOSS contributor', 'CNGビルダー · FOSSコントリビューター') }}</text>
       </a>
 
       <a href="https://youssefharby.com/" target="_blank" rel="noopener noreferrer"
-         class="svg-source-link" aria-label="Open Youssef Harby's website in a new tab" @click.stop>
+         class="svg-source-link" :aria-label="tr(`Open Youssef Harby's website in a new tab`, 'Youssef Harbyのウェブサイトを新しいタブで開く')" @click.stop>
         <rect x="112" y="326" width="96" height="96" rx="2" class="qr-frame link-target" />
         <image href="/qr-youssefharby.svg" x="120" y="334" width="80" height="80" preserveAspectRatio="xMidYMid meet" />
       </a>

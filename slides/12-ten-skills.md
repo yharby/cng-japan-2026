@@ -11,6 +11,7 @@ hideInToc: true
 
 <div class="bi">
   <span class="en">The suite covers building, using, improving, registering, and reporting problems with Portolan catalogs.</span>
+  <span class="deck-ja">このスイートは、Portolan Catalogの構築、利用、改善、登録、問題報告を支援します。</span>
 </div>
 
 <!--

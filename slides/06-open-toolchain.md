@@ -11,6 +11,7 @@ hideInToc: true
 
 <div class="bi">
   <span class="en">Define → build → validate → publish → register → explore, with agent skills across the middle of the workflow.</span>
+  <span class="deck-ja">定義 → 構築 → 検証 → 公開 → 登録 → 探索。エージェントスキルがワークフローを支えます。</span>
 </div>
 
 <!--

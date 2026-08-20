@@ -11,7 +11,10 @@
     "dev": "slidev",
     "build": "slidev build --out dist --without-notes",
     "preview": "vite preview",
-    "export": "node scripts/export.mjs",
+    "export": "node scripts/export.mjs en",
+    "export:en": "node scripts/export.mjs en",
+    "export:ja": "node scripts/export.mjs ja",
+    "export:all": "pnpm export:en && pnpm export:ja",
     "validate": "node scripts/validate-deck.mjs",
     "smoke": "node scripts/smoke.mjs",
     "test": "pnpm validate && pnpm build && pnpm smoke"

@@ -1,28 +1,30 @@
 <script setup lang="ts">
 import { useNav } from '@slidev/client'
 import { computed } from 'vue'
+import { useDeckLocale } from '../composables/useDeckLocale'
 
 const { isPrintMode } = useNav()
+const { tr } = useDeckLocale()
 const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
-const scopes = [
-  { kind: 'CITY', name: 'PERGAMINO', features: '1.0M', collections: '183 collections', x: 42, reveal: 1, url: 'https://data.source.coop/nlebovits/pergamino-ide/catalog.json' },
-  { kind: 'COUNTRY', name: 'MOLDOVA', features: '21.2M', collections: '75 collections', x: 286, reveal: 2, url: 'https://data.source.coop/nlebovits/moldova-geodata/catalog.json' },
-  { kind: 'GLOBAL', name: 'MICROSOFT ROADS', features: '256.6M', collections: '1 collection', x: 530, reveal: 3, url: 'https://data.source.coop/nlebovits/microsoft-ml-road-detections/catalog.json' },
-]
+const scopes = computed(() => [
+  { kind: tr('CITY', '都市'), name: 'PERGAMINO', features: '1.0M', collections: tr('183 collections', '183 コレクション'), x: 42, reveal: 1, url: 'https://data.source.coop/nlebovits/pergamino-ide/catalog.json' },
+  { kind: tr('COUNTRY', '国'), name: 'MOLDOVA', features: '21.2M', collections: tr('75 collections', '75 コレクション'), x: 286, reveal: 2, url: 'https://data.source.coop/nlebovits/moldova-geodata/catalog.json' },
+  { kind: tr('GLOBAL', '世界'), name: 'MICROSOFT ROADS', features: '256.6M', collections: tr('1 collection', '1 コレクション'), x: 530, reveal: 3, url: 'https://data.source.coop/nlebovits/microsoft-ml-road-detections/catalog.json' },
+])
 </script>
 
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         aria-label="Three equal registry examples show the same static catalog and cloud-native asset pattern at city, country and global scope. Feature totals are secondary. Registry discovery is not a Portolan conformance result.">
-      <text x="400" y="27" text-anchor="middle" class="kicker">REGISTRY EXAMPLES · 18 AUGUST 2026</text>
+         :aria-label="tr('Three equal registry examples show the same static catalog and cloud-native asset pattern at city, country and global scope. Feature totals are secondary. Registry discovery is not a Portolan conformance result.', '都市・国・世界の3つのレジストリ例は、同じ静的カタログとクラウドネイティブ資産のパターンを示します。フィーチャ数は参考値で、レジストリでの発見はPortolan準拠を意味しません。')">
+      <text x="400" y="27" text-anchor="middle" class="kicker">{{ tr('REGISTRY EXAMPLES · 18 AUGUST 2026', 'レジストリ例 · 2026年8月18日') }}</text>
 
       <g v-for="scope in scopes" :key="scope.kind" class="scope"
          :class="{ visited: s >= scope.reveal, active: s === scope.reveal }"
          :transform="`translate(${scope.x} 55)`">
         <a :href="scope.url" target="_blank" rel="noopener noreferrer" class="svg-source-link"
-           :aria-label="`Open the ${scope.name} catalog.json file in a new tab`" @click.stop>
+           :aria-label="tr(`Open the ${scope.name} catalog.json file in a new tab`, `${scope.name}のcatalog.jsonを新しいタブで開く`)" @click.stop>
         <rect width="228" height="300" rx="20" class="scope-body link-target" />
         <rect width="228" height="9" rx="5" class="tone" />
         <text x="20" y="42" class="kind">{{ scope.kind }}</text>
@@ -30,10 +32,10 @@ const scopes = [
         <line x1="20" y1="95" x2="208" y2="95" class="rule" />
 
         <text x="20" y="137" class="features">{{ scope.features }}</text>
-        <text x="20" y="160" class="feature-label">FEATURES</text>
+        <text x="20" y="160" class="feature-label">{{ tr('FEATURES', 'フィーチャ') }}</text>
         <text x="20" y="187" class="collection-count">{{ scope.collections }}</text>
 
-        <text x="20" y="225" class="pattern-label">THE SAME PATTERN</text>
+        <text x="20" y="225" class="pattern-label">{{ tr('THE SAME PATTERN', '同じパターン') }}</text>
         <rect x="20" y="239" width="83" height="39" rx="8" class="catalog-chip" />
         <text x="61" y="263" text-anchor="middle" class="catalog-text link-label">catalog.json</text>
         <path d="M108 258 H126 M119 252 L126 258 L119 264" class="mini-arrow" />
@@ -47,10 +49,10 @@ const scopes = [
       <g class="registry-truth">
         <a href="https://github.com/portolan-sdi/portolan-registry/blob/main/exports/catalogs.json"
            target="_blank" rel="noopener noreferrer" class="svg-source-link"
-           aria-label="Open the Portolan registry catalog export in a new tab" @click.stop>
+           :aria-label="tr('Open the Portolan registry catalog export in a new tab', 'Portolanレジストリのカタログエクスポートを新しいタブで開く')" @click.stop>
         <rect x="42" y="378" width="716" height="68" rx="16" class="truth-body link-target" />
-        <text x="400" y="405" text-anchor="middle" class="truth-main">11 ROOTS · 596 COLLECTIONS · 383.1M FEATURES</text>
-        <text x="400" y="431" text-anchor="middle" class="truth-sub link-label">Registry discovery ≠ Portolan conformance</text>
+        <text x="400" y="405" text-anchor="middle" class="truth-main">{{ tr('11 ROOTS · 596 COLLECTIONS · 383.1M FEATURES', '11 ルート · 596 コレクション · 383.1M フィーチャ') }}</text>
+        <text x="400" y="431" text-anchor="middle" class="truth-sub link-label">{{ tr('Registry discovery ≠ Portolan conformance', 'レジストリでの発見 ≠ Portolan準拠') }}</text>
         </a>
       </g>
     </svg>

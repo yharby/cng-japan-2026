@@ -10,6 +10,7 @@ layout: default
 
 <div class="bi">
   <span class="en">A byte range is standard HTTP. The format index tells the client which bytes matter.</span>
+  <span class="deck-ja">バイト範囲は標準HTTPです。形式内のインデックスが必要なバイト位置をクライアントに示します。</span>
 </div>
 
 <!--

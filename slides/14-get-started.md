@@ -11,6 +11,7 @@ hideInToc: true
 
 <div class="bi">
   <span class="en">Use the skills for guided work. Use rashid directly today for the released conformance check.</span>
+  <span class="deck-ja">ガイド付き作業にはスキルを使い、現行リリースの適合性検証にはrashidを直接使います。</span>
 </div>
 
 <!--

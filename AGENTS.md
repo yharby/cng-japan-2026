@@ -46,6 +46,8 @@
 - `vite.config.mjs`: applies the shared base to production builds and previews while keeping development at `/`.
 - `slides/`: one Markdown source per slide, including speaker notes and `[Sources]` blocks.
 - `components/`: Vue visualizations; most use Slidev `useNav()` for click states.
+- `composables/useDeckLocale.ts`: per-window English/Japanese state and URL persistence.
+- `global-top.vue`: language selector shared by audience views.
 - `style.css`: the single global palette, typography, and layout entrypoint.
 - `public/`: static logos, portrait, and QR assets.
 - `scripts/`: export, source validation, and the all-slide render check.
@@ -86,11 +88,12 @@
 - Render check: `pnpm smoke`, or `pnpm smoke <url>` against a deployment.
 - Full check: `pnpm test` runs validate, build, and smoke.
 - Export main talk: `pnpm export`.
+- Export Japanese main talk: `pnpm export:ja`; export both languages: `pnpm export:all`.
 - Before committing, require `pnpm test` and visual inspection of changed slides.
 - Do not override the production base on the command line. `deck.config.mjs` is the source of truth.
 - Restart `pnpm preview` after rebuilding; a preview is a view of one completed static artifact.
 - Browser QA must use hash routes, `/#/<n>?clicks=<k>`.
-- `pnpm smoke` walks every slide in both light and dark. Never drop the dark pass.
+- `pnpm smoke` walks every slide in English and Japanese, in both light and dark. Never drop any pass.
 - Do not pair `:global(...)` with a descendant selector inside a scoped `<style>`. Vue keeps only
   the `:global()` argument and drops the rest, so a rule meant for one element lands on `html`.
   `:global(html.dark) .carto-logo` compiled to bare `html.dark` and painted the whole deck white.

@@ -10,6 +10,9 @@
   --c-portolan: #4163cc;
   --c-portolan-dark: #2d4aa8;
   --c-portolan-soft: #e9edfb;
+  --w-connector: 2.25px;
+  --w-connector-active: 2.5px;
+  --w-rail: 2.5px;
 }
 
 html.dark {
@@ -79,6 +82,47 @@ html.dark {
   word-break: keep-all;
   overflow-wrap: anywhere;
   line-break: strict;
+}
+
+html[data-deck-locale='ja'] .slidev-layout {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+}
+
+html[data-deck-locale='ja'] .slidev-layout .canvas text:not(.mono) {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+  letter-spacing: 0;
+}
+
+html[data-deck-locale='en'] .slidev-layout.default > h1 + .ja,
+html[data-deck-locale='en'] .slidev-layout .bi > .deck-ja,
+html[data-deck-locale='ja'] .slidev-layout.default > h1,
+html[data-deck-locale='ja'] .slidev-layout .bi > .en {
+  display: none;
+}
+
+html[data-deck-locale='ja'] .slidev-layout.default > h1 + .ja {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--c-fg);
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 1.18;
+  opacity: 1;
+}
+
+html[data-deck-locale='ja'] .slidev-layout.cover-slide > h1 + .ja {
+  max-width: 19ch;
+  font-size: 2.05em;
+  line-height: 1.08;
+}
+
+html[data-deck-locale='ja'] .slidev-layout.bio-slide > h1 + .ja {
+  font-size: 1.85em;
+}
+
+html[data-deck-locale='ja'] .slidev-layout.close-slide > h1 + .ja {
+  max-width: 100%;
+  font-size: 1.32em;
 }
 
 .slidev-layout.default h1 + .ja {
@@ -202,4 +246,11 @@ html.dark {
 
 .slidev-layout .bi .ja {
   font-size: 0.82em;
+}
+
+.slidev-layout .bi .deck-ja {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+  font-size: 0.82em;
+  font-weight: 600;
+  line-height: 1.35;
 }

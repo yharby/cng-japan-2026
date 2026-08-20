@@ -10,6 +10,7 @@ layout: default
 
 <div class="bi">
   <span class="en">collection.json serves software, README.md serves people, and AGENTS.md gives agents tested access guidance.</span>
+  <span class="deck-ja">collection.jsonはソフトウェア、README.mdは人、AGENTS.mdはエージェントに検証済みの利用手順を提供します。</span>
 </div>
 
 <!--

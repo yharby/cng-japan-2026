@@ -22,6 +22,29 @@ pnpm dev
 
 Slidev opens the public presentation at `http://localhost:3030/`. Presenter mode is available at `http://localhost:3030/#/presenter/`.
 
+Each browser window keeps its own audience language. For a bilingual room, open
+all three views in the same browser profile and advance the deck from presenter
+mode:
+
+```text
+Presenter:         http://localhost:3030/?lang=en#/presenter/
+English audience:  http://localhost:3030/?lang=en#/1
+Japanese audience: http://localhost:3030/?lang=ja#/1
+```
+
+The published equivalents are:
+
+```text
+https://yharby.github.io/cng-japan-2026/?lang=en#/presenter/
+https://yharby.github.io/cng-japan-2026/?lang=en#/1
+https://yharby.github.io/cng-japan-2026/?lang=ja#/1
+```
+
+The on-slide selector can also change either audience window independently.
+Slidev presenter mode synchronizes the slide and click state while the two
+audience windows retain their independent language choices. Two ordinary
+audience tabs do not control each other; the presenter view is the controller.
+
 ## Validate and build
 
 ```bash
@@ -35,18 +58,21 @@ There is one production build. `vite.config.mjs` reads the public base from
 
 `pnpm test` validates the source, builds the production artifact, and renders all
 23 slides without waiting for external iframe traffic. Each slide is rendered in
-both the light and dark colour schemes, because a component style can escape its
-scope and blank the deck in one scheme while the other stays perfect. To check a
-deployment:
+English and Japanese, in both the light and dark colour schemes, and the test
+verifies presenter-to-audience synchronization without merging the two audience
+locales. This catches translation overflow as well as a component style escaping
+its scope and blanking only one theme. To check a deployment:
 
 ```bash
 pnpm smoke https://yharby.github.io/cng-japan-2026/
 ```
 
-Export the 16-slide main talk to PDF:
+Export the 16-slide main talk to English, Japanese, or both PDFs:
 
 ```bash
-pnpm export
+pnpm export:en
+pnpm export:ja
+pnpm export:all
 ```
 
 ## Repository structure
@@ -55,6 +81,8 @@ pnpm export
 - `deck.config.mjs` defines shared build, export, and QA constants.
 - `slides/` contains individual slide sources and speaker notes.
 - `components/` contains the Vue visualizations.
+- `composables/useDeckLocale.ts` owns the per-window language state.
+- `global-top.vue` provides the audience language selector.
 - `style.css` contains all global presentation styles.
 - `public/` contains static images and the official CARTO and Portolan marks.
 - `scripts/` contains export, source validation, and the render smoke test.

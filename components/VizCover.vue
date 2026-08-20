@@ -1,19 +1,21 @@
 <script setup lang="ts">
 import { useNav } from '@slidev/client'
 import { computed } from 'vue'
+import { useDeckLocale } from '../composables/useDeckLocale'
 
 const { isPrintMode } = useNav()
+const { tr } = useDeckLocale()
 const ready = computed(() => isPrintMode.value || true)
 </script>
 
 <template>
   <div class="stage cover-stage" :class="{ ready }">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         aria-label="Portolan: An SDI Without Servers, presented at Cloud Native Geospatial Japan 2026 by Youssef Harby, Software Engineer at CARTO.">
+         :aria-label="tr('Portolan: An SDI Without Servers, presented at Cloud Native Geospatial Japan 2026 by Youssef Harby, Software Engineer at CARTO.', 'Portolan: サーバーのないSDI。Cloud Native Geospatial Japan 2026、登壇者はCARTOのソフトウェアエンジニア、Youssef Harby。')">
       <path d="M76 64 H724" class="cover-rule" />
 
       <a href="https://portolan-sdi.org/" target="_blank" rel="noopener noreferrer"
-         class="svg-source-link" aria-label="Open the Portolan website in a new tab" @click.stop>
+         class="svg-source-link" :aria-label="tr('Open the Portolan website in a new tab', 'Portolanのウェブサイトを新しいタブで開く')" @click.stop>
       <g class="portolan-lockup">
         <image href="/portolan-mark.svg" x="642" y="104" width="62" height="62" preserveAspectRatio="xMidYMid meet" />
         <text x="673" y="188" text-anchor="middle" class="link-label">Portolan</text>
@@ -21,17 +23,17 @@ const ready = computed(() => isPrintMode.value || true)
       </a>
 
       <text x="76" y="142" class="event">CLOUD NATIVE GEOSPATIAL JAPAN 2026</text>
-      <text x="76" y="181" class="place">JAMSTEC Yokohama · 24 August 2026</text>
+      <text x="76" y="181" class="place">{{ tr('JAMSTEC Yokohama · 24 August 2026', 'JAMSTEC 横浜 · 2026年8月24日') }}</text>
 
       <g class="speaker">
         <text x="76" y="323">Youssef Harby</text>
         <a href="https://carto.com/" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" aria-label="Open the CARTO website in a new tab" @click.stop>
-          <text x="76" y="358" class="speaker-role link-label">Software Engineer at CARTO</text>
+           class="svg-source-link" :aria-label="tr('Open the CARTO website in a new tab', 'CARTOのウェブサイトを新しいタブで開く')" @click.stop>
+          <text x="76" y="358" class="speaker-role link-label">{{ tr('Software Engineer at CARTO', 'CARTO ソフトウェアエンジニア') }}</text>
           <image href="/carto-logo-positive.svg" x="612" y="332" width="112" height="43" preserveAspectRatio="xMidYMid meet" class="carto-logo" />
         </a>
         <a href="mailto:youssef@carto.com" class="svg-source-link"
-           aria-label="Email Youssef Harby" @click.stop>
+           :aria-label="tr('Email Youssef Harby', 'Youssef Harbyにメールする')" @click.stop>
           <text x="76" y="391" class="speaker-email link-label">youssef@carto.com</text>
         </a>
       </g>

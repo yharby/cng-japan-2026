@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { useNav } from '@slidev/client'
 import { computed } from 'vue'
+import { useDeckLocale } from '../composables/useDeckLocale'
 
 const { isPrintMode } = useNav()
+const { tr } = useDeckLocale()
 const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
-const phases = [
-  { name: 'BUILD', hint: 'publish', count: 4, x: 40, y: 52, reveal: 1, start: 72, skills: ['git-backed-catalog', 'portolan-bootstrap', 'portolan-cli', 'sourcecoop'] },
-  { name: 'USE', hint: 'read + analyze', count: 2, x: 470, y: 52, reveal: 2, start: 86, skills: ['reading-portolan', 'portolan-consume'] },
-  { name: 'IMPROVE', hint: 'repair + review', count: 2, x: 470, y: 260, reveal: 3, start: 86, skills: ['portolan-migrate', 'portolan-thumbnails'] },
-  { name: 'NETWORK', hint: 'register + respond', count: 2, x: 40, y: 260, reveal: 4, start: 86, skills: ['register-catalog', 'report-catalog-issue'] },
-]
+const phases = computed(() => [
+  { name: tr('BUILD', '構築'), hint: tr('publish', '公開'), count: 4, x: 40, y: 52, reveal: 1, start: 72, skills: ['git-backed-catalog', 'portolan-bootstrap', 'portolan-cli', 'sourcecoop'] },
+  { name: tr('USE', '利用'), hint: tr('read + analyze', '読込 + 分析'), count: 2, x: 470, y: 52, reveal: 2, start: 86, skills: ['reading-portolan', 'portolan-consume'] },
+  { name: tr('IMPROVE', '改善'), hint: tr('repair + review', '修復 + レビュー'), count: 2, x: 470, y: 260, reveal: 3, start: 86, skills: ['portolan-migrate', 'portolan-thumbnails'] },
+  { name: tr('NETWORK', '連携'), hint: tr('register + respond', '登録 + 対応'), count: 2, x: 40, y: 260, reveal: 4, start: 86, skills: ['register-catalog', 'report-catalog-issue'] },
+])
 
 const skillUrl = (skill: string) => `https://github.com/portolan-sdi/portolan-skills/blob/main/skills/${skill}/SKILL.md`
 </script>
@@ -18,14 +20,15 @@ const skillUrl = (skill: string) => `https://github.com/portolan-sdi/portolan-sk
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         aria-label="Ten Portolan skills form a lifecycle. Build flows to Use, Use to Improve, Improve to Network, and Network back to Build. The four phases contain four, two, two and two exact skill files.">
+         :aria-label="tr('Ten Portolan skills form a lifecycle. Build flows to Use, Use to Improve, Improve to Network, and Network back to Build. The four phases contain four, two, two and two exact skill files.', '10個のPortolanスキルがライフサイクルを形成します。構築から利用、改善、連携を経て構築に戻ります。4つのフェーズに、4・2・2・2個のSKILL.mdがあります。')">
       <defs>
-        <marker id="cycle-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0 0 L10 5 L0 10 Z" class="arrow-head" />
+        <marker id="cycle-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8"
+                orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+          <path d="M1 1 L7 4 L1 7" class="arrow-head" />
         </marker>
       </defs>
 
-      <text x="400" y="26" text-anchor="middle" class="kicker">TEN SKILLS · ONE REPEATABLE LIFECYCLE</text>
+      <text x="400" y="26" text-anchor="middle" class="kicker">{{ tr('TEN SKILLS · ONE REPEATABLE LIFECYCLE', '10個のスキル · 繰り返せるライフサイクル') }}</text>
 
       <path d="M334 128 H462" class="cycle-line" marker-end="url(#cycle-arrow)" />
       <path d="M615 210 V252" class="cycle-line" marker-end="url(#cycle-arrow)" />
@@ -34,8 +37,8 @@ const skillUrl = (skill: string) => `https://github.com/portolan-sdi/portolan-sk
 
       <g class="center-note">
         <rect x="346" y="213" width="108" height="44" rx="22" class="center-body" />
-        <text x="400" y="232" text-anchor="middle" class="center-main">OPEN SKILLS</text>
-        <text x="400" y="248" text-anchor="middle" class="center-sub">guide each step</text>
+        <text x="400" y="232" text-anchor="middle" class="center-main">{{ tr('OPEN SKILLS', 'オープンスキル') }}</text>
+        <text x="400" y="248" text-anchor="middle" class="center-sub">{{ tr('guide each step', '各ステップを支援') }}</text>
       </g>
 
       <g v-for="phase in phases" :key="phase.name" :transform="`translate(${phase.x} ${phase.y})`">
@@ -52,7 +55,7 @@ const skillUrl = (skill: string) => `https://github.com/portolan-sdi/portolan-sk
               <circle cx="30" :cy="phase.start + i * 23 - 5" r="4" class="skill-dot" />
               <a :href="skillUrl(skill)" target="_blank" rel="noopener noreferrer" class="svg-source-link"
                  :class="{ 'is-disabled': s < phase.reveal }" :tabindex="s >= phase.reveal ? 0 : -1"
-                 :aria-label="`Open ${skill} SKILL.md in a new tab`" @click.stop>
+                 :aria-label="tr(`Open ${skill} SKILL.md in a new tab`, `${skill}のSKILL.mdを新しいタブで開く`)" @click.stop>
                 <text x="45" :y="phase.start + i * 23" class="skill-name link-label">{{ skill }}</text>
               </a>
             </g>
@@ -65,8 +68,8 @@ const skillUrl = (skill: string) => `https://github.com/portolan-sdi/portolan-sk
 
 <style scoped>
 .kicker { fill: var(--c-muted); font-size: 17px; font-weight: 900; letter-spacing: 0.075em; }
-.cycle-line { fill: none; stroke: var(--c-line); stroke-width: 4; stroke-linecap: round; }
-.arrow-head { fill: var(--c-accent); }
+.cycle-line { fill: none; stroke: var(--c-line); stroke-width: var(--w-connector); stroke-linecap: round; }
+.arrow-head { fill: none; stroke: var(--c-line); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
 .center-body { fill: var(--c-bg); stroke: var(--c-accent); stroke-width: 2.5; }
 .center-main { fill: var(--c-accent); font-size: 13px; font-weight: 900; letter-spacing: 0.06em; }
 .center-sub { fill: var(--c-muted); font-size: 11px; font-weight: 700; }

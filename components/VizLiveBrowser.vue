@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useNav } from '@slidev/client'
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { useDeckLocale } from '../composables/useDeckLocale'
 
 const { isPrintMode } = useNav()
+const { tr } = useDeckLocale()
 const s = computed(() => (isPrintMode.value ? 0 : $clicks.value))
 const browserUrl = 'https://cholmes.github.io/stlouis-data-browser/#/transportation-infrastructure-and-utilities/catalog.json'
 const showLive = computed(() => !isPrintMode.value && s.value >= 1)
@@ -34,56 +36,56 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="stage live-browser-stage">
-    <div class="browser canvas" role="group" aria-label="St. Louis live catalog demonstration with a deterministic preview before the live website loads">
+    <div class="browser canvas" role="group" :aria-label="tr('St. Louis live catalog demonstration with a deterministic preview before the live website loads', 'St. Louisのライブカタログ実演。サイトの読み込み前は安定したプレビューを表示します。')">
       <div class="browser-bar">
         <span class="status-dot" :class="{ live: showLive && loaded }" aria-hidden="true" />
-        <span class="state-label">{{ showLive ? (loaded ? 'LIVE' : 'LOADING') : 'PREVIEW' }}</span>
+        <span class="state-label">{{ showLive ? (loaded ? tr('LIVE', 'ライブ') : tr('LOADING', '読込中')) : tr('PREVIEW', 'プレビュー') }}</span>
         <span class="address">cholmes.github.io/stlouis-data-browser/…/transportation…</span>
         <a class="open-link source-link" :href="browserUrl" target="_blank" rel="noopener noreferrer"
-           aria-label="Open the St. Louis transportation catalog in a new tab" @click.stop>
-          <span>OPEN</span><lucide-external-link aria-hidden="true" />
+           :aria-label="tr('Open the St. Louis transportation catalog in a new tab', 'St. Louis交通カタログを新しいタブで開く')" @click.stop>
+          <span>{{ tr('OPEN', '開く') }}</span><lucide-external-link aria-hidden="true" />
         </a>
       </div>
 
       <div class="browser-body">
-        <div class="fallback" role="img" aria-label="Preview of the St. Louis transportation catalog">
+        <div class="fallback" role="img" :aria-label="tr('Preview of the St. Louis transportation catalog', 'St. Louis交通カタログのプレビュー')">
           <svg class="fallback-canvas" viewBox="0 0 800 410" aria-hidden="true">
             <rect width="800" height="410" class="fallback-bg" />
             <rect x="0" y="0" width="242" height="410" class="side" />
             <text x="28" y="44" class="side-kicker">ST. LOUIS</text>
-            <text x="28" y="76" class="side-title">OPEN DATA</text>
+            <text x="28" y="76" class="side-title">{{ tr('OPEN DATA', 'オープンデータ') }}</text>
             <line x1="28" y1="98" x2="214" y2="98" class="side-rule" />
-            <text x="28" y="133" class="side-label">67 COLLECTIONS</text>
-            <text x="28" y="164" class="side-label">STATIC CATALOG</text>
-            <text x="28" y="195" class="side-label">CLOUD-NATIVE ASSETS</text>
+            <text x="28" y="133" class="side-label">{{ tr('67 COLLECTIONS', '67 コレクション') }}</text>
+            <text x="28" y="164" class="side-label">{{ tr('STATIC CATALOG', '静的カタログ') }}</text>
+            <text x="28" y="195" class="side-label">{{ tr('CLOUD-NATIVE ASSETS', 'クラウドネイティブ資産') }}</text>
 
             <rect x="28" y="230" width="186" height="43" rx="8" class="search" />
-            <text x="44" y="257" class="search-text">Search collections</text>
+            <text x="44" y="257" class="search-text">{{ tr('Search collections', 'コレクションを検索') }}</text>
             <rect x="28" y="295" width="158" height="12" rx="6" class="list-line active" />
             <rect x="28" y="322" width="184" height="12" rx="6" class="list-line" />
             <rect x="28" y="349" width="136" height="12" rx="6" class="list-line" />
 
-            <text x="276" y="50" class="catalog-kicker">TRANSPORTATION, INFRASTRUCTURE + UTILITIES</text>
-            <text x="276" y="87" class="catalog-title">Catalog collections</text>
+            <text x="276" y="50" class="catalog-kicker">{{ tr('TRANSPORTATION, INFRASTRUCTURE + UTILITIES', '交通・インフラ・ユーティリティ') }}</text>
+            <text x="276" y="87" class="catalog-title">{{ tr('Catalog collections', 'カタログのコレクション') }}</text>
             <line x1="276" y1="108" x2="756" y2="108" class="catalog-rule" />
 
             <g transform="translate(276 136)">
               <rect width="480" height="64" rx="12" class="result" />
               <circle cx="32" cy="32" r="14" class="result-icon" />
-              <text x="60" y="28" class="result-title">Street network and transportation</text>
-              <text x="60" y="48" class="result-copy">GeoParquet · PMTiles · metadata</text>
+              <text x="60" y="28" class="result-title">{{ tr('Street network and transportation', '道路ネットワークと交通') }}</text>
+              <text x="60" y="48" class="result-copy">{{ tr('GeoParquet · PMTiles · metadata', 'GeoParquet · PMTiles · メタデータ') }}</text>
             </g>
             <g transform="translate(276 216)">
               <rect width="480" height="64" rx="12" class="result" />
               <circle cx="32" cy="32" r="14" class="result-icon muted-icon" />
-              <text x="60" y="28" class="result-title">Roads, bridges and public assets</text>
-              <text x="60" y="48" class="result-copy">open files · stable HTTPS addresses</text>
+              <text x="60" y="28" class="result-title">{{ tr('Roads, bridges and public assets', '道路・橋梁・公共資産') }}</text>
+              <text x="60" y="48" class="result-copy">{{ tr('open files · stable HTTPS addresses', 'オープンファイル · 安定したHTTPSアドレス') }}</text>
             </g>
             <g transform="translate(276 296)">
               <rect width="480" height="64" rx="12" class="result" />
               <circle cx="32" cy="32" r="14" class="result-icon muted-icon" />
-              <text x="60" y="28" class="result-title">Browse the real catalog on click</text>
-              <text x="60" y="48" class="result-copy">the preview stays underneath while loading</text>
+              <text x="60" y="28" class="result-title">{{ tr('Browse the real catalog on click', 'クリックで実際のカタログへ') }}</text>
+              <text x="60" y="48" class="result-copy">{{ tr('the preview stays underneath while loading', '読み込み中もプレビューを表示') }}</text>
             </g>
           </svg>
         </div>
@@ -93,14 +95,14 @@ onBeforeUnmount(() => {
           class="browser-content"
           :class="{ ready: loaded && !timedOut }"
           :src="browserUrl"
-          title="St. Louis transportation open data catalog"
+          :title="tr('St. Louis transportation open data catalog', 'St. Louis交通オープンデータカタログ')"
           loading="eager"
           allow="fullscreen"
           @load="onLoad"
         />
 
         <div v-if="showLive && !loaded" class="load-note">
-          <span>{{ timedOut ? 'Preview kept — open the live catalog in a new tab.' : 'Loading the live catalog…' }}</span>
+          <span>{{ timedOut ? tr('Preview kept. Open the live catalog in a new tab.', 'プレビューを維持中。ライブカタログは新しいタブで開いてください。') : tr('Loading the live catalog…', 'ライブカタログを読み込み中…') }}</span>
         </div>
       </div>
     </div>

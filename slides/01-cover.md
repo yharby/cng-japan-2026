@@ -5,7 +5,7 @@ class: cover-slide
 ---
 
 # Portolan: An SDI Without Servers
-<p class="ja">サーバーを必要としないSDI</p>
+<p class="ja">Portolan サーバーを必要としないSDI</p>
 
 <VizCover />
 

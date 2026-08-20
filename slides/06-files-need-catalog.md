@@ -10,6 +10,7 @@ layout: default
 
 <div class="bi">
   <span class="en">Fast files can still lack shared discovery, extent, roles, license, and provenance.</span>
+  <span class="deck-ja">高速なファイル形式だけでは、検索、範囲、役割、ライセンス、来歴を共有できません。</span>
 </div>
 
 <!--

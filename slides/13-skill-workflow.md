@@ -11,6 +11,7 @@ hideInToc: true
 
 <div class="bi">
   <span class="en">The agent inspects metadata, schema, and CRS before DuckDB queries remote GeoParquet and reuses published map assets.</span>
+  <span class="deck-ja">エージェントはメタデータ、スキーマ、CRSを確認し、DuckDBでGeoParquetを遠隔クエリして公開済み地図Assetを再利用します。</span>
 </div>
 
 <!--

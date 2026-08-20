@@ -11,6 +11,7 @@ hideInToc: true
 
 <div class="bi">
   <span class="en">The registry indexes 11 static catalog roots, 596 collections, and 383.1 million features as of 18 August 2026.</span>
+  <span class="deck-ja">2026年8月18日時点で、レジストリは11の静的Catalog、596のCollection、3億8,310万Featureを索引化しています。</span>
 </div>
 
 <!--

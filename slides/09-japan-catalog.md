@@ -10,6 +10,7 @@ layout: default
 
 <div class="bi">
   <span class="en">Fields of the World publishes 5,384,929 Japanese field boundaries as GeoParquet and PMTiles under CC BY 4.0.</span>
+  <span class="deck-ja">Fields of the Worldは、日本の農地区画5,384,929件をGeoParquetとPMTilesでCC BY 4.0公開しています。</span>
 </div>
 
 <!--

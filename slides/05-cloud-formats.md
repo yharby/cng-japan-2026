@@ -10,6 +10,7 @@ layout: default
 
 <div class="bi">
   <span class="en">File indexes reduce bytes. HTTP/2 and HTTP/3 improve how range requests share a connection.</span>
+  <span class="deck-ja">ファイル内インデックスは転送量を減らし、HTTP/2とHTTP/3は範囲リクエストの接続共有を改善します。</span>
 </div>
 
 <!--
