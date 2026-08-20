@@ -99,7 +99,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .label { fill: var(--c-muted); font-size: 12px; font-weight: 900; letter-spacing: 0.065em; }
 .folder { color: var(--c-portolan); }
 .file-name { fill: var(--c-fg); font-size: 21px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', monospace; }
-.small-file { font-size: 16px; }
+.small-file { font-size: 13px; }
 .publisher { fill: var(--c-fg); font-size: 15px; font-weight: 900; }
 .rule { stroke: var(--c-line); stroke-width: 2; }
 .meta, .small, .asset-detail, .provenance { fill: var(--c-muted); font-size: 14px; font-weight: 700; }

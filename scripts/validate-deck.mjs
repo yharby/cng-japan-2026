@@ -85,9 +85,22 @@ export const FORBIDDEN = [
   [/734,?850 bytes fetched the block/i, 'the demo answers one question from footer metadata'],
 ]
 
+// Sources that were removed because their exact reuse grant was conditional,
+// mixed, unstable, or unconfirmed. They may remain in the private research
+// history, but never in audience slides, notes, URLs, or accessibility copy.
+export const EXCLUDED_EXAMPLES = [
+  /\bJAXA\b|AW3D30|data\.earth\.jaxa\.jp/i,
+  /\bGSI\b|optimal_bvmap|gsi-cyberjapan/i,
+  /Pacific Spatial|Flateau|\bPLATEAU\b/i,
+  /Pergamino|pergamino-ide/i,
+  /Moldova|moldova-geodata/i,
+  /St\.? Louis|stlouis/i,
+  /Microsoft Roads|RoadDetections/i,
+]
+
 // Attribution that must survive anywhere in the deck, notes included.
 export const REQUIRED = [
-  'Source Cooperative', 'Matsumura', 'Imaki', 'flateau',
+  'Matsumura', 'Fields of the World', 'Taylor Geospatial Institute', 'Microsoft AI for Good',
 ]
 
 function frontmatter(src) {
@@ -150,6 +163,11 @@ export function checkSource(src, label, warnings = []) {
     if (inNotes) {
       warnings.push(`${label}: notes mention "${inNotes[0].replace(/\s+/g, ' ')}", ${why}`)
     }
+  }
+
+  for (const re of EXCLUDED_EXAMPLES) {
+    const hit = src.match(re)
+    if (hit) errors.push(`${label}: excluded data example appears in the presentation, "${hit[0]}"`)
   }
 
   for (const name of RETIRED) {
@@ -265,6 +283,10 @@ function checkComponent(name, errors, needsClicks = false) {
   for (const [re, why] of FORBIDDEN) {
     const hit = body.match(re)
     if (hit) errors.push(`${label}: forbidden claim in the drawing, "${hit[0]}", ${why}`)
+  }
+  for (const re of EXCLUDED_EXAMPLES) {
+    const hit = body.match(re)
+    if (hit) errors.push(`${label}: excluded data example appears in the drawing, "${hit[0]}"`)
   }
 
   if (!body.includes('isPrintMode')) {

@@ -62,9 +62,9 @@
 - Never imply the Japanese examples are Portolan deployments.
 - Do not claim servers disappear; object storage, CDN, IAM, DNS, monitoring, and publishing jobs still exist.
 - Keep factual claims source-backed in speaker notes; preserve the `[Sources]` section format.
-- Public access is not license clearance. Before proposing a dataset for conversion or republication, verify the exact asset or STAC collection license, upstream providers, attribution, modification notice, commercial-use terms, and any share-alike or notification duty.
+- Public access is not license clearance. Only Green sources from `docs/data-license-audit.md` may appear as conversion, reuse, or pilot examples. Before proposing one, verify the exact asset or STAC collection license, upstream providers, attribution, modification notice, and commercial-use terms.
 - Keep illustrative filenames visibly distinct from real downloadable assets. Do not infer a data license from a software repository license, a host, or a logo.
-- Data licenses do not grant trademark rights. Keep JAXA, GSI, e-Stat, and other organization names typographic unless authorized logo use is documented.
+- Data licenses do not grant trademark rights. Keep organization names typographic unless authorized logo use is documented.
 - Do not restore the obsolete bio, old email, or old role.
 
 ## Visual Rules

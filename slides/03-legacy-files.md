@@ -24,7 +24,7 @@ layout: default
 "A CSV, Shapefile, or GeoPackage is normally fetched and parsed before the filter can discard most records. Each library then chooses its own in-memory representation, which can add allocation and conversion work."
 
 [Click 2]
-"The JAXA AW3D30 product is a concrete raster example. Its documented GeoTIFF layout uses one strip for the image height. A small window cannot benefit from the tiled layout and overview pyramid that a COG provides. Large-area xarray work repeats this cost across many tiles."
+"The raster lane illustrates an untiled TIFF with no overview pyramid. Natural Earth provides a public-domain raster TIFF source that is easy to convert, but the single-strip drawing is a teaching layout rather than a measured claim about that download. A COG reorganizes raster blocks and overviews so a client can request the useful window."
 
 [Click 3]
 "In both lanes, the question is small but the transfer and memory footprint follow the packaging."
@@ -32,9 +32,8 @@ layout: default
 [Sources]
 - https://www.e-stat.go.jp/gis/statmap-search?aggregateUnit=S&datum=2011&page=1&serveyId=S002005112020&statsId=T001140&toukeiCode=00200521&toukeiYear=2020&type=1
 - https://www.e-stat.go.jp/en/terms-of-use
-- https://www.eorc.jaxa.jp/ALOS/en/aw3d30/aw3d30v31_product_e.pdf
-- https://www.eorc.jaxa.jp/ALOS/en/dataset/aw3d30/aw3d30_e.htm
-- https://earth.jaxa.jp/en/data/policy/
+- https://www.naturalearthdata.com/downloads/10m-raster-data/
+- https://www.naturalearthdata.com/about/terms-of-use/
 - https://www.rfc-editor.org/rfc/rfc4180
 - https://wesmckinney.com/blog/apache-arrow-pandas-internals/
 -->

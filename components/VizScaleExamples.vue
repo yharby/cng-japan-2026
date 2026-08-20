@@ -8,17 +8,17 @@ const { tr } = useDeckLocale()
 const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 const scopes = computed(() => [
-  { kind: tr('CITY', '都市'), name: 'PERGAMINO', features: '1.0M', collections: tr('183 collections', '183 コレクション'), license: tr('CC BY-SA · CHECK LAYER', 'CC BY-SA · レイヤ確認'), licenseTone: 'conditional', x: 42, reveal: 1, url: 'https://data.source.coop/nlebovits/pergamino-ide/catalog.json' },
-  { kind: tr('COUNTRY', '国'), name: 'MOLDOVA', features: '21.2M', collections: tr('75 collections', '75 コレクション'), license: tr('LICENSE UNCONFIRMED', 'ライセンス未確認'), licenseTone: 'blocked', x: 286, reveal: 2, url: 'https://data.source.coop/nlebovits/moldova-geodata/catalog.json' },
-  { kind: tr('GLOBAL', '世界'), name: 'MICROSOFT ROADS', features: '256.6M', collections: tr('1 collection', '1 コレクション'), license: 'ODbL 1.0 · SHARE ALIKE', licenseTone: 'cleared', x: 530, reveal: 3, url: 'https://data.source.coop/nlebovits/microsoft-ml-road-detections/catalog.json' },
+  { kind: tr('CITY', '都市'), name: 'BOSTON OPEN SPACE', metric: '1,012', metricLabel: tr('FEATURES', 'フィーチャ'), collections: tr('1 collection', '1 コレクション'), license: 'PDDL 1.0 · PUBLIC DOMAIN', x: 42, reveal: 1, url: 'https://raw.githubusercontent.com/portolan-sdi/portolan-spec/main/examples/catalog/portolan-reference/boundaries/boston-open-space/collection.json', file: 'collection.json', assetA: 'GeoParquet', assetB: 'PMTiles' },
+  { kind: tr('COUNTRY', '国'), name: 'NETHERLANDS BAG', metric: '11.4M', metricLabel: tr('BUILDINGS', '建物'), collections: tr('1 collection', '1 コレクション'), license: 'PDM 1.0 · PUBLIC DOMAIN', x: 286, reveal: 2, url: 'https://data.source.coop/cholmes/portolan-nl/kadaster/panden/collection.json', file: 'collection.json', assetA: 'GeoParquet', assetB: 'PMTiles' },
+  { kind: tr('GLOBAL', '世界'), name: 'GHSL POPULATION', metric: '3,984', metricLabel: tr('ITEMS', 'アイテム'), collections: tr('12 collections', '12 コレクション'), license: 'CC BY 4.0', x: 530, reveal: 3, url: 'https://data.source.coop/nlebovits/ghsl/catalog.json', file: 'catalog.json', assetA: 'COG', assetB: 'STAC Items' },
 ])
 </script>
 
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('Three equal registry examples show the same static catalog and cloud-native asset pattern at city, country and global scope. Their reuse rights differ: Pergamino must be checked per layer, Moldova is unconfirmed, and Microsoft Roads uses ODbL share alike. Registry discovery is neither a license clearance nor a Portolan conformance result.', '都市・国・世界の3つのレジストリ例は同じ静的カタログとクラウドネイティブ資産のパターンを示しますが、再利用条件は異なります。Pergaminoはレイヤごとの確認が必要、Moldovaは未確認、Microsoft RoadsはODbLの継承条件があります。レジストリ掲載はライセンス確認でもPortolan準拠でもありません。')">
-      <text x="400" y="27" text-anchor="middle" class="kicker">{{ tr('REGISTRY EXAMPLES · 18 AUGUST 2026', 'レジストリ例 · 2026年8月18日') }}</text>
+         :aria-label="tr('Three exact, green-licensed publications show the same static catalog and cloud-native asset pattern at city, country and global scope: Boston Open Space, Netherlands BAG buildings, and GHSL Population.', '都市・国・世界の規模で、同じ静的カタログとクラウドネイティブ資産のパターンを示す3つのライセンス確認済み公開物です。Boston Open Space、Netherlands BAG建物、GHSL Populationです。')">
+      <text x="400" y="27" text-anchor="middle" class="kicker">{{ tr('EXACT GREEN-LICENSED PUBLICATIONS · 20 AUGUST 2026', 'ライセンス確認済みの公開物 · 2026年8月20日') }}</text>
 
       <g v-for="scope in scopes" :key="scope.kind" class="scope"
          :class="{ visited: s >= scope.reveal, active: s === scope.reveal }"
@@ -28,32 +28,32 @@ const scopes = computed(() => [
         <rect width="228" height="300" rx="20" class="scope-body link-target" />
         <rect width="228" height="9" rx="5" class="tone" />
         <text x="20" y="42" class="kind">{{ scope.kind }}</text>
-        <text x="20" y="78" class="name link-label" :class="{ compact: scope.kind === 'GLOBAL' }">{{ scope.name }}</text>
+        <text x="20" y="78" class="name compact link-label">{{ scope.name }}</text>
         <line x1="20" y1="95" x2="208" y2="95" class="rule" />
 
-        <text x="20" y="137" class="features">{{ scope.features }}</text>
-        <text x="20" y="160" class="feature-label">{{ tr('FEATURES', 'フィーチャ') }}</text>
+        <text x="20" y="137" class="features">{{ scope.metric }}</text>
+        <text x="20" y="160" class="feature-label">{{ scope.metricLabel }}</text>
         <text x="20" y="187" class="collection-count">{{ scope.collections }}</text>
-        <text x="20" y="209" class="license-status" :class="scope.licenseTone">{{ scope.license }}</text>
+        <text x="20" y="209" class="license-status cleared">{{ scope.license }}</text>
 
         <text x="20" y="229" class="pattern-label">{{ tr('THE SAME PATTERN', '同じパターン') }}</text>
-        <rect x="20" y="239" width="83" height="39" rx="8" class="catalog-chip" />
-        <text x="61" y="263" text-anchor="middle" class="catalog-text link-label">catalog.json</text>
-        <path d="M108 258 H126 M119 252 L126 258 L119 264" class="mini-arrow" />
-        <rect x="132" y="233" width="76" height="22" rx="7" class="asset-chip" />
-        <text x="170" y="248" text-anchor="middle" class="asset-text">GeoParquet</text>
-        <rect x="132" y="263" width="76" height="22" rx="7" class="asset-chip" />
-        <text x="170" y="278" text-anchor="middle" class="asset-text">PMTiles</text>
+        <rect x="20" y="239" width="98" height="39" rx="8" class="catalog-chip" />
+        <text x="69" y="263" text-anchor="middle" class="catalog-text link-label">{{ scope.file }}</text>
+        <path d="M122 258 H136 M129 252 L136 258 L129 264" class="mini-arrow" />
+        <rect x="142" y="233" width="66" height="22" rx="7" class="asset-chip" />
+        <text x="175" y="248" text-anchor="middle" class="asset-text">{{ scope.assetA }}</text>
+        <rect x="142" y="263" width="66" height="22" rx="7" class="asset-chip" />
+        <text x="175" y="278" text-anchor="middle" class="asset-text">{{ scope.assetB }}</text>
         </a>
       </g>
 
       <g class="registry-truth">
-        <a href="https://github.com/portolan-sdi/portolan-registry/blob/main/exports/catalogs.json"
+        <a href="https://portolan-sdi.org/#registry"
            target="_blank" rel="noopener noreferrer" class="svg-source-link"
            :aria-label="tr('Open the Portolan registry catalog export in a new tab', 'Portolanレジストリのカタログエクスポートを新しいタブで開く')" @click.stop>
         <rect x="42" y="378" width="716" height="68" rx="16" class="truth-body link-target" />
-        <text x="400" y="405" text-anchor="middle" class="truth-main">{{ tr('11 ROOTS · 596 COLLECTIONS · 383.1M FEATURES', '11 ルート · 596 コレクション · 383.1M フィーチャ') }}</text>
-        <text x="400" y="431" text-anchor="middle" class="truth-sub link-label">{{ tr('Registry discovery ≠ Portolan conformance', 'レジストリでの発見 ≠ Portolan準拠') }}</text>
+        <text x="400" y="405" text-anchor="middle" class="truth-main">{{ tr('CITY · COUNTRY · GLOBAL', '都市 · 国 · 世界') }}</text>
+        <text x="400" y="431" text-anchor="middle" class="truth-sub link-label">{{ tr('exact collection links · reusable data · explicit licenses', '正確なCollectionリンク · 再利用可能なデータ · 明示ライセンス') }}</text>
         </a>
       </g>
     </svg>
@@ -78,11 +78,9 @@ const scopes = computed(() => [
 .collection-count { fill: var(--c-muted); font-size: 16px; font-weight: 800; }
 .license-status { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9px; font-weight: 850; letter-spacing: 0.015em; }
 .license-status.cleared { fill: var(--c-ok); }
-.license-status.conditional { fill: var(--c-warn); }
-.license-status.blocked { fill: var(--c-accent); }
 .pattern-label { fill: var(--c-muted); font-size: 12px; font-weight: 900; letter-spacing: 0.08em; }
 .catalog-chip { fill: var(--c-bg); stroke: var(--c-fg); stroke-width: 2; }
-.catalog-text { fill: var(--c-fg); font-size: 11px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', monospace; }
+.catalog-text { fill: var(--c-fg); font-size: 9.5px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', monospace; }
 .mini-arrow { fill: none; stroke: var(--c-accent); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 .asset-chip { fill: var(--c-bg); stroke: var(--c-accent); stroke-width: 2; }
 .asset-text { fill: var(--c-fg); font-size: 10px; font-weight: 900; }

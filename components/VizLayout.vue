@@ -115,7 +115,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .door.active .audience { fill: var(--c-accent); }
 .audience { fill: var(--c-muted); font-size: 15px; font-weight: 900; letter-spacing: 0.08em; }
 .file { font-size: 22px; }
-.small-file { font-size: 19px; }
+.small-file { font-size: 15px; }
 .job { fill: var(--c-muted); font-size: 15px; font-weight: 700; }
 .asset-label { fill: var(--c-muted); font-size: 13px; font-weight: 900; letter-spacing: 0.12em; }
 .asset-line { stroke: var(--c-line); stroke-width: 2; }

@@ -11,47 +11,47 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('A concrete Japanese pilot plan. Choose one license-audited input from JAXA AW3D30, GSI, or Pacific Spatial. Publish one Portolan catalog with linked JSON, documentation, and a cloud-native asset. It is complete only when the license is stated, rashid passes, range requests and CORS work, and a registry pull request is open.', '具体的な日本パイロット案です。ライセンス確認済みのJAXA AW3D30、GSI、Pacific Spatialから入力を1つ選び、リンクされたJSON、文書、クラウドネイティブ資産を持つPortolanカタログを1つ公開します。ライセンス明記、rashid合格、rangeとCORSの動作、registry PRの4条件で完了です。')">
+         :aria-label="tr('A concrete Japanese pilot plan. Choose one CC BY 4.0 input covering Yokohama: the city land-use survey, its monthly population table, or ESA WorldCover. Publish one Portolan catalog with linked JSON, documentation, and a cloud-native asset. It is complete only when the license is stated, rashid passes, range requests and CORS work, and a registry pull request is open.', '具体的な日本パイロット案です。CC BY 4.0の横浜市土地利用調査、月次人口表、ESA WorldCoverから入力を1つ選び、リンクされたJSON、文書、クラウドネイティブ資産を持つPortolanカタログを1つ公開します。ライセンス明記、rashid合格、rangeとCORSの動作、registry PRの4条件で完了です。')">
       <text x="400" y="28" text-anchor="middle" class="kicker">{{ tr('CHOOSE ONE · PUBLISH ONE · CHECK FOUR', '1つ選ぶ · 1つ公開 · 4項目で確認') }}</text>
 
       <g class="candidates" :class="{ on: s >= 1 }">
         <rect x="28" y="54" width="205" height="330" rx="12" class="panel" />
         <text x="48" y="84" class="panel-title">{{ tr('CANDIDATES', '候補入力') }}</text>
 
-        <a href="https://www.eorc.jaxa.jp/ALOS/en/dataset/aw3d30/aw3d30_e.htm" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr('Open the JAXA AW3D30 dataset page in a new tab', 'JAXA AW3D30データセットページを新しいタブで開く')" @click.stop>
+        <a href="https://www.city.yokohama.lg.jp/business/bunyabetsu/kenchiku/toshikeikaku/yoko/sankou/11kisochousa.files/0016_20250630.zip" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" :aria-label="tr('Download the City of Yokohama land-use Shapefile and CSV archive', '横浜市の土地利用Shapefile・CSVアーカイブをダウンロード')" @click.stop>
           <g class="candidate-row">
             <rect x="44" y="104" width="173" height="70" rx="7" class="link-target" />
-            <lucide-satellite x="58" y="123" width="32" height="32" class="candidate-icon" />
-            <text x="103" y="125" class="candidate-name link-label">JAXA AW3D30</text>
-            <text x="103" y="145" class="candidate-format">GeoTIFF → COG</text>
-            <text x="103" y="162" class="candidate-license conditional">{{ tr('NOTICE IF COMMERCIAL', '商用時は事前通知') }}</text>
+            <lucide-map x="58" y="123" width="32" height="32" class="candidate-icon" />
+            <text x="103" y="125" class="candidate-name candidate-small link-label">YOKOHAMA LAND USE</text>
+            <text x="103" y="145" class="candidate-format compact-format">Shapefile → GeoParquet</text>
+            <text x="103" y="162" class="candidate-license">CC BY 4.0 · {{ tr('PREFERRED', '第1候補') }}</text>
           </g>
         </a>
 
-        <a href="https://github.com/gsi-cyberjapan/optimal_bvmap" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr(`Open GSI's PMTiles trial repository in a new tab`, 'GSIのPMTiles試行リポジトリを新しいタブで開く')" @click.stop>
+        <a href="https://www.city.yokohama.lg.jp/city-info/yokohamashi/tokei-chosa/portal/opendata/suikei01.files/e1yokohama2603.csv" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" :aria-label="tr('Download the March 2026 City of Yokohama population CSV', '2026年3月の横浜市人口CSVをダウンロード')" @click.stop>
           <g class="candidate-row">
             <rect x="44" y="188" width="173" height="70" rx="7" class="link-target" />
-            <lucide-layout-grid x="58" y="207" width="32" height="32" class="candidate-icon" />
-            <text x="103" y="209" class="candidate-name link-label">GSI</text>
-            <text x="103" y="229" class="candidate-format">PMTiles</text>
-            <text x="103" y="246" class="candidate-license">PDL1.0 · {{ tr('ATTRIBUTION', '出典表示') }}</text>
+            <lucide-table-2 x="58" y="207" width="32" height="32" class="candidate-icon" />
+            <text x="103" y="209" class="candidate-name candidate-small candidate-tight link-label">YOKOHAMA POPULATION</text>
+            <text x="103" y="229" class="candidate-format">CSV → Parquet</text>
+            <text x="103" y="246" class="candidate-license">CC BY 4.0</text>
           </g>
         </a>
 
-        <a href="https://source.coop/repositories/pacificspatial/flateau/description" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr(`Open Pacific Spatial's Flateau dataset on Source Cooperative in a new tab`, 'Source Cooperative上のPacific Spatial Flateauデータセットを新しいタブで開く')" @click.stop>
+        <a href="https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33E138_Map.tif" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" :aria-label="tr('Open the ESA WorldCover COG tile covering Yokohama', '横浜を含むESA WorldCover COGタイルを開く')" @click.stop>
           <g class="candidate-row">
             <rect x="44" y="272" width="173" height="70" rx="7" class="link-target" />
-            <lucide-building-2 x="58" y="291" width="32" height="32" class="candidate-icon" />
-            <text x="103" y="293" class="candidate-name candidate-small link-label">PACIFIC SPATIAL</text>
-            <text x="103" y="313" class="candidate-format compact-format">PLATEAU → GeoParquet</text>
+            <lucide-image x="58" y="291" width="32" height="32" class="candidate-icon" />
+            <text x="103" y="293" class="candidate-name candidate-small link-label">ESA WORLDCOVER</text>
+            <text x="103" y="313" class="candidate-format">Yokohama COG</text>
             <text x="103" y="330" class="candidate-license">CC BY 4.0</text>
           </g>
         </a>
 
-        <text x="130" y="367" text-anchor="middle" class="caveat">{{ tr('not Portolan deployments', 'Portolan導入事例ではない') }}</text>
+        <text x="130" y="367" text-anchor="middle" class="caveat">{{ tr('all three cleared for reuse', '3候補とも再利用可') }}</text>
       </g>
 
       <path d="M233 219 H274 M267 213 L274 219 L267 225" class="flow" :class="{ on: s >= 2 }" />
@@ -171,11 +171,11 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .candidate-row rect { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 1.75; }
 .candidate-icon, .catalog-icon { color: var(--c-portolan); }
 .candidate-name { fill: var(--c-fg); font-size: 16px; font-weight: 900; }
-.candidate-small { font-size: 11px; letter-spacing: 0.015em; }
-.candidate-format { fill: var(--c-muted); font-size: 10px; font-weight: 800; }
+.candidate-small { font-size: 9.25px; letter-spacing: 0.005em; }
+.candidate-tight { font-size: 8px; letter-spacing: 0; }
+.candidate-format { fill: var(--c-muted); font-size: 9.25px; font-weight: 800; }
 .candidate-license { fill: var(--c-ok); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 8.5px; font-weight: 850; letter-spacing: 0.015em; }
-.candidate-license.conditional { fill: var(--c-warn); }
-.compact-format { font-size: 9px; }
+.compact-format { font-size: 8.5px; }
 .flow { fill: none; stroke: var(--c-line); stroke-width: var(--w-connector); stroke-linecap: round; stroke-linejoin: round; }
 .flow.on { stroke: var(--c-portolan); }
 .catalog-url { fill: var(--c-muted); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9px; font-weight: 700; }

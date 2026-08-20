@@ -11,7 +11,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('Two legacy download paths. A national CSV must be downloaded and parsed before a small row selection. A non cloud optimized JAXA GeoTIFF tile must be opened as one strip before a small raster window can be analyzed.', '従来型ファイルの2つの読み込み経路。全国CSVは少数行の抽出にも全体のダウンロードと解析が必要です。クラウド最適化されていないJAXA GeoTIFFは、小さな範囲の解析にもストリップ全体を開く必要があります。')">
+         :aria-label="tr('Two legacy download paths. A national CSV must be downloaded and parsed before a small row selection. An illustrative untiled raster must read a large strip before a small window can be analyzed.', '従来型ファイルの2つの読み込み経路。全国CSVは少数行の抽出にも全体のダウンロードと解析が必要です。タイル化されていない例示ラスターは、小さな範囲の解析にも大きなストリップを読む必要があります。')">
       <path d="M400 56 V376" class="divider" />
 
       <g class="lane vector" :class="{ on: s >= 1 }">
@@ -53,10 +53,10 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
       <g class="lane raster" :class="{ on: s >= 2 }">
         <text x="602" y="42" text-anchor="middle" class="lane-title">{{ tr('RASTER DATA', 'ラスターデータ') }}</text>
-        <a href="https://www.eorc.jaxa.jp/ALOS/en/aw3d30/aw3d30v31_product_e.pdf"
+        <a href="https://www.naturalearthdata.com/downloads/10m-raster-data/"
            target="_blank" rel="noopener noreferrer" class="svg-source-link"
-           :aria-label="tr('Open the JAXA AW3D30 product description PDF in a new tab', 'JAXA AW3D30の製品説明PDFを新しいタブで開く')" @click.stop>
-          <text x="602" y="68" text-anchor="middle" class="lane-source link-label">JAXA AW3D30 GeoTIFF</text>
+           :aria-label="tr('Open the public-domain Natural Earth raster downloads in a new tab', 'パブリックドメインのNatural Earthラスターを新しいタブで開く')" @click.stop>
+          <text x="602" y="68" text-anchor="middle" class="lane-source link-label">Natural Earth raster TIFF</text>
         </a>
 
         <rect x="452" y="102" width="300" height="200" rx="10" class="raster-frame" />
