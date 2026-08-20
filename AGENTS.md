@@ -36,7 +36,7 @@
 16. Close with one action: publish one dataset using open files, stable URLs, and checkable rules.
 
 ## Appendix
-- Slides 17–24 contain toolchain, scale examples, live catalog, skills, install/scope details, and HTTP background.
+- Slides 17–23 contain toolchain, scale examples, live catalog, skills, and install/scope details.
 - Keep appendix slides after the 16-slide talk; `deck.config.mjs` defines the 16-slide export boundary.
 - Do not move product inventories or install instructions into the main story unless talk duration changes.
 

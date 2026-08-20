@@ -9,69 +9,89 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="img"
-         aria-label="GeoParquet and Cloud Optimized GeoTIFF files are stored as objects. Clients use HTTP range requests to read selected row groups, columns, tiles, or overviews.">
+         aria-label="A left-to-right flow. GeoParquet and Cloud Optimized GeoTIFF indexes point to useful bytes in object storage. Clients request those ranges over HTTP. HTTP 1.1 supports ranges, while HTTP 2 and HTTP 3 improve multiplexing without replacing the file index.">
       <defs>
         <marker id="cf-arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
           <path d="M0 0 L9 4.5 L0 9 Z" class="marker-fill" />
         </marker>
       </defs>
 
-      <path d="M214 214 C252 258 316 274 360 290" class="connector" marker-end="url(#cf-arrow)" />
-      <path d="M586 214 C548 258 484 274 440 290" class="connector" marker-end="url(#cf-arrow)" />
-      <path d="M400 374 V397" class="range-flow" marker-end="url(#cf-arrow)" />
+      <path d="M258 104 H302 M258 235 H302 M302 104 V235 M302 170 H329" class="connector" marker-end="url(#cf-arrow)" />
+      <path d="M497 170 H530" class="range-flow" marker-end="url(#cf-arrow)" />
 
       <g class="format vector" :class="{ on: s >= 1 }">
-        <text x="205" y="38" text-anchor="middle" class="format-title">GEOPARQUET</text>
-        <rect x="68" y="61" width="274" height="155" rx="16" class="format-frame" />
-        <text x="90" y="91" class="mini-label">FOOTER + ROW GROUPS + COLUMNS</text>
+        <rect x="36" y="48" width="222" height="112" rx="10" class="format-frame" />
+        <text x="54" y="76" class="format-title">GEOPARQUET</text>
+        <text x="54" y="98" class="mini-label">FOOTER · ROW GROUPS · COLUMNS</text>
         <g class="parquet-grid">
-          <rect x="91" y="111" width="62" height="72" />
-          <rect x="160" y="111" width="62" height="72" />
-          <rect x="229" y="111" width="89" height="72" />
-          <path d="M91 135 H318 M91 159 H318" />
+          <rect x="54" y="113" width="50" height="28" />
+          <rect x="110" y="113" width="50" height="28" />
+          <rect x="166" y="113" width="74" height="28" />
+          <rect x="110" y="113" width="50" height="14" class="hot" />
         </g>
-        <rect x="160" y="135" width="62" height="24" class="hot" />
-        <text x="205" y="201" text-anchor="middle" class="mini-copy">selected columns and row groups</text>
       </g>
 
       <g class="format raster" :class="{ on: s >= 2 }">
-        <text x="595" y="38" text-anchor="middle" class="format-title">COG</text>
-        <rect x="458" y="61" width="274" height="155" rx="16" class="format-frame" />
-        <text x="480" y="91" class="mini-label">TILES + INTERNAL OVERVIEWS</text>
+        <rect x="36" y="179" width="222" height="112" rx="10" class="format-frame" />
+        <text x="54" y="207" class="format-title">COG</text>
+        <text x="54" y="229" class="mini-label">TILES · INTERNAL OVERVIEWS</text>
         <g class="tile-grid">
-          <rect x="484" y="111" width="96" height="72" />
-          <path d="M516 111 V183 M548 111 V183 M484 135 H580 M484 159 H580" />
-          <rect x="548" y="135" width="32" height="24" class="hot" />
-          <rect x="616" y="119" width="72" height="54" />
-          <path d="M640 119 V173 M664 119 V173 M616 137 H688 M616 155 H688" />
+          <rect x="54" y="244" width="86" height="29" />
+          <path d="M82 244 V273 M111 244 V273 M54 258 H140" />
+          <rect x="111" y="258" width="29" height="15" class="hot" />
+          <rect x="165" y="248" width="75" height="25" />
+          <path d="M190 248 V273 M215 248 V273 M165 260 H240" />
         </g>
-        <text x="595" y="201" text-anchor="middle" class="mini-copy">selected tiles or a small overview</text>
       </g>
 
       <g class="storage" :class="{ on: s >= 3 }">
-        <path d="M304 289 H496 V342 C496 359 453 373 400 373 C347 373 304 359 304 342 Z" class="bucket" />
-        <path d="M304 289 C304 272 347 258 400 258 C453 258 496 272 496 289 C496 306 453 320 400 320 C347 320 304 306 304 289 Z" class="bucket-top" />
-        <text x="400" y="338" text-anchor="middle" class="bucket-title">OBJECT STORAGE</text>
-        <text x="400" y="360" text-anchor="middle" class="bucket-copy">stable URLs · scalable reads</text>
+        <text x="413" y="58" text-anchor="middle" class="stage-label">PUBLISH</text>
+        <path d="M329 123 H497 V214 C497 232 459 246 413 246 C367 246 329 232 329 214 Z" class="bucket" />
+        <path d="M329 123 C329 105 367 91 413 91 C459 91 497 105 497 123 C497 141 459 155 413 155 C367 155 329 141 329 123 Z" class="bucket-top" />
+        <text x="413" y="181" text-anchor="middle" class="bucket-title">OBJECT</text>
+        <text x="413" y="203" text-anchor="middle" class="bucket-title">STORAGE</text>
+        <text x="413" y="222" text-anchor="middle" class="bucket-copy">stable URLs</text>
+        <text x="413" y="239" text-anchor="middle" class="bucket-copy">scalable reads</text>
       </g>
 
-      <g class="clients" :class="{ on: s >= 4 }">
-        <text x="400" y="399" text-anchor="middle" class="range-label">HTTP RANGE REQUESTS</text>
-        <g transform="translate(103 412)">
-          <rect width="126" height="36" rx="8" />
-          <text x="63" y="24" text-anchor="middle">DuckDB</text>
+      <g class="ranges" :class="{ on: s >= 4 }">
+        <text x="649" y="58" text-anchor="middle" class="stage-label range-label">USE</text>
+        <rect x="536" y="76" width="226" height="87" rx="10" class="request-box" />
+        <text x="554" y="105" class="request-code">GET /data.parquet</text>
+        <text x="554" y="132" class="request-code">Range bytes=840000-1099999</text>
+        <text x="554" y="153" class="response-code">206 Partial Content</text>
+        <rect x="536" y="181" width="226" height="38" rx="6" class="byte-bar" />
+        <rect x="614" y="181" width="50" height="38" class="selected" />
+        <text x="649" y="244" text-anchor="middle" class="range-copy">format index → useful byte window</text>
+
+        <g transform="translate(536 262)" class="client-chip">
+          <rect width="104" height="31" rx="6" />
+          <text x="52" y="21" text-anchor="middle">DuckDB</text>
         </g>
-        <g transform="translate(252 412)">
-          <rect width="126" height="36" rx="8" />
-          <text x="63" y="24" text-anchor="middle">QGIS</text>
+        <g transform="translate(658 262)" class="client-chip">
+          <rect width="104" height="31" rx="6" />
+          <text x="52" y="21" text-anchor="middle">QGIS</text>
         </g>
-        <g transform="translate(422 412)">
-          <rect width="126" height="36" rx="8" />
-          <text x="63" y="24" text-anchor="middle">xarray</text>
+        <g transform="translate(536 300)" class="client-chip">
+          <rect width="104" height="31" rx="6" />
+          <text x="52" y="21" text-anchor="middle">xarray</text>
         </g>
-        <g transform="translate(571 412)">
-          <rect width="126" height="36" rx="8" />
-          <text x="63" y="24" text-anchor="middle">AI agent</text>
+        <g transform="translate(658 300)" class="client-chip">
+          <rect width="104" height="31" rx="6" />
+          <text x="52" y="21" text-anchor="middle">AI agent</text>
+        </g>
+
+        <g class="protocol-strip">
+          <rect x="36" y="354" width="726" height="82" rx="8" />
+          <line x1="278" y1="367" x2="278" y2="423" />
+          <line x1="520" y1="367" x2="520" y2="423" />
+          <text x="157" y="383" text-anchor="middle" class="protocol-name">HTTP/1.1</text>
+          <text x="157" y="409" text-anchor="middle" class="protocol-copy">range reads</text>
+          <text x="399" y="383" text-anchor="middle" class="protocol-name">HTTP/2</text>
+          <text x="399" y="409" text-anchor="middle" class="protocol-copy">multiplexed streams</text>
+          <text x="641" y="383" text-anchor="middle" class="protocol-name">HTTP/3</text>
+          <text x="641" y="409" text-anchor="middle" class="protocol-copy">multiplexing over QUIC</text>
+          <text x="399" y="430" text-anchor="middle" class="protocol-note">protocols improve connection use · the format index reduces bytes</text>
         </g>
       </g>
     </svg>
@@ -90,26 +110,37 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 .connector { fill: none; stroke: var(--c-line); stroke-width: 4; }
 .range-flow { fill: none; stroke: var(--c-accent); stroke-width: 4; }
-.marker-fill { fill: var(--c-accent); }
+.marker-fill { fill: var(--c-portolan); }
 .format { opacity: 0.32; }
 .format.on { animation: cf-focus 420ms ease-out both; }
-.format-title { fill: var(--c-fg); font-size: 21px; font-weight: 900; letter-spacing: 0.07em; }
+.format-title { fill: var(--c-fg); font-size: 18px; font-weight: 900; letter-spacing: 0.06em; }
 .format-frame { fill: var(--c-panel); stroke: var(--c-line); stroke-width: 3; }
-.format.on .format-frame { stroke: var(--c-accent); }
-.mini-label { fill: var(--c-muted); font-size: 12px; font-weight: 900; letter-spacing: 0.04em; }
-.mini-copy { fill: var(--c-muted); font-size: 14px; font-weight: 750; }
+.format.on .format-frame { stroke: var(--c-portolan); }
+.mini-label { fill: var(--c-muted); font-size: 10px; font-weight: 900; letter-spacing: 0.035em; }
 .parquet-grid rect, .tile-grid rect { fill: var(--c-bg); stroke: var(--c-line); stroke-width: 2; }
 .parquet-grid path, .tile-grid path { fill: none; stroke: var(--c-line); stroke-width: 2; }
-.vector > .hot, .tile-grid .hot { fill: var(--c-accent) !important; fill-opacity: 0.22; stroke: var(--c-accent); }
+.parquet-grid .hot, .tile-grid .hot { fill: var(--c-accent); fill-opacity: 0.22; stroke: var(--c-accent); }
 .storage { opacity: 0.32; }
 .storage.on { animation: cf-focus 430ms ease-out both; }
-.bucket { fill: var(--c-panel); stroke: var(--c-accent); stroke-width: 3; }
-.bucket-top { fill: var(--c-bg); stroke: var(--c-accent); stroke-width: 3; }
-.bucket-title { fill: var(--c-fg); font-size: 18px; font-weight: 900; letter-spacing: 0.05em; }
-.bucket-copy { fill: var(--c-muted); font-size: 14px; font-weight: 750; }
-.clients { opacity: 0; }
-.clients.on { animation: cf-rise 430ms ease-out both; }
-.clients rect { fill: var(--c-fg); }
-.clients text { fill: var(--c-bg); font-size: 14px; font-weight: 850; }
-.range-label { fill: var(--c-accent) !important; font-size: 12px !important; letter-spacing: 0.07em; }
+.stage-label { fill: var(--c-muted); font-size: 12px; font-weight: 900; letter-spacing: 0.08em; }
+.bucket { fill: var(--c-panel); stroke: var(--c-portolan); stroke-width: 3; }
+.bucket-top { fill: var(--c-bg); stroke: var(--c-portolan); stroke-width: 3; }
+.bucket-title { fill: var(--c-fg); font-size: 16px; font-weight: 900; letter-spacing: 0.055em; }
+.bucket-copy { fill: var(--c-muted); font-size: 12px; font-weight: 750; }
+.ranges { opacity: 0; }
+.ranges.on { animation: cf-rise 430ms ease-out both; }
+.range-label { fill: var(--c-accent); }
+.request-box { fill: var(--c-fg); }
+.request-code { fill: var(--c-bg); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 750; }
+.response-code { fill: var(--c-ok); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 900; }
+.byte-bar { fill: var(--c-panel); stroke: var(--c-line); stroke-width: 2; }
+.selected { fill: var(--c-accent); fill-opacity: 0.62; }
+.range-copy { fill: var(--c-fg); font-size: 13px; font-weight: 850; }
+.client-chip rect { fill: var(--c-fg); }
+.client-chip text { fill: var(--c-bg); font-size: 12px; font-weight: 850; }
+.protocol-strip rect { fill: var(--c-panel); stroke: var(--c-portolan); stroke-width: 2.5; }
+.protocol-strip line { stroke: var(--c-line); stroke-width: 2; }
+.protocol-name { fill: var(--c-portolan); font-size: 15px; font-weight: 900; letter-spacing: 0.055em; }
+.protocol-copy { fill: var(--c-fg); font-size: 13px; font-weight: 850; }
+.protocol-note { fill: var(--c-muted); font-size: 11px; font-weight: 750; }
 </style>

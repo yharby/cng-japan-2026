@@ -36,8 +36,7 @@ const later = [
 
       <g class="items" :class="{ on: s >= 1 }">
         <g v-for="(item, i) in current" :key="item[0]" :transform="`translate(58 ${166 + i * 66})`">
-          <circle cx="14" cy="-7" r="13" class="check-disc" />
-          <path d="M7 -7 L12 -2 L21 -13" class="check" />
+          <lucide-circle-check-big x="0" y="-21" width="28" height="28" class="scope-icon current-icon" />
           <text x="42" y="0" class="item-title">{{ item[0] }}</text>
           <text x="42" y="25" class="item-note">{{ item[1] }}</text>
         </g>
@@ -45,8 +44,7 @@ const later = [
 
       <g class="items" :class="{ on: s >= 2 }">
         <g v-for="(item, i) in later" :key="item[0]" :transform="`translate(444 ${178 + i * 82})`">
-          <circle cx="14" cy="-7" r="13" class="later-disc" />
-          <line x1="7" y1="-7" x2="21" y2="-7" class="dash" />
+          <lucide-circle-minus x="0" y="-21" width="28" height="28" class="scope-icon later-icon" />
           <text x="42" y="0" class="item-title">{{ item[0] }}</text>
           <text x="42" y="25" class="item-note">{{ item[1] }}</text>
         </g>
@@ -68,10 +66,8 @@ const later = [
 .heading-ja { fill: var(--c-muted); font-size: 15px; font-weight: 750; font-family: 'Noto Sans JP', sans-serif; }
 .items { opacity: 0; }
 .items.on { animation: reveal 420ms ease-out both; }
-.check-disc { fill: var(--c-ok); }
-.check { fill: none; stroke: var(--c-bg); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.later-disc { fill: var(--c-bg); stroke: var(--c-warn); stroke-width: 3; }
-.dash { stroke: var(--c-warn); stroke-width: 3; stroke-linecap: round; }
+.current-icon { color: var(--c-ok); }
+.later-icon { color: var(--c-warn); }
 .item-title { fill: var(--c-fg); font-size: 21px; font-weight: 900; }
 .item-note { fill: var(--c-muted); font-size: 17px; font-weight: 750; }
 .honesty { fill: var(--c-warn); font-size: 17px; font-weight: 850; }

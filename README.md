@@ -34,7 +34,7 @@ There is one production build. `vite.config.mjs` reads the public base from
 `/cng-japan-2026/` artifact. Development remains at `/`.
 
 `pnpm test` validates the source, builds the production artifact, and renders all
-24 slides without waiting for external iframe traffic. Each slide is rendered in
+23 slides without waiting for external iframe traffic. Each slide is rendered in
 both the light and dark colour schemes, because a component style can escape its
 scope and blank the deck in one scheme while the other stays perfect. To check a
 deployment:
@@ -56,8 +56,14 @@ pnpm export
 - `slides/` contains individual slide sources and speaker notes.
 - `components/` contains the Vue visualizations.
 - `style.css` contains all global presentation styles.
-- `public/` contains static images and logos.
+- `public/` contains static images and the official CARTO and Portolan marks.
 - `scripts/` contains export, source validation, and the render smoke test.
+
+The Portolan mark follows the current solid two-pennant implementation from the
+project website. Generic interface glyphs use the open-source Lucide collection
+through Slidev's Iconify integration; explanatory geometry remains bespoke. The
+Fields of the World mark is reused under CC BY-SA 4.0 from the project's website
+repository.
 
 ## Deployment
 

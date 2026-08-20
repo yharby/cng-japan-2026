@@ -29,4 +29,6 @@ layout: default
 - https://portolan-sdi.org/
 - https://data.source.coop/fields-of-the-world/fields-of-the-world/
 - https://fieldsofthe.world/
+- https://github.com/fieldsoftheworld/fieldsoftheworld.github.io/tree/main/static/images/brand/logos
+- https://github.com/fieldsoftheworld/fieldsoftheworld.github.io/blob/main/LICENSE
 -->

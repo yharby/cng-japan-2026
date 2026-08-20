@@ -39,7 +39,9 @@ onBeforeUnmount(() => {
         <span class="status-dot" :class="{ live: showLive && loaded }" aria-hidden="true" />
         <span class="state-label">{{ showLive ? (loaded ? 'LIVE' : 'LOADING') : 'PREVIEW' }}</span>
         <span class="address">cholmes.github.io/stlouis-data-browser/…/transportation…</span>
-        <a class="open-link" :href="browserUrl" target="_blank" rel="noopener noreferrer">OPEN ↗</a>
+        <a class="open-link" :href="browserUrl" target="_blank" rel="noopener noreferrer">
+          <span>OPEN</span><lucide-external-link aria-hidden="true" />
+        </a>
       </div>
 
       <div class="browser-body">
@@ -112,7 +114,8 @@ onBeforeUnmount(() => {
 .status-dot.live { background: var(--c-ok); }
 .state-label { flex: 0 0 auto; color: var(--browser-cream); font-size: 12px; font-weight: 900; letter-spacing: 0.09em; }
 .address { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; font-weight: 700; opacity: 0.78; }
-.open-link { margin-left: auto; flex: 0 0 auto; color: var(--browser-cream); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; font-weight: 900; letter-spacing: 0.07em; text-decoration: none; }
+.open-link { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; flex: 0 0 auto; color: var(--browser-cream); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; font-weight: 900; letter-spacing: 0.07em; text-decoration: none; }
+.open-link svg { width: 15px; height: 15px; }
 .browser-body { position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden; }
 .fallback, .browser-content { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .browser-content { opacity: 0; background: transparent; transition: opacity 350ms ease; }

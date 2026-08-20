@@ -15,9 +15,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       <g transform="translate(145 185)" class="example" :class="{ on: s >= 1 }">
         <text y="-108" text-anchor="middle" class="org">JAXA</text>
         <circle r="76" class="disc" />
-        <circle r="57" class="orbit" />
-        <path d="M-26 5 L7-27 L29-5 L-4 28 Z" class="sat" />
-        <path d="M-33 -22 L-13 -12 M15 14 L35 24" class="signal" />
+        <lucide-satellite x="-38" y="-38" width="76" height="76" class="example-icon" />
         <g class="details">
           <text y="101" text-anchor="middle" class="metric">80 collections</text>
           <text y="127" text-anchor="middle" class="detail">static COG + STAC</text>
@@ -27,12 +25,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       <g transform="translate(400 185)" class="example" :class="{ on: s >= 2 }">
         <text y="-108" text-anchor="middle" class="org">GSI</text>
         <circle r="76" class="disc" />
-        <g class="tiles">
-          <rect x="-39" y="-39" width="36" height="36" rx="5" />
-          <rect x="3" y="-39" width="36" height="36" rx="5" />
-          <rect x="-39" y="3" width="36" height="36" rx="5" />
-          <rect x="3" y="3" width="36" height="36" rx="5" />
-        </g>
+        <lucide-layout-grid x="-38" y="-38" width="76" height="76" class="example-icon" />
         <path d="M-44 50 H44" class="archive" />
         <g class="details">
           <text y="101" text-anchor="middle" class="metric">PMTiles archive</text>
@@ -43,8 +36,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       <g transform="translate(655 185)" class="example" :class="{ on: s >= 3 }">
         <text y="-108" text-anchor="middle" class="org org-small">PACIFIC SPATIAL</text>
         <circle r="76" class="disc" />
-        <path d="M-44 41 V-7 L-22-26 L0-7 L22-33 L44-7 V41 Z" class="city" />
-        <path d="M-31 13 H-17 M-7 13 H7 M17 13 H31 M-31 29 H-17 M-7 29 H7 M17 29 H31" class="windows" />
+        <lucide-building-2 x="-38" y="-38" width="76" height="76" class="example-icon" />
         <g class="details">
           <text y="101" text-anchor="middle" class="metric">211 cities</text>
           <text y="127" text-anchor="middle" class="detail">PLATEAU → GeoParquet</text>
@@ -72,13 +64,8 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .example.on { animation: ja-focus 460ms cubic-bezier(0.2, 0.8, 0.3, 1) both; }
 .disc { fill: var(--c-panel); stroke: var(--c-line); stroke-width: 3; }
 .example.on .disc { stroke: var(--c-accent); }
-.orbit { fill: none; stroke: var(--c-accent); stroke-width: 2; stroke-dasharray: 7 7; }
-.sat { fill: var(--c-accent); }
-.signal { fill: none; stroke: var(--c-accent); stroke-width: 4; stroke-linecap: round; }
-.tiles rect { fill: var(--c-panel); stroke: var(--c-accent); stroke-width: 3; }
+.example-icon { color: var(--c-portolan); }
 .archive { fill: none; stroke: var(--c-ok); stroke-width: 7; stroke-linecap: round; }
-.city { fill: var(--c-accent); opacity: 0.16; stroke: var(--c-accent); stroke-width: 4; }
-.windows { stroke: var(--c-accent); stroke-width: 4; stroke-linecap: round; }
 .org { fill: var(--c-fg); font-size: 28px; font-weight: 900; }
 .org-small { font-size: 20px; }
 .details { opacity: 0; }

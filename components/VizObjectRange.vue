@@ -16,7 +16,8 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
         <text x="200" y="39" text-anchor="middle" class="section-title">OBJECT STORAGE</text>
         <path d="M75 91 H325 V167 C325 189 269 207 200 207 C131 207 75 189 75 167 Z" class="bucket" />
         <path d="M75 91 C75 69 131 51 200 51 C269 51 325 69 325 91 C325 113 269 131 200 131 C131 131 75 113 75 91 Z" class="bucket-top" />
-        <text x="200" y="158" text-anchor="middle" class="bucket-label">ONE OBJECT · ONE STABLE KEY</text>
+        <text x="200" y="153" text-anchor="middle" class="bucket-label">ONE OBJECT</text>
+        <text x="200" y="177" text-anchor="middle" class="bucket-label bucket-label-sub">ONE STABLE KEY</text>
 
         <g class="principles">
           <circle cx="92" cy="258" r="7" />
@@ -69,7 +70,8 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .section-title { fill: var(--c-fg); font-size: 20px; font-weight: 900; letter-spacing: 0.07em; }
 .bucket { fill: var(--c-panel); stroke: var(--c-accent); stroke-width: 3; }
 .bucket-top { fill: var(--c-bg); stroke: var(--c-accent); stroke-width: 3; }
-.bucket-label { fill: var(--c-fg); font-size: 16px; font-weight: 900; }
+.bucket-label { fill: var(--c-fg); font-size: 15px; font-weight: 900; letter-spacing: 0.045em; }
+.bucket-label-sub { fill: var(--c-portolan); font-size: 14px; }
 .principles circle { fill: var(--c-accent); }
 .principles text { fill: var(--c-fg); font-size: 16px; font-weight: 750; }
 .request-box { fill: var(--c-fg); stroke: var(--c-fg); stroke-width: 2; }

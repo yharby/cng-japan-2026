@@ -14,7 +14,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
       <g class="collection">
         <rect x="218" y="50" width="364" height="66" rx="16" class="collection-body" />
-        <path d="M246 72 H264 L273 81 H292 V101 H246 Z" class="folder-icon" />
+        <lucide-folder-open x="246" y="67" width="42" height="42" class="folder-icon" />
         <text x="422" y="92" text-anchor="middle" class="collection-name">netherlands-provinces/</text>
       </g>
 
@@ -56,7 +56,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 <style scoped>
 .kicker { fill: var(--c-muted); font-size: 18px; font-weight: 900; letter-spacing: 0.08em; }
 .collection-body { fill: var(--c-panel); stroke: var(--c-fg); stroke-width: 3; }
-.folder-icon { fill: color-mix(in srgb, var(--c-accent) 14%, var(--c-panel)); stroke: var(--c-accent); stroke-width: 2.5; stroke-linejoin: round; }
+.folder-icon { color: var(--c-portolan); }
 .collection-name, .file { fill: var(--c-fg); font-family: ui-monospace, 'JetBrains Mono', monospace; font-weight: 900; }
 .collection-name { font-size: 21px; }
 .branches { fill: none; stroke: var(--c-line); stroke-width: 4; stroke-linecap: round; }

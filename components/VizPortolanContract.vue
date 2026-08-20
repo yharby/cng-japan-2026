@@ -27,11 +27,8 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       </g>
 
       <g class="practice" :class="{ on: s >= 2 }">
-        <rect x="438" y="68" width="287" height="196" rx="25" />
-        <g transform="translate(482 116)">
-          <circle r="23" class="rose-ring" />
-          <path d="M0-20 L6-4 L0 0 L-6-4 Z M20 0 L4 6 L0 0 L4-6 Z M0 20 L-6 4 L0 0 L6 4 Z M-20 0 L-4-6 L0 0 L-4 6 Z" class="rose" />
-        </g>
+        <rect x="438" y="68" width="287" height="196" rx="5" />
+        <image href="/portolan-mark.svg" x="457" y="91" width="48" height="48" preserveAspectRatio="xMidYMid meet" />
         <text x="518" y="124" class="practice-name">PORTOLAN</text>
         <text x="582" y="168" text-anchor="middle" class="practice-title">OPINIONATED</text>
         <text x="582" y="196" text-anchor="middle" class="practice-title">PUBLISHING PRACTICE</text>
@@ -74,21 +71,19 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
   to { opacity: 1; }
 }
 
-.kicker { fill: var(--c-accent); font-size: 18px; font-weight: 900; letter-spacing: 0.075em; }
-.flow { fill: none; stroke: var(--c-accent); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
-.flow-label { fill: var(--c-accent); font-size: 11px; font-weight: 900; letter-spacing: 0.06em; }
+.kicker { fill: var(--c-portolan); font-size: 18px; font-weight: 900; letter-spacing: 0.075em; }
+.flow { fill: none; stroke: var(--c-portolan); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.flow-label { fill: var(--c-portolan); font-size: 11px; font-weight: 900; letter-spacing: 0.06em; }
 .building-blocks, .practice, .goals { opacity: 0.42; }
 .building-blocks.on, .practice.on, .goals.on { animation: contract-focus 430ms ease-out both; }
 .section-label, .goals-label { fill: var(--c-muted); font-size: 15px; font-weight: 900; letter-spacing: 0.075em; }
 .block-title { fill: var(--c-fg); font-size: 37px; font-weight: 900; }
 .block-copy { fill: var(--c-muted); font-size: 18px; font-weight: 750; }
 .under-rule { stroke: var(--c-line); stroke-width: 3; }
-.practice rect { fill: var(--c-panel); stroke: var(--c-accent); stroke-width: 4; }
-.rose-ring { fill: var(--c-bg); stroke: var(--c-accent); stroke-width: 2; }
-.rose { fill: var(--c-accent); }
+.practice rect { fill: var(--c-panel); stroke: var(--c-portolan); stroke-width: 4; }
 .practice-name { fill: var(--c-fg); font-size: 22px; font-weight: 900; letter-spacing: 0.06em; }
 .practice-title { fill: var(--c-fg); font-size: 22px; font-weight: 900; letter-spacing: 0.035em; }
-.practice-copy { fill: var(--c-muted); font-size: 17px; font-weight: 750; }
+.practice-copy { fill: var(--c-portolan); font-size: 17px; font-weight: 850; }
 .goals-rule { stroke: var(--c-line); stroke-width: 3; }
 .goals text { fill: var(--c-fg); font-size: 19px; font-weight: 900; letter-spacing: 0.025em; }
 .goals path { stroke: var(--c-accent); stroke-width: 4; stroke-linecap: round; }

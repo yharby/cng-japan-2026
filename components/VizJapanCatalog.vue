@@ -18,10 +18,12 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       <g class="catalog-root">
         <rect x="38" y="86" width="182" height="280" rx="20" class="catalog-body" />
         <text x="62" y="122" class="label">PORTOLAN CATALOG</text>
-        <path d="M62 146 H90 L100 157 H190 V195 H62 Z" class="folder" />
-        <text x="129" y="181" text-anchor="middle" class="file-name small-file">catalog.json</text>
-        <text x="62" y="235" class="publisher">Fields of the World</text>
-        <line x1="62" y1="253" x2="196" y2="253" class="rule" />
+        <lucide-folder-open x="62" y="145" width="42" height="42" class="folder" />
+        <text x="116" y="176" class="file-name small-file">catalog.json</text>
+        <image href="/fields-of-world-mark.svg" x="62" y="211" width="34" height="34" preserveAspectRatio="xMidYMid meet" />
+        <text x="103" y="226" class="publisher">Fields of the</text>
+        <text x="103" y="244" class="publisher">World</text>
+        <line x1="62" y1="260" x2="196" y2="260" class="rule" />
         <text x="62" y="282" class="meta">static files</text>
         <text x="62" y="310" class="meta">Portolan 0.1</text>
         <text x="62" y="338" class="meta">open license</text>
@@ -44,7 +46,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       <g class="asset" :class="{ visited: s >= 1, active: s === 1 }">
         <rect x="552" y="95" width="208" height="125" rx="18" class="asset-body" />
         <circle cx="587" cy="136" r="22" class="icon-disc" />
-        <path d="M575 128 H599 M575 136 H599 M575 144 H599" class="rows" />
+        <lucide-table-2 x="574" y="123" width="26" height="26" class="asset-icon" />
         <text x="620" y="130" class="asset-name">GeoParquet</text>
         <text x="620" y="156" class="asset-use">analysis</text>
         <text x="576" y="195" class="asset-detail">841.6 MB · direct HTTPS</text>
@@ -53,7 +55,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       <g class="asset" :class="{ visited: s >= 2, active: s === 2 }">
         <rect x="552" y="240" width="208" height="125" rx="18" class="asset-body" />
         <circle cx="587" cy="281" r="22" class="icon-disc" />
-        <path d="M575 270 L587 276 L599 270 V294 L587 300 L575 294 Z M587 276 V300" class="map" />
+        <lucide-map x="574" y="268" width="26" height="26" class="asset-icon" />
         <text x="620" y="275" class="asset-name">PMTiles</text>
         <text x="620" y="301" class="asset-use">maps</text>
         <text x="647" y="329" text-anchor="middle" class="asset-detail">one archive</text>
@@ -67,12 +69,12 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 <style scoped>
 .kicker { fill: var(--c-muted); font-size: 17px; font-weight: 900; letter-spacing: 0.09em; }
-.flow { fill: none; stroke: var(--c-accent); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.flow { fill: none; stroke: var(--c-portolan); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
 .catalog-body, .collection-body, .asset-body { fill: var(--c-panel); stroke: var(--c-line); stroke-width: 3; }
 .catalog-body { stroke: var(--c-fg); }
-.collection-body { stroke: var(--c-accent); }
+.collection-body { stroke: var(--c-portolan); }
 .label { fill: var(--c-muted); font-size: 12px; font-weight: 900; letter-spacing: 0.065em; }
-.folder { fill: color-mix(in srgb, var(--c-accent) 12%, var(--c-panel)); stroke: var(--c-accent); stroke-width: 2; stroke-linejoin: round; }
+.folder { color: var(--c-portolan); }
 .file-name { fill: var(--c-fg); font-size: 21px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', monospace; }
 .small-file { font-size: 16px; }
 .publisher { fill: var(--c-fg); font-size: 15px; font-weight: 900; }
@@ -89,8 +91,8 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .asset.active { opacity: 1; transform: translateX(5px); }
 .asset.active .asset-body, .asset.active .icon-disc { stroke: var(--c-accent); }
 .icon-disc { fill: var(--c-bg); stroke: var(--c-fg); stroke-width: 2.5; }
-.rows, .map { fill: none; stroke: var(--c-fg); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.asset.active .rows, .asset.active .map { stroke: var(--c-accent); }
+.asset-icon { color: var(--c-fg); }
+.asset.active .asset-icon { color: var(--c-accent); }
 .asset-name { fill: var(--c-fg); font-size: 20px; font-weight: 900; }
 .asset-use { fill: var(--c-accent); font-size: 16px; font-weight: 900; }
 .provenance { font-size: 14px; }

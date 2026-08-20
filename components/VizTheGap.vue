@@ -26,27 +26,27 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
         <text x="400" y="150" text-anchor="middle" class="arrow-label">asset href</text>
 
         <rect x="480" y="91" width="220" height="158" rx="18" class="asset" />
-        <path d="M536 139 H644 V212 H536 Z M536 139 L558 119 H644 V139" class="file" />
-        <text x="590" y="187" text-anchor="middle" class="file-label">data.parquet</text>
+        <lucide-file-json-2 x="558" y="120" width="64" height="64" class="file-icon" />
+        <text x="590" y="207" text-anchor="middle" class="file-label">data.parquet</text>
         <text x="590" y="232" text-anchor="middle" class="address">https://…</text>
       </g>
 
       <g class="additions" :class="{ on: s >= 2 }">
         <text x="400" y="294" text-anchor="middle" class="additions-head">PORTOLAN MAKES THE PUBLISHING CHOICES EXPLICIT</text>
         <g transform="translate(126 335)">
-          <path d="M0 7 H16 M8 -1 V15" />
+          <lucide-plus x="-1" y="-2" width="18" height="18" class="plus-icon" />
           <text x="27" y="13">LAYOUT + ACCESS</text>
         </g>
         <g transform="translate(442 335)">
-          <path d="M0 7 H16 M8 -1 V15" />
+          <lucide-plus x="-1" y="-2" width="18" height="18" class="plus-icon" />
           <text x="27" y="13">DOCS + LICENSE</text>
         </g>
         <g transform="translate(126 383)">
-          <path d="M0 7 H16 M8 -1 V15" />
+          <lucide-plus x="-1" y="-2" width="18" height="18" class="plus-icon" />
           <text x="27" y="13">PROVENANCE</text>
         </g>
         <g transform="translate(442 383)">
-          <path d="M0 7 H16 M8 -1 V15" />
+          <lucide-plus x="-1" y="-2" width="18" height="18" class="plus-icon" />
           <text x="27" y="13">FORMATS + HOSTING</text>
         </g>
       </g>
@@ -66,7 +66,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 .envelope { opacity: 0.44; }
 .envelope.on { animation: gap-focus 450ms ease-out both; }
-.envelope rect { fill: none; stroke: var(--c-accent); stroke-width: 4; }
+.envelope rect { fill: none; stroke: var(--c-portolan); stroke-width: 4; }
 .envelope.on rect { animation: gap-pulse 1.8s ease-in-out infinite; }
 .stac { opacity: 0.62; }
 .stac.on { animation: gap-focus 430ms ease-out both; }
@@ -78,11 +78,11 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .pin { fill: var(--c-accent); }
 .arrow { fill: none; stroke: var(--c-accent); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
 .arrow-label { fill: var(--c-accent); font-size: 17px; font-weight: 900; }
-.file { fill: var(--c-panel); stroke: var(--c-fg); stroke-width: 3; stroke-linejoin: round; }
+.file-icon { color: var(--c-portolan); }
 .file-label { fill: var(--c-fg); font-size: 17px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', Menlo, monospace; }
 .additions { opacity: 0.42; }
 .additions.on { animation: gap-focus 460ms ease-out both; }
-.additions path { fill: none; stroke: var(--c-accent); stroke-width: 4; stroke-linecap: round; }
+.plus-icon { color: var(--c-accent); }
 .additions text { fill: var(--c-fg); font-size: 17px; font-weight: 900; letter-spacing: 0.035em; }
 .additions .additions-head { fill: var(--c-muted); font-size: 17px; letter-spacing: 0.06em; }
 </style>

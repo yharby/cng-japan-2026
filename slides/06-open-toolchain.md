@@ -32,4 +32,5 @@ hideInToc: true
 [Sources]
 - https://github.com/portolan-sdi
 - https://portolan-sdi.org/
+- https://github.com/portolan-sdi/portolan-ops/blob/main/copy/messaging.md
 -->

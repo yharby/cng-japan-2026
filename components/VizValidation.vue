@@ -27,7 +27,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
       <g class="rashid">
         <circle cx="98" cy="221" r="56" class="rashid-disc" />
-        <path d="M70 213 L91 234 L128 192" class="checkmark" />
+        <lucide-badge-check x="70" y="188" width="56" height="56" class="rashid-icon" />
         <text x="98" y="258" text-anchor="middle" class="rashid-name">rashid</text>
       </g>
 
@@ -51,8 +51,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
       <g class="human-step" :class="{ visited: s >= 3, active: s === 3 }">
         <rect x="42" y="344" width="716" height="94" rx="18" class="human-body" />
-        <circle cx="91" cy="391" r="25" class="person-disc" />
-        <path d="M81 395 C81 382 101 382 101 395 M84 376 C84 366 98 366 98 376" class="person" />
+        <lucide-user-round-check x="66" y="366" width="50" height="50" class="human-icon" />
         <text x="132" y="378" class="human-title">HUMAN JUDGMENT</text>
         <text x="132" y="410" class="human-copy">upstream meaning · translation quality · publishing decisions</text>
         <text x="730" y="396" text-anchor="end" class="human-note">not everything should be automated</text>
@@ -74,7 +73,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .section-label { fill: var(--c-muted); font-size: 14px; font-weight: 900; letter-spacing: 0.1em; }
 .flow { fill: none; stroke: var(--c-line); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .rashid-disc { fill: var(--c-fg); }
-.checkmark { fill: none; stroke: var(--c-ok); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+.rashid-icon { color: var(--c-ok); }
 .rashid-name { fill: var(--c-bg); font-size: 17px; font-weight: 900; }
 .machine-step, .human-step { opacity: 0.36; transition: opacity 300ms ease, transform 300ms ease; }
 .machine-step.visited, .human-step.visited { opacity: 0.72; }
@@ -91,8 +90,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .opt-copy { fill: var(--c-muted); font-size: 13px; font-weight: 700; }
 .human-body { fill: color-mix(in srgb, var(--c-warn) 9%, var(--c-bg)); stroke: var(--c-line); stroke-width: 3; }
 .human-step.active .human-body { stroke: var(--c-warn); }
-.person-disc { fill: var(--c-bg); stroke: var(--c-warn); stroke-width: 2.5; }
-.person { fill: none; stroke: var(--c-warn); stroke-width: 3; stroke-linecap: round; }
+.human-icon { color: var(--c-warn); }
 .human-title { fill: var(--c-warn); font-size: 18px; font-weight: 900; letter-spacing: 0.05em; }
 .human-copy { fill: var(--c-fg); font-size: 15px; font-weight: 800; }
 .human-note { fill: var(--c-muted); font-size: 13px; font-weight: 700; }

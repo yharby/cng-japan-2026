@@ -19,5 +19,7 @@ class: cover-slide
 [Sources]
 - https://carto.com/brand/
 - https://portolan-sdi.org/
+- https://github.com/portolan-sdi/portolan-sdi.org/blob/main/src/components/portolan-logo.tsx
+- https://github.com/portolan-sdi/portolan-sdi.org/blob/main/src/app/globals.css
 - CNG Japan 2026 agenda supplied by the speaker
 -->

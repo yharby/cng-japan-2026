@@ -57,23 +57,23 @@ const steps = [
 
 .kicker { fill: var(--c-muted); font-size: 18px; font-weight: 900; letter-spacing: 0.09em; }
 .flow { fill: none; stroke: var(--c-line); stroke-width: 5; stroke-linecap: round; }
-.arrow-head { fill: none; stroke: var(--c-accent); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.arrow-head { fill: none; stroke: var(--c-portolan); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
 .step { opacity: 0.42; }
 .step.on { animation: eco-focus 430ms cubic-bezier(0.2, 0.8, 0.3, 1) both; }
 .step-disc { fill: var(--c-panel); stroke: var(--c-line); stroke-width: 3; }
-.step.on .step-disc { fill: var(--c-accent); stroke: var(--c-accent); }
+.step.on .step-disc { fill: var(--c-portolan); stroke: var(--c-portolan); }
 .step-num { fill: var(--c-fg); font-size: 22px; font-weight: 900; }
 .step.on .step-num { fill: var(--c-bg); }
 .step-name { fill: var(--c-fg); font-size: 15px; font-weight: 900; font-family: 'JetBrains Mono', ui-monospace, monospace; }
 .step-role { fill: var(--c-muted); font-size: 15px; font-weight: 900; letter-spacing: 0.045em; }
-.step.on .step-role { fill: var(--c-accent); }
+.step.on .step-role { fill: var(--c-portolan); }
 .skills { opacity: 0.42; }
 .skills.on { animation: eco-focus 460ms ease-out both; }
 .skills-bracket, .skills-link { fill: none; stroke: var(--c-ok); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
 .skills-link { stroke-width: 3; stroke-dasharray: 6 6; }
 .skills-title { fill: var(--c-fg); font-size: 24px; font-weight: 900; font-family: 'JetBrains Mono', ui-monospace, monospace; }
 .skills-copy { fill: var(--c-muted); font-size: 16px; font-weight: 700; }
-.outcome path { stroke: var(--c-accent); stroke-width: 3; }
+.outcome path { stroke: var(--c-portolan); stroke-width: 3; }
 .outcome-main { fill: var(--c-fg); font-size: 18px; font-weight: 900; letter-spacing: 0.045em; }
 .outcome-note { fill: var(--c-muted); font-size: 14px; font-weight: 700; }
 </style>

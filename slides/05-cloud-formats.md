@@ -9,7 +9,7 @@ layout: default
 <VizCloudFormats />
 
 <div class="bi">
-  <span class="en">GeoParquet indexes row groups and columns. COG indexes internal tiles and overviews.</span>
+  <span class="en">File indexes reduce bytes. HTTP/2 and HTTP/3 improve how range requests share a connection.</span>
 </div>
 
 <!--
@@ -29,12 +29,14 @@ layout: default
 "Both files remain ordinary objects with stable URLs. No data API has to translate every request."
 
 [Click 4]
-"DuckDB, QGIS, xarray, a browser, or an agent can follow the same path. Read the index, request the relevant ranges, then compute with fewer transferred bytes."
+"DuckDB, QGIS, xarray, a browser, or an agent can follow the same path. HTTP 1.1 already supports range reads. HTTP 2 and HTTP 3 can improve multiplexing, but they do not create row groups, tiles, or indexes inside the file."
 
 [Sources]
 - https://parquet.apache.org/docs/file-format/
 - https://geoparquet.org/
 - https://docs.ogc.org/is/21-026/21-026.html
 - https://guide.cloudnativegeo.org/
+- https://www.rfc-editor.org/rfc/rfc9110
 - docs/reference/cng-japan/research-arrow-parquet.md
+- docs/reference/cng-japan/research-http-range.md
 -->

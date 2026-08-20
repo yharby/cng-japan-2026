@@ -1,12 +1,15 @@
 :root {
-  --c-bg: #ffffff;
+  --c-bg: #fcfcfa;
   --c-fg: #162945;
   --c-muted: #5b6b82;
-  --c-line: #d7dee8;
-  --c-panel: #f4f6f9;
+  --c-line: #d6d5ca;
+  --c-panel: #f5f5f1;
   --c-accent: #eb1510;
   --c-ok: #0a7d55;
   --c-warn: #b25b00;
+  --c-portolan: #4163cc;
+  --c-portolan-dark: #2d4aa8;
+  --c-portolan-soft: #e9edfb;
 }
 
 html.dark {
@@ -18,11 +21,27 @@ html.dark {
   --c-accent: #ff4b45;
   --c-ok: #34c48b;
   --c-warn: #e9973f;
+  --c-portolan: #7892ea;
+  --c-portolan-dark: #9aacf1;
+  --c-portolan-soft: #1d2c53;
 }
 
 .slidev-layout {
   background: var(--c-bg);
   color: var(--c-fg);
+}
+
+.slidev-layout::after {
+  position: absolute;
+  right: 1.55rem;
+  bottom: 0.62rem;
+  width: 1.2rem;
+  height: 2px;
+  border-right: 0.9rem solid var(--c-accent);
+  background: var(--c-portolan);
+  box-sizing: content-box;
+  content: '';
+  opacity: 0.9;
 }
 
 .slidev-layout h1,
@@ -87,6 +106,11 @@ html.dark {
 
 .slidev-layout.bio-slide h1 {
   font-size: 2.05em;
+}
+
+.slidev-layout.close-slide h1 {
+  max-width: 100%;
+  font-size: 1.38em;
 }
 
 .slidev-layout .stage {

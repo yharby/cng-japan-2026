@@ -1,6 +1,7 @@
 ---
 clicks: 1
 layout: default
+class: close-slide
 ---
 
 # Publish one dataset with open files and checkable rules
@@ -21,4 +22,5 @@ layout: default
 [Sources]
 - https://portolan-sdi.org/
 - https://github.com/portolan-sdi
+- https://github.com/portolan-sdi/portolan-ops/blob/main/copy/messaging.md
 -->

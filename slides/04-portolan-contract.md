@@ -13,7 +13,7 @@ layout: default
 「Portolanは、既存の標準を置き換えるものではありません。既存の標準、形式、インフラを組み合わせる、実践的な公開方法です。」
 
 [Say in English]
-"Portolan does not replace existing data formats or geospatial standards. It is an opinionated, checkable STAC publishing profile and practice: a clear way to combine existing standards, formats, and infrastructure when we publish, update, and use data. Portolan documents a pre-1.0 ruleset, but it does not ask the community to replace STAC, GeoParquet, COG, HTTP, or object storage."
+"Portolan does not replace existing data formats or geospatial standards. It is an opinionated, checkable STAC publishing profile and practice: a clear way to publish plain geospatial files in storage you control, connect them into a searchable network, and keep the publish, update, and use lifecycle predictable. Portolan documents a pre-1.0 ruleset, but it does not ask the community to replace STAC, GeoParquet, COG, HTTP, or object storage."
 
 [Click 1]
 "The building blocks already exist: STAC, GeoParquet, COG, PMTiles, HTTP range requests, and object storage."
@@ -27,5 +27,6 @@ layout: default
 [Sources]
 - https://github.com/portolan-sdi/portolan-spec/blob/main/README.md
 - https://github.com/portolan-sdi/portolan-spec/blob/main/stac/README.md
+- https://github.com/portolan-sdi/portolan-ops/blob/main/copy/messaging.md
 - Speaker-provided positioning and design goals
 -->

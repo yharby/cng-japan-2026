@@ -12,9 +12,9 @@ const ready = computed(() => isPrintMode.value || true)
          aria-label="Portolan: An SDI Without Servers, presented at Cloud Native Geospatial Japan 2026 by Youssef Harby, Software Engineer at CARTO.">
       <path d="M76 64 H724" class="cover-rule" />
 
-      <g class="mark" transform="translate(700 154)">
-        <circle r="50" class="mark-ring" />
-        <path d="M0-39 L11-9 L0 0 L-11-9 Z M39 0 L9 11 L0 0 L9-11 Z M0 39 L-11 9 L0 0 L11 9 Z M-39 0 L-9-11 L0 0 L-9 11 Z" />
+      <g class="portolan-lockup">
+        <image href="/portolan-mark.svg" x="642" y="104" width="62" height="62" preserveAspectRatio="xMidYMid meet" />
+        <text x="673" y="188" text-anchor="middle">Portolan</text>
       </g>
 
       <text x="76" y="142" class="event">CLOUD NATIVE GEOSPATIAL JAPAN 2026</text>
@@ -39,8 +39,7 @@ const ready = computed(() => isPrintMode.value || true)
 .cover-stage { opacity: 0; }
 .cover-stage.ready { animation: cv-rise 520ms ease-out both; }
 .cover-rule { stroke: var(--c-accent); stroke-width: 4; }
-.mark-ring { fill: color-mix(in srgb, var(--c-accent) 9%, var(--c-bg)); stroke: var(--c-accent); stroke-width: 3; }
-.mark path { fill: var(--c-accent); }
+.portolan-lockup text { fill: var(--c-portolan); font-size: 22px; font-weight: 850; letter-spacing: -0.015em; }
 .event { fill: var(--c-fg); font-size: 23px; font-weight: 900; letter-spacing: 0.075em; }
 .place { fill: var(--c-muted); font-size: 20px; font-weight: 700; }
 .speaker text { fill: var(--c-fg); font-size: 31px; font-weight: 850; }

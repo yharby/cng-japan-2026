@@ -111,7 +111,3 @@ src: ./slides/14-get-started.md
 ---
 src: ./slides/15-current-scope.md
 ---
-
----
-src: ./slides/19-appendix-http.md
----

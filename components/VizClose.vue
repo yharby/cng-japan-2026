@@ -17,12 +17,9 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       <circle cx="400" cy="170" r="76" class="disc" />
       <circle cx="620" cy="170" r="76" class="disc final-disc" />
 
-      <path d="M150 130 H196 L210 144 V207 H150 Z M196 130 V144 H210" class="format-icon" />
-      <text x="180" y="174" text-anchor="middle" class="format-mark">OPEN</text>
-
-      <path d="M370 151 C352 151 344 163 344 175 C344 188 353 197 366 197 H384 M430 189 C448 189 456 177 456 165 C456 152 447 143 434 143 H416 M374 170 H426" class="link-icon" />
-
-      <path d="M582 170 L608 194 L658 140" class="check-icon" />
+      <lucide-file-check-2 x="146" y="136" width="68" height="68" class="idea-icon" />
+      <lucide-link-2 x="366" y="136" width="68" height="68" class="idea-icon" />
+      <lucide-circle-check-big x="586" y="136" width="68" height="68" class="idea-icon final-icon" />
 
       <text x="180" y="278" text-anchor="middle" class="word">OPEN FORMAT</text>
       <text x="400" y="278" text-anchor="middle" class="word">STABLE URL</text>
@@ -34,6 +31,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
         <line x1="268" y1="334" x2="268" y2="410" class="action-divider" />
         <text x="294" y="365" class="site">portolan-sdi.org</text>
         <text x="294" y="398" class="invite">Publish one dataset</text>
+        <image href="/portolan-mark.svg" x="608" y="350" width="30" height="30" preserveAspectRatio="xMidYMid meet" />
       </g>
     </svg>
   </div>
@@ -46,9 +44,8 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .rail { stroke: var(--c-line); stroke-width: 6; stroke-linecap: round; }
 .disc { fill: var(--c-panel); stroke: var(--c-fg); stroke-width: 4; }
 .final-disc { stroke: var(--c-accent); }
-.format-icon, .link-icon, .check-icon { fill: none; stroke: var(--c-fg); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
-.format-mark { fill: var(--c-fg); font-size: 13px; font-weight: 900; letter-spacing: 0.06em; }
-.check-icon { stroke: var(--c-accent); stroke-width: 7; }
+.idea-icon { color: var(--c-fg); }
+.final-icon { color: var(--c-accent); }
 .word { fill: var(--c-fg); font-size: 19px; font-weight: 900; letter-spacing: 0.04em; }
 .accent-text { fill: var(--c-accent); }
 .action { opacity: 0; }
