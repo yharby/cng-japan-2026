@@ -90,6 +90,11 @@
 - Do not override the production base on the command line. `deck.config.mjs` is the source of truth.
 - Restart `pnpm preview` after rebuilding; a preview is a view of one completed static artifact.
 - Browser QA must use hash routes, `/#/<n>?clicks=<k>`.
+- `pnpm smoke` walks every slide in both light and dark. Never drop the dark pass.
+- Do not pair `:global(...)` with a descendant selector inside a scoped `<style>`. Vue keeps only
+  the `:global()` argument and drops the rest, so a rule meant for one element lands on `html`.
+  `:global(html.dark) .carto-logo` compiled to bare `html.dark` and painted the whole deck white.
+  Put ancestor-conditioned rules such as `html.dark .thing` in a plain unscoped `<style>` block.
 
 ## Deployment
 - `.github/workflows/deploy.yml` deploys every push to `main` via GitHub Pages Actions.
@@ -97,5 +102,5 @@
 - The workflow runs the same `pnpm build` used locally; the shared config supplies the Pages base and excludes presenter notes.
 - Keep `routerMode: hash`; it makes deep links reliable on static GitHub Pages hosting.
 - Keep Pages permissions limited to `contents: read`, `pages: write`, and `id-token: write`.
-- Keep the smoke step in the workflow. It asserts the configured base, same-origin assets, mounted app, visible slide geometry, and a non-blank screenshot.
+- Keep the smoke step in the workflow. It asserts the configured base, same-origin assets, mounted app, visible slide geometry, an unfiltered root element, and a non-blank screenshot, in light and dark.
 - Keep the DOMPurify override until upstream ranges are patched; monitor the unpatched `image-size` alert inherited through PPTXGenJS.

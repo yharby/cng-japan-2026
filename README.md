@@ -34,7 +34,10 @@ There is one production build. `vite.config.mjs` reads the public base from
 `/cng-japan-2026/` artifact. Development remains at `/`.
 
 `pnpm test` validates the source, builds the production artifact, and renders all
-24 slides without waiting for external iframe traffic. To check a deployment:
+24 slides without waiting for external iframe traffic. Each slide is rendered in
+both the light and dark colour schemes, because a component style can escape its
+scope and blank the deck in one scheme while the other stays perfect. To check a
+deployment:
 
 ```bash
 pnpm smoke https://yharby.github.io/cng-japan-2026/

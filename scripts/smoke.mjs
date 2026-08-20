@@ -75,64 +75,92 @@ const local = explicit ? null : await serveArtifact()
 const baseUrl = explicit ? buildUrl(explicit) : local.url
 const failures = []
 
-const browser = await chromium.launch()
-const page = await browser.newPage({ viewport: { width: 1280, height: 720 } })
+// Both colour schemes get walked. A scoped component style that escapes onto a
+// global element only bites under one of them, so a light-only check proves
+// nothing about the dark path. The deck once rendered pure white in dark mode
+// because `:global(html.dark) .carto-logo` compiled to plain `html.dark`, which
+// put `filter: brightness(0) invert(1)` on the whole document.
+const SCHEMES = ['light', 'dark']
 
-page.on('response', (response) => {
-  if (response.status() >= 400 && response.url().startsWith(baseUrl.origin)) {
-    failures.push(`${response.status()} ${response.url()}`)
+const browser = await chromium.launch()
+
+async function walk(colorScheme) {
+  const context = await browser.newContext({
+    viewport: { width: 1280, height: 720 },
+    colorScheme,
+  })
+  const page = await context.newPage()
+  const note = (message) => failures.push(`[${colorScheme}] ${message}`)
+
+  page.on('response', (response) => {
+    if (response.status() >= 400 && response.url().startsWith(baseUrl.origin)) {
+      note(`${response.status()} ${response.url()}`)
+    }
+  })
+  page.on('requestfailed', (request) => {
+    const reason = request.failure()?.errorText ?? ''
+    if (request.url().startsWith(baseUrl.origin) && reason !== 'net::ERR_ABORTED') {
+      note(`request failed ${request.url()} ${reason}`)
+    }
+  })
+  page.on('pageerror', (error) => {
+    if (!/Wake Lock/i.test(error.message)) note(`page error ${error.message}`)
+  })
+
+  try {
+    for (const slide of SLIDES) {
+      const url = new URL(baseUrl)
+      url.hash = `/${slide.n}`
+      await page.goto(url.href, { waitUntil: 'domcontentloaded', timeout: 30000 })
+
+      const selector = `.slidev-page-${slide.n}`
+      await page.locator(selector).waitFor({ state: 'visible', timeout: 15000 })
+      await page.waitForTimeout(500)
+
+      const state = await page.locator(selector).evaluate((element) => {
+        const style = getComputedStyle(element)
+        const rect = element.getBoundingClientRect()
+        return {
+          display: style.display,
+          visibility: style.visibility,
+          opacity: Number(style.opacity),
+          width: rect.width,
+          height: rect.height,
+          text: (element.textContent ?? '').trim().length,
+          mounted: document.querySelector('#app')?.children.length ?? 0,
+          // A filter on the root element repaints every pixel of the deck, so
+          // it hides the slide while every other signal still looks healthy.
+          rootFilter: getComputedStyle(document.documentElement).filter,
+        }
+      })
+      const screenshotBytes = (await page.screenshot()).length
+
+      if (state.rootFilter !== 'none') {
+        note(`slide ${slide.n} has a filter on the root element, ${state.rootFilter}`)
+      }
+
+      if (
+        state.mounted === 0
+        || state.display === 'none'
+        || state.visibility === 'hidden'
+        || state.opacity === 0
+        || state.width < 600
+        || state.height < 300
+        || state.text < 40
+        || screenshotBytes < 10_000
+      ) {
+        note(`slide ${slide.n} is visually blank: ${JSON.stringify({ ...state, screenshotBytes })}`)
+      }
+    }
+  } catch (error) {
+    note(error.message)
+  } finally {
+    await context.close()
   }
-})
-page.on('requestfailed', (request) => {
-  const reason = request.failure()?.errorText ?? ''
-  if (request.url().startsWith(baseUrl.origin) && reason !== 'net::ERR_ABORTED') {
-    failures.push(`request failed ${request.url()} ${reason}`)
-  }
-})
-page.on('pageerror', (error) => {
-  if (!/Wake Lock/i.test(error.message)) failures.push(`page error ${error.message}`)
-})
+}
 
 try {
-  for (const slide of SLIDES) {
-    const url = new URL(baseUrl)
-    url.hash = `/${slide.n}`
-    await page.goto(url.href, { waitUntil: 'domcontentloaded', timeout: 30000 })
-
-    const selector = `.slidev-page-${slide.n}`
-    await page.locator(selector).waitFor({ state: 'visible', timeout: 15000 })
-    await page.waitForTimeout(500)
-
-    const state = await page.locator(selector).evaluate((element) => {
-      const style = getComputedStyle(element)
-      const rect = element.getBoundingClientRect()
-      return {
-        display: style.display,
-        visibility: style.visibility,
-        opacity: Number(style.opacity),
-        width: rect.width,
-        height: rect.height,
-        text: (element.textContent ?? '').trim().length,
-        mounted: document.querySelector('#app')?.children.length ?? 0,
-      }
-    })
-    const screenshotBytes = (await page.screenshot()).length
-
-    if (
-      state.mounted === 0
-      || state.display === 'none'
-      || state.visibility === 'hidden'
-      || state.opacity === 0
-      || state.width < 600
-      || state.height < 300
-      || state.text < 40
-      || screenshotBytes < 10_000
-    ) {
-      failures.push(`slide ${slide.n} is visually blank: ${JSON.stringify({ ...state, screenshotBytes })}`)
-    }
-  }
-} catch (error) {
-  failures.push(error.message)
+  for (const scheme of SCHEMES) await walk(scheme)
 } finally {
   await browser.close()
   local?.server.close()
@@ -145,4 +173,4 @@ if (unique.length) {
   process.exit(1)
 }
 
-console.log(`PASS smoke: ${SLIDES.length} slides at ${baseUrl.href}`)
+console.log(`PASS smoke: ${SLIDES.length} slides in ${SCHEMES.join(' and ')} at ${baseUrl.href}`)

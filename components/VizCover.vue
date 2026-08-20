@@ -47,5 +47,12 @@ const ready = computed(() => isPrintMode.value || true)
 .speaker .speaker-role { fill: var(--c-muted); font-size: 20px; font-weight: 700; }
 .speaker .speaker-email { fill: var(--c-accent); font-size: 18px; font-weight: 750; }
 .carto-logo { opacity: 0.96; }
-:global(html.dark) .carto-logo { filter: brightness(0) invert(1); }
+</style>
+
+<!-- Deliberately unscoped. The dark-mode rule needs an `html.dark` ancestor, and
+     inside a scoped block Vue compiles `:global(html.dark) .carto-logo` down to
+     bare `html.dark`, dropping the descendant part. That put the inversion on the
+     whole document and rendered every slide as a plain white rectangle. -->
+<style>
+html.dark .carto-logo { filter: brightness(0) invert(1); }
 </style>
