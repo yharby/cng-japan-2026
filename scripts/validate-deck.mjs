@@ -9,6 +9,8 @@ import { DECK } from '../deck.config.mjs'
 const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(HERE, '..')
 const FM = /^---\n([\s\S]*?)\n---/
+const workspaceConfig = readFileSync(join(ROOT, 'pnpm-workspace.yaml'), 'utf8')
+const lockfile = readFileSync(join(ROOT, 'pnpm-lock.yaml'), 'utf8')
 
 // slides.md is the single source of truth for slide order. Tooling derives the
 // component, click count, and appendix boundary from the included files.
@@ -346,6 +348,16 @@ function checkComponent(name, errors, needsClicks = false) {
 export function checkDeck() {
   const errors = []
   const warnings = []
+
+  // PPTXGenJS 4.0.1 declares image-size but its shipped code never imports it.
+  // Keep that unused, archived dependency out of the graph: all published
+  // versions are affected by CVE-2025-71329 and CVE-2025-71330.
+  if (!/^  ["']pptxgenjs@4\.0\.1>image-size["']: ["']-["']$/m.test(workspaceConfig)) {
+    errors.push('pnpm override removing the unused PPTXGenJS image-size dependency is missing')
+  }
+  if (/^  image-size@/m.test(lockfile) || /^      image-size:/m.test(lockfile)) {
+    errors.push('pnpm-lock.yaml contains vulnerable image-size dependency')
+  }
 
   if (SLIDES.length < DECK.mainSlides) {
     errors.push(`slides.md declares ${SLIDES.length} slides, fewer than the ${DECK.mainSlides}-slide main talk`)

@@ -4,6 +4,10 @@ allowBuilds:
 
 overrides:
   dompurify: 3.4.13
+  # PPTXGenJS 4.0.1 declares image-size but does not import it in its shipped
+  # code. Remove the unused, archived package to avoid CVE-2025-71329 and
+  # CVE-2025-71330. Reassess this override when upgrading PPTXGenJS.
+  "pptxgenjs@4.0.1>image-size": "-"
 
 onlyBuiltDependencies:
   - esbuild

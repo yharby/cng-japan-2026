@@ -109,4 +109,4 @@
 - Keep `routerMode: hash`; it makes deep links reliable on static GitHub Pages hosting.
 - Keep Pages permissions limited to `contents: read`, `pages: write`, and `id-token: write`.
 - Keep the smoke step in the workflow. It asserts the configured base, same-origin assets, mounted app, visible slide geometry, an unfiltered root element, and a non-blank screenshot, in light and dark.
-- Keep the DOMPurify override until upstream ranges are patched; monitor the unpatched `image-size` alert inherited through PPTXGenJS.
+- Keep the DOMPurify override until upstream ranges are patched. Keep the scoped `pptxgenjs@4.0.1>image-size` removal override while PPTXGenJS declares that unused, archived dependency; reassess it when upgrading PPTXGenJS.
