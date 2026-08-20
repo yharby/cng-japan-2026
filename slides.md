@@ -37,6 +37,10 @@ src: ./slides/04-object-storage-range.md
 ---
 
 ---
+src: ./slides/05-shared-data-layer.md
+---
+
+---
 src: ./slides/05-cloud-formats.md
 ---
 
@@ -70,6 +74,14 @@ src: ./slides/08-testable-rules.md
 
 ---
 src: ./slides/09-japan-catalog.md
+---
+
+---
+src: ./slides/15-ai-first-process.md
+---
+
+---
+src: ./slides/16-ai-first-tsukuba.md
 ---
 
 ---
