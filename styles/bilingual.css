@@ -1,0 +1,35 @@
+.slidev-layout .ja {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif !important;
+  font-weight: 400;
+  font-feature-settings: 'palt' 1;
+  line-height: 1.7;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 0.82;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+
+.slidev-layout h1 + .ja {
+  flex: 0 0 auto;
+  font-size: 0.62em;
+  margin-top: 0.12em;
+  line-height: 1.45;
+}
+.slidev-layout h2 + .ja { font-size: 0.64em;  margin-top: 0.1em;  }
+
+/* One .bi block per slide is the contract, so this can afford to be tight.
+   Every extra em here comes straight out of the diagram's height. */
+.slidev-layout .bi {
+  flex: 0 0 auto;
+  display: grid;
+  gap: 0.1em;
+  margin-block: 0.2em 0;
+}
+.slidev-layout .bi .en {
+  font-size: 0.85em;
+  line-height: 1.25;
+  font-weight: 600;
+}
+.slidev-layout .bi .ja { font-size: 0.82em; }

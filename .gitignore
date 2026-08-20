@@ -1,0 +1,9 @@
+node_modules/
+dist/
+shots/
+.slidev/
+.DS_Store
+*.local
+pnpm-debug.log*
+.playwright-mcp/
+

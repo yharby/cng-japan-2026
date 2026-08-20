@@ -1,0 +1,33 @@
+:root {
+  --c-bg: #ffffff;
+  --c-fg: #162945;
+  --c-muted: #5b6b82;
+  --c-line: #d7dee8;
+  --c-panel: #f4f6f9;
+  --c-accent: #eb1510;
+  --c-ok: #0a7d55;
+  --c-warn: #b25b00;
+}
+
+html.dark {
+  --c-bg: #0e1726;
+  --c-fg: #eef3fa;
+  --c-muted: #91a2ba;
+  --c-line: #263548;
+  --c-panel: #162234;
+  --c-accent: #ff4b45;
+  --c-ok: #34c48b;
+  --c-warn: #e9973f;
+}
+
+.slidev-layout {
+  background: var(--c-bg);
+  color: var(--c-fg);
+}
+
+.slidev-layout h1,
+.slidev-layout h2 {
+  color: var(--c-fg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}

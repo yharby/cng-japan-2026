@@ -1,0 +1,27 @@
+{
+  "name": "cng-japan-2026",
+  "description": "Slidev source for Portolan: An SDI Without Servers at CNG Japan 2026.",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.22.0",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build --out dist",
+    "preview": "vite preview",
+    "export": "mkdir -p dist && slidev export --output dist/cng-japan-2026.pdf --per-slide --range 1-16 --wait 1500 --timeout 60000",
+    "validate": "node scripts/validate-deck.mjs",
+    "test": "pnpm validate"
+  },
+  "dependencies": {
+    "@slidev/cli": "52.19.0",
+    "@slidev/theme-default": "^0.25.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.62.1",
+    "vite": "^8.2.1"
+  }
+}
