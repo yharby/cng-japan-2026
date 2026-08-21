@@ -35,10 +35,10 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
         <image href="/stac-superhero.png" x="0" y="0" width="400" height="460"
                preserveAspectRatio="xMaxYMid slice" />
         <rect x="0" y="0" width="400" height="460" fill="url(#sf-left-shade)" />
-        <text x="28" y="48" class="panel-kicker">{{ tr('THE SUPERPOWER', 'スーパーパワー') }}</text>
-        <text x="28" y="88" class="panel-title">{{ tr('FLEXIBLE', '柔軟') }}</text>
-        <text x="28" y="122" class="panel-title">{{ tr('EXTENSIBLE', '拡張可能') }}</text>
-        <text x="28" y="153" class="panel-copy">{{ tr('static JSON or STAC API', '静的JSON または STAC API') }}</text>
+        <text x="370" y="48" text-anchor="end" class="panel-kicker">{{ tr('THE SUPERPOWER', 'スーパーパワー') }}</text>
+        <text x="370" y="88" text-anchor="end" class="panel-title">{{ tr('FLEXIBLE', '柔軟') }}</text>
+        <text x="370" y="122" text-anchor="end" class="panel-title">{{ tr('EXTENSIBLE', '拡張可能') }}</text>
+        <text x="370" y="153" text-anchor="end" class="panel-copy">{{ tr('static JSON or STAC API', '静的JSON または STAC API') }}</text>
       </g>
 
       <g class="panel chaos-panel" :class="{ on: s >= 2 }" clip-path="url(#sf-right-panel)">
