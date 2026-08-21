@@ -134,7 +134,7 @@
 ## Deployment
 - `.github/workflows/deploy.yml` deploys every push to `main` via GitHub Pages Actions.
 - Do not commit `dist/` or use a `gh-pages` branch.
-- The workflow runs the same `pnpm build` used locally; the shared config supplies the Pages base and excludes presenter notes.
+- The workflow runs the same `pnpm build` used locally; the shared config supplies the Pages base and includes presenter notes for the published presenter view.
 - Keep `routerMode: hash`; it makes deep links reliable on static GitHub Pages hosting.
 - Keep Pages permissions limited to `contents: read`, `pages: write`, and `id-token: write`.
 - Keep the smoke step in the workflow. It asserts the configured base, same-origin assets, mounted app, visible slide geometry, an unfiltered root element, and a non-blank screenshot, in light and dark.
