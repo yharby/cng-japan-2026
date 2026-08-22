@@ -25,7 +25,7 @@
 - Keep the publisher flow concrete: `init` → `add` → `check --fix` → `push`; use `sync` for the later publisher-controlled update round trip.
 - Do not present CLI automation as removing publisher responsibility. The publisher still controls source data, metadata, credentials, destination, update timing, review, and release decisions.
 
-## Main Narrative (slides 1–19, then slide 27)
+## Main Narrative (slides 1–19, then slide 28)
 1. Cover: exact agenda title, event, speaker, CARTO identity.
 2. Minimal bio: portrait, role, email.
 3. Legacy files: a small subset can require downloading the whole CSV/GeoTIFF.
@@ -45,7 +45,7 @@
 17. Explain what happens behind an AI-agent question: discover the catalog, inspect metadata, plan a query, compute with DuckDB, and report sources and limits.
 18. Show the real Tsukuba Station experiment and distinguish a computed result from model output.
 19. Compare a horizontal static-first portal architecture with a service-first portal, then make remaining publishing, operational, and governance work explicit.
-27. Close with Q&A and one action: publish one dataset using open files, stable URLs, and checkable rules.
+28. Close with Q&A and one action: publish one dataset using open files, stable URLs, and checkable rules.
 
 ## Appendix
 - The appendix is intentionally ordered from evidence to implementation detail:
@@ -56,8 +56,9 @@
   24. Three scales: retain the broader scale comparison as optional depth.
   25. Publisher CLI: show the released publish and update commands.
   26. Current scope: separate implemented validation from roadmap formats.
+  27. CARTO SDI interface: click through seven continuous steps covering the publisher overview, datasets, grants, usage, quality, governance, and commercial workflows.
 - Keep appendix slides between the 19-slide main narrative and the final closing slide. `deck.config.mjs` defines both the main narrative boundary and the closing-slide position for validation.
-- All export commands include the complete 27-slide presentation, including the appendix. Do not restore an `--range` restriction in `scripts/export.mjs`.
+- All export commands include the complete 28-slide presentation, including the appendix. Do not restore an `--range` restriction in `scripts/export.mjs`.
 - Do not move product inventories or install instructions into the main story unless talk duration changes.
 - Do not delete a main slide merely to shorten the talk. First consolidate repeated claims inside its visualization or speaker notes; delete only when the slide has no distinct narrative job.
 
@@ -120,7 +121,7 @@
 - Render check: `pnpm smoke`, or `pnpm smoke <url>` against a deployment.
 - Full check: `pnpm test` runs validate, build, and smoke.
 - Export the full English presentation: `pnpm export` or `pnpm export:en`.
-- Export the full Japanese presentation: `pnpm export:ja`; export both complete 27-slide presentations: `pnpm export:all`.
+- Export the full Japanese presentation: `pnpm export:ja`; export both complete 28-slide presentations: `pnpm export:all`.
 - Before committing, require `pnpm test` and visual inspection of changed slides.
 - Do not override the production base on the command line. `deck.config.mjs` is the source of truth.
 - Restart `pnpm preview` after rebuilding; a preview is a view of one completed static artifact.

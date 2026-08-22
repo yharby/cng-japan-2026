@@ -125,5 +125,9 @@ src: ./slides/15-current-scope.md
 ---
 
 ---
+src: ./slides/16-carto-control-plane.md
+---
+
+---
 src: ./slides/18-close.md
 ---
