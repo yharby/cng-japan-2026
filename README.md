@@ -47,8 +47,8 @@ audience tabs do not control each other; the presenter view is the controller.
 Audience-facing titles, subtitles, and diagrams support English and Japanese;
 presenter scripts in the speaker notes are English-only.
 
-Slides 1–19 form the main narrative, slides 20–27 are optional appendix depth,
-and slide 28 closes with Q&A and one publishing action.
+Slides 1–19 form the main narrative, slides 20–28 are optional appendix depth,
+and slide 29 closes with Q&A and one publishing action.
 
 ## Validate and build
 
@@ -62,7 +62,7 @@ There is one production build. `vite.config.mjs` reads the public base from
 `/cng-japan-2026/` artifact. Development remains at `/`.
 
 `pnpm test` validates the source, builds the production artifact, and renders all
-28 slides without waiting for external iframe traffic. Each slide is rendered in
+29 slides without waiting for external iframe traffic. Each slide is rendered in
 English and Japanese, in both the light and dark colour schemes, and the test
 verifies presenter-to-audience synchronization without merging the two audience
 locales. This catches translation overflow as well as a component style escaping
@@ -72,7 +72,7 @@ its scope and blanking only one theme. To check a deployment:
 pnpm smoke https://yharby.github.io/cng-japan-2026/
 ```
 
-Export the complete 28-slide presentation to English, Japanese, or both PDFs:
+Export the complete 29-slide presentation to English, Japanese, or both PDFs:
 
 ```bash
 pnpm export:en

@@ -18,13 +18,14 @@ const later = computed(() => [
   ['COPC', tr('point clouds', '点群'), 'https://copc.io/'],
   ['GeoZarr', tr('multidimensional arrays', '多次元配列'), 'https://github.com/zarr-developers/geozarr-spec'],
   ['STAC-GeoParquet', tr('full catalog index', '完全なカタログ索引'), 'https://github.com/stac-utils/stac-geoparquet'],
+  [tr('3D city models', '3D都市モデル'), 'CityJSON · FlatCityBuf · CityParquet', 'https://github.com/cityjson'],
 ])
 </script>
 
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('A clear scope boundary for Portolan 0.1.2. Portolan currently validates GeoParquet vectors and raster item mirrors, COG rasters, companion Parquet tables, and PMTiles visualization derivatives. It does not yet define complete normative rules for COPC, GeoZarr, or a full STAC-GeoParquet catalog index.', 'Portolan 0.1.2の明確な対象範囲です。Portolanは現在、GeoParquetベクターとラスターItem mirror、COGラスター、補助Parquetテーブル、PMTiles可視化用派生データを検証します。COPC、GeoZarr、完全なSTAC-GeoParquetカタログ索引の完全な規範ルールはまだ定義していません。')">
+         :aria-label="tr('A clear scope boundary for Portolan 0.1.2. Portolan currently validates GeoParquet vectors and raster item mirrors, COG rasters, companion Parquet tables, and PMTiles visualization derivatives. It does not yet define complete normative rules for COPC, GeoZarr, a full STAC-GeoParquet catalog index, or 3D city model formats including CityJSON, FlatCityBuf, and CityParquet.', 'Portolan 0.1.2の明確な対象範囲です。Portolanは現在、GeoParquetベクターとラスターItem mirror、COGラスター、補助Parquetテーブル、PMTiles可視化用派生データを検証します。COPC、GeoZarr、完全なSTAC-GeoParquetカタログ索引、およびCityJSON、FlatCityBuf、CityParquetを含む3D都市モデル形式の完全な規範ルールはまだ定義していません。')">
       <text x="400" y="34" text-anchor="middle" class="version">{{ tr('IMPLEMENTED SCOPE · v0.1.2', '実装済みの範囲 · v0.1.2') }}</text>
 
       <line x1="400" y1="62" x2="400" y2="424" class="boundary" />
@@ -49,14 +50,14 @@ const later = computed(() => [
       </g>
 
       <g class="items" :class="{ on: s >= 2 }">
-        <g v-for="(item, i) in later" :key="item[0]" :transform="`translate(444 ${178 + i * 82})`">
+        <g v-for="(item, i) in later" :key="item[0]" :transform="`translate(444 ${160 + i * 64})`">
           <lucide-circle-minus x="0" y="-21" width="28" height="28" class="scope-icon later-icon" />
           <a :href="item[2]" target="_blank" rel="noopener noreferrer" class="svg-source-link"
              :class="{ 'is-disabled': s < 2 }" :tabindex="s >= 2 ? 0 : -1"
              :aria-label="tr(`Open ${item[0]} documentation in a new tab`, `${item[0]}のドキュメントを新しいタブで開く`)" @click.stop>
           <text x="42" y="0" class="item-title link-label">{{ item[0] }}</text>
           </a>
-          <text x="42" y="25" class="item-note">{{ item[1] }}</text>
+          <text x="42" y="25" class="item-note" :class="{ 'compact-note': i === later.length - 1 }">{{ item[1] }}</text>
         </g>
         <text x="444" y="414" class="honesty">{{ tr('Roadmap ≠ implemented scope', 'ロードマップ ≠ 実装済みの範囲') }}</text>
       </g>
@@ -80,5 +81,6 @@ const later = computed(() => [
 .later-icon { color: var(--c-warn); }
 .item-title { fill: var(--c-fg); font-size: 21px; font-weight: 900; }
 .item-note { fill: var(--c-muted); font-size: 17px; font-weight: 750; }
+.compact-note { font-size: 15px; }
 .honesty { fill: var(--c-warn); font-size: 17px; font-weight: 850; }
 </style>

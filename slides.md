@@ -129,5 +129,9 @@ src: ./slides/16-carto-control-plane.md
 ---
 
 ---
+src: ./slides/17-carto-catalog-browser.md
+---
+
+---
 src: ./slides/18-close.md
 ---

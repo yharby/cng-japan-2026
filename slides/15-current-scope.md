@@ -22,7 +22,7 @@ hideInToc: true
 "Today, that means GeoParquet for vectors and raster item mirrors, COG for raster data, Parquet companion tables, and PMTiles as a visualization derivative."
 
 [Click 2]
-"COPC, GeoZarr, and a full STAC-GeoParquet catalog index are later work. A roadmap is not the same as implemented scope."
+"COPC, GeoZarr, and a full STAC-GeoParquet catalog index are later work. Future 3D city model work also includes CityJSON, FlatCityBuf, and CityParquet. A roadmap is not the same as implemented scope."
 
 [Sources]
 - https://github.com/portolan-sdi/portolan-spec/blob/v0.1.2/specs/portolan/formats.md
@@ -34,4 +34,7 @@ hideInToc: true
 - https://copc.io/
 - https://github.com/zarr-developers/geozarr-spec
 - https://github.com/stac-utils/stac-geoparquet
+- https://github.com/cityjson/specs
+- https://github.com/cityjson/flatcitybuf
+- https://github.com/HideBa/cityparquet
 -->
