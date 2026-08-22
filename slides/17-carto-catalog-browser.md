@@ -7,6 +7,8 @@ hideInToc: true
 # CARTO SDI makes Portolan catalogs explorable
 <p class="ja">CARTO SDIはPortolanカタログを探索可能にします。</p>
 
+<CartoCornerLogo />
+
 <VizCartoCatalogBrowser />
 
 <!--

@@ -13,32 +13,32 @@ const steps = computed(() => [
     label: tr('Catalogs', 'カタログ'),
     short: tr('organizations · regions', '組織 · 地域'),
     image: `${assetBase}carto-sdi-browser-catalogs.png`,
-    copy1: tr('Choose a catalog across organizations and regions.', '組織や地域からカタログを選びます。'),
-    copy2: tr('Open one cloud publication from a single entry point.', '単一の入り口から1つのクラウド公開を開きます。'),
+    copy1: tr('Choose a catalog across organizations and regions.', '組織や地域からカタログを選び、'),
+    copy2: tr('Open it from one entry point.', '1つの入り口から開きます。'),
   },
   {
     title: tr('Discover datasets', 'データセットを発見する'),
     label: tr('Discovery', 'データ発見'),
     short: tr('search · filters · metadata', '検索 · フィルター · メタデータ'),
     image: `${assetBase}carto-sdi-browser-datasets.png`,
-    copy1: tr('Search and filter datasets by what they contain.', '内容に基づいてデータセットを検索、絞り込みます。'),
-    copy2: tr('Compare format, geometry and feature context.', '形式、ジオメトリ、フィーチャの情報を比較します。'),
+    copy1: tr('Search and filter by content.', '内容で検索、絞り込み、'),
+    copy2: tr('Compare format, geometry and feature context.', '形式、ジオメトリ、フィーチャ情報を比較します。'),
   },
   {
     title: tr('Explore on the map', 'マップで探索する'),
     label: tr('Map', 'マップ'),
-    short: tr('layers · progress · interaction', 'レイヤー · 進捗 · 操作'),
+    short: tr('layers · loading · explore', 'レイヤー · 読み込み · 操作'),
     image: `${assetBase}carto-sdi-browser-map.png`,
-    copy1: tr('Put datasets on the map and watch each layer load.', 'データセットをマップに追加し、レイヤーの読み込みを確認します。'),
-    copy2: tr('Explore multiple cloud assets in one view.', '複数のクラウド資産を1つの画面で探索します。'),
+    copy1: tr('Add datasets to the map.', 'データセットをマップに追加し、'),
+    copy2: tr('Watch cloud layers load and interact in one view.', 'クラウドレイヤーの読み込みと操作を1つの画面で確認します。'),
   },
   {
     title: tr('Ask with AI', 'AIで質問する'),
     label: tr('AI explorer', 'AI探索'),
     short: tr('questions · maps · tables', '質問 · マップ · テーブル'),
     image: `${assetBase}carto-sdi-browser-ai.png`,
-    copy1: tr('Start with natural-language questions grounded in the catalog.', 'カタログに基づく自然言語の質問から始めます。'),
-    copy2: tr('Use accessible data with source-aware answers.', 'アクセス可能なデータを出典を意識した回答で利用します。'),
+    copy1: tr('Ask natural-language questions grounded in the catalog.', 'カタログに基づく自然言語の質問を行い、'),
+    copy2: tr('Keep answers source-aware.', '出典を明示した回答を得ます。'),
   },
   {
     title: tr('Ground the answer', '回答を根拠づける'),
@@ -84,10 +84,7 @@ const active = computed(() => steps.value[s.value])
       </g>
     </svg>
   </div>
-  <div class="active-message">
-    <strong>{{ active.title }}</strong>
-    <span>{{ active.copy1 }} {{ active.copy2 }}</span>
-  </div>
+  <SlideCaption :title="active.title" :text="`${active.copy1} ${active.copy2}`" />
 </template>
 
 <style scoped>
@@ -107,6 +104,4 @@ const active = computed(() => steps.value[s.value])
 .step.active .step-number, .step.done .step-number { fill: var(--c-bg); }
 .step-title { fill: var(--c-fg); font-size: 13px; font-weight: 900; }
 .step-copy { fill: var(--c-muted); font-size: 10.5px; font-weight: 800; }
-.active-message { flex: 0 0 auto; display: flex; gap: 0.65em; align-items: baseline; margin-top: 0.15em; font-size: 0.82em; font-weight: 700; line-height: 1.25; }
-.active-message strong { color: var(--c-portolan); font-size: 1.22em; font-weight: 900; white-space: nowrap; }
 </style>

@@ -7,6 +7,8 @@ hideInToc: true
 # CARTO SDI adds managed workflows on Portolan
 <p class="ja">CARTO SDIはPortolanにマネージド・ワークフローを追加します。</p>
 
+<CartoCornerLogo />
+
 <VizCartoControlPlane />
 
 <!--

@@ -94,10 +94,7 @@ const active = computed(() => steps.value[s.value])
       </g>
     </svg>
   </div>
-  <div class="active-message">
-    <strong>{{ active.title }}</strong>
-    <span>{{ active.copy1 }} {{ active.copy2 }}</span>
-  </div>
+  <SlideCaption :title="active.title" :text="`${active.copy1} ${active.copy2}`" />
 </template>
 
 <style scoped>
@@ -117,6 +114,4 @@ const active = computed(() => steps.value[s.value])
 .step.active .step-number, .step.done .step-number { fill: var(--c-bg); }
 .step-title { fill: var(--c-fg); font-size: 13px; font-weight: 900; }
 .step-copy { fill: var(--c-muted); font-size: 10.5px; font-weight: 800; }
-.active-message { flex: 0 0 auto; display: flex; gap: 0.65em; align-items: baseline; margin-top: 0.15em; font-size: 0.82em; font-weight: 700; line-height: 1.25; }
-.active-message strong { color: var(--c-portolan); font-size: 1.22em; font-weight: 900; white-space: nowrap; }
 </style>
