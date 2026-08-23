@@ -77,7 +77,7 @@ src: ./slides/06-open-toolchain.md
 ---
 
 ---
-src: ./slides/13-skill-workflow.md
+src: ./slides/12-ten-skills.md
 ---
 
 ---
@@ -98,10 +98,6 @@ src: ./slides/16-honest-work.md
 
 ---
 src: ./slides/11-live-catalog.md
----
-
----
-src: ./slides/12-ten-skills.md
 ---
 
 ---
