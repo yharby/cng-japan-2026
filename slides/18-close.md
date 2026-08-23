@@ -1,5 +1,4 @@
 ---
-clicks: 1
 layout: default
 class: close-slide
 ---
@@ -11,13 +10,16 @@ class: close-slide
 
 <!--
 [Say in English]
-"Thank you. Questions are welcome. Portolan is not another portal; it is a small publishing contract. Use an open file format, give it a stable URL, and follow rules that another person can check. People, tools, and agents can then use the same files."
-
-[Click 1]
-"The specification, tools, examples, and skills are at portolan-sdi dot org. While we discuss your questions, think of one dataset you could publish. Let us learn from it and improve the practice together."
+"Thank you. Questions are welcome. This final slide is also the project directory: the website, specification, publisher CLI, Rashid validator, agent skills, registry, browser, and GitHub organization are all clickable. The QR code opens this same closing slide in the published deck, so you can return to every link later."
 
 [Sources]
 - https://portolan-sdi.org/
 - https://github.com/portolan-sdi
-- https://github.com/portolan-sdi/portolan-ops/blob/main/copy/messaging.md
+- https://github.com/portolan-sdi/portolan-spec
+- https://github.com/portolan-sdi/portolan-cli
+- https://github.com/portolan-sdi/rashid
+- https://github.com/portolan-sdi/portolan-skills
+- https://github.com/portolan-sdi/portolan-registry
+- https://browser.portolan-sdi.org/
+- https://yharby.github.io/cng-japan-2026/#/26
 -->
