@@ -21,5 +21,5 @@ class: close-slide
 - https://github.com/portolan-sdi/portolan-skills
 - https://github.com/portolan-sdi/portolan-registry
 - https://browser.portolan-sdi.org/
-- https://yharby.github.io/cng-japan-2026/#/26
+- https://yharby.github.io/cng-japan-2026/#/27
 -->

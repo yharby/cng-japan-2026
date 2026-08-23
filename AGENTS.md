@@ -25,7 +25,7 @@
 - Keep the publisher flow concrete: `init` → `add` → `check --fix` → `push`; use `sync` for the later publisher-controlled update round trip.
 - Do not present CLI automation as removing publisher responsibility. The publisher still controls source data, metadata, credentials, destination, update timing, review, and release decisions.
 
-## Main Narrative (slides 1–19, then slide 26)
+## Main Narrative (slides 1–19, then slide 27)
 1. Cover: exact agenda title, event, speaker, CARTO identity.
 2. Minimal bio: portrait, role, email.
 3. Legacy files: a small subset can require downloading the whole CSV/GeoTIFF.
@@ -45,7 +45,7 @@
 17. Use that same catalog for the AI-agent question: follow only the three linked Collections, inspect metadata, plan a query, compute with DuckDB, and report sources and limits.
 18. Show the verified DuckDB count across those three explicit latest GeoParquet assets and distinguish the computed result from model planning.
 19. Compare a horizontal static-first portal architecture with a service-first portal, then make remaining publishing, operational, and governance work explicit.
-26. Close with Q&A and one action: publish one dataset using open files, stable URLs, and checkable rules.
+27. Close with Q&A and one action: publish one dataset using open files, stable URLs, and checkable rules.
 
 ## Appendix
 - The appendix is intentionally ordered from evidence to implementation detail:
@@ -53,10 +53,11 @@
   21. Publisher CLI: show how file and service inputs become one checked static catalog, then show the released publish and update commands.
   22. Rashid checklist: show how people, CI, and AI agents run the same deterministic checks while publishers retain process judgment.
   23. Current scope: separate implemented validation from roadmap formats.
-  24. CARTO SDI interface: click through six continuous steps covering the publisher overview, datasets, grants, usage, quality, and governance.
-  25. CARTO SDI catalog browser: click through catalog selection, dataset discovery, map exploration, and AI-assisted questions using the latest `dev` interface.
+  24. CARTO SDI framing: establish it as a commercial solution based on Portolan, extending publishing with private sharing and governance, data monetization, monitoring and statistics, legacy format conformance, and writable datasets.
+  25. CARTO SDI interface: click through six continuous steps covering the publisher overview, datasets, grants, usage, quality, and governance.
+  26. CARTO SDI catalog browser: click through catalog selection, dataset discovery, map exploration, and AI-assisted questions using the latest `dev` interface.
 - Keep appendix slides between the 19-slide main narrative and the final closing slide. `deck.config.mjs` defines both the main narrative boundary and the closing-slide position for validation.
-- All export commands include the complete 26-slide presentation, including the appendix. Do not restore an `--range` restriction in `scripts/export.mjs`.
+- All export commands include the complete 27-slide presentation, including the appendix. Do not restore an `--range` restriction in `scripts/export.mjs`.
 - Do not move product inventories or install instructions into the main story unless talk duration changes.
 - Do not delete a main slide merely to shorten the talk. First consolidate repeated claims inside its visualization or speaker notes; delete only when the slide has no distinct narrative job.
 
@@ -120,7 +121,7 @@
 - Render check: `pnpm smoke`, or `pnpm smoke <url>` against a deployment.
 - Full check: `pnpm test` runs validate, build, and smoke.
 - Export the full English presentation: `pnpm export` or `pnpm export:en`.
-- Export the full Japanese presentation: `pnpm export:ja`; export both complete 26-slide presentations: `pnpm export:all`.
+- Export the full Japanese presentation: `pnpm export:ja`; export both complete 27-slide presentations: `pnpm export:all`.
 - Before committing, require `pnpm test` and visual inspection of changed slides.
 - Do not override the production base on the command line. `deck.config.mjs` is the source of truth.
 - Restart `pnpm preview` after rebuilding; a preview is a view of one completed static artifact.

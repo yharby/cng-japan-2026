@@ -6,7 +6,7 @@ import { useDeckLocale } from '../composables/useDeckLocale'
 const { isPrintMode } = useNav()
 const { tr } = useDeckLocale()
 
-const deckUrl = 'https://yharby.github.io/cng-japan-2026/#/26'
+const deckUrl = 'https://yharby.github.io/cng-japan-2026/#/27'
 const links = computed(() => [
   { label: tr('WEBSITE', 'ウェブサイト'), value: 'portolan-sdi.org', url: 'https://portolan-sdi.org/', x: 42, y: 54 },
   { label: tr('ALL PROJECTS', '全プロジェクト'), value: 'github.com/portolan-sdi', url: 'https://github.com/portolan-sdi', x: 294, y: 54 },
@@ -46,7 +46,7 @@ const links = computed(() => [
         <rect x="581" y="106" width="154" height="154" rx="8" class="qr-frame" />
         <image href="/qr-deck.svg" x="588" y="113" width="140" height="140" preserveAspectRatio="xMidYMid meet" />
         <text x="658" y="294" text-anchor="middle" class="deck-url">yharby.github.io</text>
-        <text x="658" y="315" text-anchor="middle" class="deck-url">cng-japan-2026/#/26</text>
+        <text x="658" y="315" text-anchor="middle" class="deck-url">cng-japan-2026/#/27</text>
         <text x="658" y="354" text-anchor="middle" class="deck-note">{{ tr('SCAN · CLICK · SHARE', 'スキャン · クリック · 共有') }}</text>
       </a>
     </svg>

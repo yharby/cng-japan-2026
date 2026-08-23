@@ -113,6 +113,10 @@ src: ./slides/15-current-scope.md
 ---
 
 ---
+src: ./slides/16-carto-sdi-extensions.md
+---
+
+---
 src: ./slides/16-carto-control-plane.md
 ---
 
