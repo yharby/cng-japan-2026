@@ -73,7 +73,11 @@ src: ./slides/07-three-doors.md
 ---
 
 ---
-src: ./slides/08-testable-rules.md
+src: ./slides/06-open-toolchain.md
+---
+
+---
+src: ./slides/13-skill-workflow.md
 ---
 
 ---
@@ -97,19 +101,7 @@ src: ./slides/11-live-catalog.md
 ---
 
 ---
-src: ./slides/06-open-toolchain.md
----
-
----
-src: ./slides/13-skill-workflow.md
----
-
----
 src: ./slides/12-ten-skills.md
----
-
----
-src: ./slides/10-three-scales.md
 ---
 
 ---

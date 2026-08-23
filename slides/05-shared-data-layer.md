@@ -3,28 +3,28 @@ clicks: 3
 layout: default
 ---
 
-# Connections cross silos. Open files decouple the data.
-<p class="ja">接続はサイロを越え、オープンファイルはデータをエンジンから分離します。</p>
+# Object storage separates data from the engine
+<p class="ja">オブジェクトストレージは、データをエンジンから分離します。</p>
 
 <VizSharedDataLayer />
 
 <div class="bi">
-  <span class="en">FDW and drivers connect engines. Arrow and ADBC improve result exchange. Parquet and GeoParquet make persistent data portable.</span>
-  <span class="deck-ja">FDWとドライバーはエンジンを接続し、ArrowとADBCは結果交換を改善します。ParquetとGeoParquetは永続データを可搬にします。</span>
+  <span class="en">Publish Parquet or GeoParquet once. Compatible engines can read the same objects without owning the canonical data.</span>
+  <span class="deck-ja">ParquetまたはGeoParquetを一度公開すれば、複数の互換エンジンが同じオブジェクトを読み込めます。</span>
 </div>
 
 <!--
 [Say in English]
-"The vector problem is not only file size. PostgreSQL, Oracle, SQL Server, and geodatabases expose different spatial types, dialects, drivers, and operational boundaries. Interoperability has three levels: connect the silos, exchange results efficiently, or publish the persistent data under an open contract."
+"The vector problem is not only file size. In a traditional silo, the database engine and its native data are one operational unit. PostgreSQL, Oracle, and SQL Server each own durable bytes behind their own spatial types and access paths."
 
 [Click 1]
-"FDW, ODBC, and JDBC cross product boundaries. That is useful federation and connectivity, but a database or client driver still coordinates the request. Connections make silos reachable; they do not make the durable bytes portable."
+"FDW, ODBC, and JDBC make those silos reachable. Arrow and ADBC can make result exchange faster and more standard. Both are useful, but neither step by itself separates the canonical bytes from the database engine."
 
 [Click 2]
-"Arrow defines a columnar in-memory representation, and ADBC lets a database client receive Arrow batches directly. That can remove expensive result conversion. The query service still executes the query, so this improves exchange rather than decoupling persistent data."
+"The break happens when the publisher writes the persistent data under an open file contract in object storage. Parquet defines the columnar bytes, and GeoParquet adds geometry encoding and geospatial metadata. The data becomes its own shared layer."
 
 [Click 3]
-"Parquet moves the shared contract to persistent bytes. GeoParquet adds geometry encoding and geospatial metadata. DuckDB, QGIS, Polars, and other compatible engines can read the same published vector asset directly. Arrow remains the complementary memory and interchange layer after the bytes arrive. The next slide shows how GeoParquet and COG make those files efficient over HTTP."
+"Now DuckDB, Spark, Trino, Polars, and other compatible engines can read the same published objects directly. The engine can change without moving the canonical data. This does not mean every engine reads every format automatically; compatibility is still required. The next slide shows how GeoParquet and COG make those files efficient over HTTP."
 
 [Sources]
 - https://research.google.com/pubs/archive/36632.pdf

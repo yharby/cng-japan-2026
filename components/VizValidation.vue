@@ -48,8 +48,8 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       <g class="machine-step" :class="{ visited: s >= 1, active: s === 1 }">
         <rect x="220" y="156" width="200" height="130" rx="18" class="step-body" />
         <text x="236" y="190" class="step-title step-title-compact">{{ tr('STRUCTURE + META', '構造 + メタデータ') }}</text>
-        <text x="236" y="223" class="step-copy">{{ tr('STAC tree · required files', 'STACツリー · 必須ファイル') }}</text>
-        <text x="236" y="252" class="step-copy">{{ tr('roles · license · provenance', '役割 · ライセンス · 来歴') }}</text>
+        <text x="236" y="223" class="step-copy step-copy-compact">{{ tr('STAC tree · required files', 'STACツリー · 必須ファイル') }}</text>
+        <text x="236" y="252" class="step-copy step-copy-compact">{{ tr('roles · license · provenance', '役割 · ライセンス · 来歴') }}</text>
       </g>
 
       <g class="machine-step" :class="{ visited: s >= 2, active: s === 2 }">
@@ -101,6 +101,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .step-title-compact { font-size: 16px; letter-spacing: 0.02em; }
 .machine-step.active .step-title { fill: var(--c-accent); }
 .step-copy { fill: var(--c-muted); font-size: 13px; font-weight: 700; }
+.step-copy-compact { font-size: 11px; }
 .opt-chip { fill: var(--c-bg); stroke: var(--c-accent); stroke-width: 2; }
 .live-chip { stroke: var(--c-warn); }
 .opt-title { fill: var(--c-fg); font-size: 15px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', monospace; }

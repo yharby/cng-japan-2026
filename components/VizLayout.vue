@@ -19,8 +19,8 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
            target="_blank" rel="noopener noreferrer" class="svg-source-link"
            :aria-label="tr('Open the Netherlands Provinces example folder in a new tab', 'Netherlands Provincesのサンプルフォルダーを新しいタブで開く')" @click.stop>
         <rect x="218" y="50" width="364" height="66" rx="16" class="collection-body link-target" />
-        <lucide-folder-open x="246" y="67" width="42" height="42" class="folder-icon" />
-        <text x="422" y="92" text-anchor="middle" class="collection-name link-label">netherlands-provinces/</text>
+        <lucide-folder-open x="236" y="67" width="42" height="42" class="folder-icon" />
+        <text x="432" y="92" text-anchor="middle" class="collection-name link-label">netherlands-provinces/</text>
         </a>
       </g>
 
