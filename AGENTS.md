@@ -41,15 +41,15 @@
 13. One publication serves software, people, and AI agents.
 14. Open toolchain: show the replaceable implementation pieces.
 15. Ten skills: inventory the supporting capabilities after the open toolchain is understood.
-16. Show the Japanese field-boundary catalog example.
-17. Explain what happens behind an AI-agent question: discover the catalog, inspect metadata, plan a query, compute with DuckDB, and report sources and limits.
-18. Show the real Tsukuba Station experiment and distinguish a computed result from model output.
+16. Show the community screenshot proving that one prompt plus Portolan skills produced the Git-backed Harmonized Field Boundary Data catalog.
+17. Use that same catalog for the AI-agent question: follow only the three linked Collections, inspect metadata, plan a query, compute with DuckDB, and report sources and limits.
+18. Show the verified DuckDB count across those three explicit latest GeoParquet assets and distinguish the computed result from model planning.
 19. Compare a horizontal static-first portal architecture with a service-first portal, then make remaining publishing, operational, and governance work explicit.
 25. Close with Q&A and one action: publish one dataset using open files, stable URLs, and checkable rules.
 
 ## Appendix
 - The appendix is intentionally ordered from evidence to implementation detail:
-  20. Live catalog: begin with a concrete publication before listing tools.
+  20. Live catalog: open the same Harmonized Field Boundary Data publication shown on slide 16.
   21. Publisher CLI: show the released publish and update commands.
   22. Current scope: separate implemented validation from roadmap formats.
   23. CARTO SDI interface: click through six continuous steps covering the publisher overview, datasets, grants, usage, quality, and governance.
@@ -83,7 +83,8 @@
 - On slide 10, use the original split-screen STAC hero versus Choice Chaos jester to personify flexibility and its operational downside. Do not replace them with Superman, Batman's Joker, or another recognizable copyrighted character.
 - On slide 10, acknowledge that STAC publishes best-practice guidance. The gap is not “no best practices”; it is that the core standard does not enforce one layout, access pattern, hosting model, or operational playbook.
 - Never call the five goals “ideologies.”
-- Never imply the Japanese examples are Portolan deployments.
+- Treat the Harmonized Field Boundary Data catalog as a community publication, not a CARTO deployment or an AI-generated dataset.
+- Its root has no blanket data license. Preserve each linked Collection's provider, license, attribution, CRS, and provenance.
 - Do not claim servers disappear; object storage, CDN, IAM, DNS, monitoring, and publishing jobs still exist.
 - Slide 19 is the architecture and honesty checkpoint. Preserve its horizontal arrows: source → publish job → object storage/open assets → STAC → clients, with optional compute branching on demand. Contrast that with files/database → GIS server → gateway → APIs/tiles → clients.
 - On slide 19, say that the query path can shrink; never imply that infrastructure or human accountability disappears.

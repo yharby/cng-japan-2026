@@ -4,27 +4,27 @@ layout: default
 hideInToc: true
 ---
 
-# A live green-licensed catalog
-<p class="ja">これはデモ用の画像ではなく、実際に使えるカタログです。</p>
+# The same community catalog is live
+<p class="ja">同じコミュニティカタログを、実際に操作できます。</p>
 
 <VizLiveBrowser />
 
 <div class="bi">
-  <span class="en">GHSL exposes 3,984 range-readable COG items in twelve CC BY 4.0 collections.</span>
-  <span class="deck-ja">GHSLは3,984のレンジ読み取り可能なCOGを12のCC BY 4.0 Collectionで公開しています。</span>
+  <span class="en">Browse the screenshot publication with linked metadata, GeoParquet, PMTiles, styles, provenance, and per-source licenses.</span>
+  <span class="deck-ja">スクリーンショットと同じ公開物で、メタデータ、GeoParquet、PMTiles、スタイル、来歴、各ソースのライセンスを確認できます。</span>
 </div>
 
 <!--
 [Say in English]
-"This preview gives us a reliable starting point. The real Portolan Browser reads the GHSL static catalog: twelve five-year population collections, 3,984 COG items, and an explicit CC BY 4.0 license on every collection."
+"This is the exact catalog from the community screenshot. The deterministic preview shows the three Collections linked by the public root. The browser reads the same static JSON, styles, thumbnails, GeoParquet, and PMTiles that an agent can read."
 
 [Click 1]
-"Now this is the live catalog. If the network is slow, the preview stays visible and the open link still works. The metadata records the European Commission Joint Research Centre as producer and licensor, and the converter as processor and host."
+"Now the real Portolan Browser loads. If the network is slow, the preview remains and the open link still works. Notice that the root does not pretend to have one blanket data license: each Collection carries its source provider, license, CRS, editions, and conversion provenance."
 
 [Sources]
-- https://browser.portolan-sdi.org/#/external/data.source.coop/nlebovits/ghsl/catalog.json
-- https://data.source.coop/nlebovits/ghsl/catalog.json
-- https://data.source.coop/nlebovits/ghsl/pop-2020/collection.json
-- https://human-settlement.emergency.copernicus.eu/download.php?ds=pop
-- https://creativecommons.org/licenses/by/4.0/
+- https://browser.portolan-sdi.org/#/external/data.source.coop/ftw/harmonized-field-data/catalog.json
+- https://data.source.coop/ftw/harmonized-field-data/catalog.json
+- https://data.source.coop/ftw/harmonized-field-data/be_vlg/collection.json
+- https://data.source.coop/ftw/harmonized-field-data/de_nrw/collection.json
+- https://data.source.coop/ftw/harmonized-field-data/nl/collection.json
 -->

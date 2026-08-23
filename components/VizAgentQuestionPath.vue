@@ -11,7 +11,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('The background workflow for an AI agent estimating a one-percent field-survey pilot near Tsukuba. The agent opens the catalog, reads its AGENTS dot md guidance, follows the Japan Item, inspects metadata and the GeoParquet asset, computes with DuckDB, then reports the estimate with limits and sources.', 'つくば周辺で1%の農地区画調査を行う際のAIエージェントの裏側の流れです。エージェントはカタログを開き、AGENTS.mdのガイドを読み、日本のItemをたどり、メタデータとGeoParquetを確認し、DuckDBで計算して、限界と出典とともに見積もりを報告します。')">
+         :aria-label="tr('An AI agent answers how many latest field records are published across the three Collections linked by the Harmonized Field Boundary Data catalog. It follows the public catalog boundary, reads AGENTS dot md, inspects each Collection, counts explicit GeoParquet assets with DuckDB, and reports the result with source-specific licenses and limits.', 'AIエージェントが、Harmonized Field Boundary Dataカタログにリンクされた3つのCollectionの最新版レコード数を回答します。公開カタログの境界をたどり、AGENTS.mdを読み、各Collectionを確認し、明示的なGeoParquet資産をDuckDBで集計し、ソース別ライセンスと限界を付けて報告します。')">
       <defs>
         <marker id="aqp-arrow" viewBox="0 0 8 8" markerWidth="8" markerHeight="8"
                 refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
@@ -20,120 +20,99 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
       </defs>
 
       <g class="question">
-        <rect x="28" y="20" width="744" height="88" rx="18" />
-        <circle cx="69" cy="64" r="22" />
-        <lucide-message-circle x="56" y="51" width="26" height="26" />
-        <text x="104" y="50" class="question-label">{{ tr('ASK THE AGENT', 'エージェントに質問') }}</text>
-        <text x="104" y="77" class="question-copy">{{ tr('How many visits for a 1% field survey near Tsukuba?', 'つくば周辺の1%農地調査には何件の訪問が必要ですか？') }}</text>
+        <rect x="24" y="18" width="752" height="68" rx="17" />
+        <circle cx="58" cy="52" r="17" />
+        <lucide-message-circle-question x="47" y="41" width="22" height="22" />
+        <text x="88" y="45" class="question-label">{{ tr('QUESTION', '質問') }}</text>
+        <text x="88" y="70" class="question-copy">{{ tr('How many latest field records, and which collection is largest?', '最新版は何件で、最大のCollectionはどれ？') }}</text>
       </g>
 
-      <path d="M160 234 H177 M314 234 H331 M468 234 H485 M622 234 H639" class="flow" marker-end="url(#aqp-arrow)" />
+      <path d="M160 201 H172 M312 201 H324 M464 201 H476 M616 201 H628" class="flow" marker-end="url(#aqp-arrow)" />
 
       <g class="phase" :class="{ on: s >= 1, active: s === 1 }">
-        <a href="https://data.source.coop/ftw/global-data/catalog.json" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :class="{ 'is-disabled': s < 1 }" :tabindex="s >= 1 ? 0 : -1"
-           :aria-label="tr('Open the Fields of the World Portolan catalog in a new tab', 'Fields of the WorldのPortolanカタログを新しいタブで開く')" @click.stop>
-          <rect x="24" y="144" width="136" height="180" rx="16" class="card link-target" />
-          <circle cx="50" cy="174" r="15" class="number" />
-          <text x="50" y="179" text-anchor="middle" class="number-text">1</text>
-          <text x="72" y="179" class="phase-title link-label">{{ tr('OPEN', '開く') }}</text>
-          <lucide-network x="44" y="206" width="22" height="22" class="phase-icon" />
-          <text x="72" y="221" class="mono file">catalog.json</text>
-          <text x="44" y="258" class="phase-copy">{{ tr('find agent guide', 'agentガイドを発見') }}</text>
-          <text x="44" y="286" class="phase-copy">{{ tr('find child links', 'childリンクを発見') }}</text>
+        <rect x="22" y="116" width="138" height="178" rx="15" class="card" />
+        <circle cx="45" cy="139" r="14" class="number" /><text x="45" y="144" text-anchor="middle" class="number-text">1</text>
+        <text x="66" y="144" class="phase-title">{{ tr('DISCOVER', '発見') }}</text>
+        <a href="https://data.source.coop/ftw/harmonized-field-data/catalog.json" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" :aria-label="tr('Open the Harmonized Field Boundary Data root catalog', 'Harmonized Field Boundary Dataのルートカタログを開く')" @click.stop>
+          <lucide-network x="40" y="164" width="24" height="24" class="phase-icon" />
+          <text x="71" y="181" class="mono file link-label">catalog.json</text>
         </a>
+        <text x="40" y="217" class="phase-copy">{{ tr('3 child links', '3つのchildリンク') }}</text>
+        <text x="40" y="241" class="phase-copy">{{ tr('public boundary', '公開範囲') }}</text>
+        <text x="40" y="265" class="phase-copy">{{ tr('no bucket glob', 'bucket globなし') }}</text>
       </g>
 
       <g class="phase" :class="{ on: s >= 2, active: s === 2 }">
-        <a href="https://data.source.coop/ftw/global-data/AGENTS.md"
-           target="_blank" rel="noopener noreferrer" class="svg-source-link"
-           :class="{ 'is-disabled': s < 2 }" :tabindex="s >= 2 ? 0 : -1"
-           :aria-label="tr('Open the published Fields of the World AGENTS dot md in a new tab', '公開されたFields of the WorldのAGENTS.mdを新しいタブで開く')" @click.stop>
-          <rect x="178" y="144" width="136" height="180" rx="16" class="card link-target" />
-          <circle cx="204" cy="174" r="15" class="number" />
-          <text x="204" y="179" text-anchor="middle" class="number-text">2</text>
-          <text x="226" y="179" class="phase-title link-label">{{ tr('READ', '読む') }}</text>
-          <lucide-bot x="198" y="206" width="22" height="22" class="phase-icon" />
-          <text x="226" y="221" class="mono file">AGENTS.md</text>
-          <text x="198" y="258" class="phase-copy">{{ tr('resolve relative links', '相対リンクを解決') }}</text>
-          <text x="198" y="286" class="phase-copy">{{ tr('metadata → data', 'metadata → data') }}</text>
+        <rect x="174" y="116" width="138" height="178" rx="15" class="card" />
+        <circle cx="197" cy="139" r="14" class="number" /><text x="197" y="144" text-anchor="middle" class="number-text">2</text>
+        <text x="218" y="144" class="phase-title">{{ tr('READ GUIDE', 'ガイド確認') }}</text>
+        <a href="https://data.source.coop/ftw/harmonized-field-data/AGENTS.md" target="_blank" rel="noopener noreferrer"
+           class="svg-source-link" :aria-label="tr('Open the catalog agent guidance', 'カタログのエージェントガイドを開く')" @click.stop>
+          <lucide-notebook-tabs x="192" y="164" width="24" height="24" class="phase-icon" />
+          <text x="223" y="181" class="mono file link-label">AGENTS.md</text>
         </a>
+        <text x="192" y="217" class="phase-copy">{{ tr('latest paths', 'latestの経路') }}</text>
+        <text x="192" y="241" class="phase-copy">{{ tr('schema quirks', 'schemaの差異') }}</text>
+        <text x="192" y="265" class="phase-copy">{{ tr('tested pattern', '検証済み手順') }}</text>
       </g>
 
       <g class="phase" :class="{ on: s >= 3, active: s === 3 }">
-        <a href="https://data.source.coop/ftw/global-data/predictions/vectors/alpha/results-by-admin-conf/admin:country_code=JP/Japan.json"
-           target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :class="{ 'is-disabled': s < 3 }" :tabindex="s >= 3 ? 0 : -1"
-           :aria-label="tr('Open the Japan STAC Item in a new tab', '日本のSTAC Itemを新しいタブで開く')" @click.stop>
-          <rect x="332" y="144" width="136" height="180" rx="16" class="card link-target" />
-          <circle cx="358" cy="174" r="15" class="number" />
-          <text x="358" y="179" text-anchor="middle" class="number-text">3</text>
-          <text x="380" y="179" class="phase-title link-label">{{ tr('INSPECT', '確認') }}</text>
-          <lucide-file-search x="352" y="206" width="22" height="22" class="phase-icon" />
-          <text x="380" y="221" class="mono file">Japan.json</text>
-          <text x="352" y="248" class="phase-copy">license · CRS</text>
-          <text x="352" y="272" class="phase-copy">schema</text>
-          <text x="352" y="296" class="mono file">GeoParquet href</text>
-        </a>
+        <rect x="326" y="116" width="138" height="178" rx="15" class="card" />
+        <circle cx="349" cy="139" r="14" class="number" /><text x="349" y="144" text-anchor="middle" class="number-text">3</text>
+        <text x="370" y="144" class="phase-title">{{ tr('INSPECT', '確認') }}</text>
+        <lucide-folder-search x="344" y="164" width="24" height="24" class="phase-icon" />
+        <text x="375" y="181" class="mono file">3 Collections</text>
+        <text x="344" y="217" class="phase-copy">GeoParquet URLs</text>
+        <text x="344" y="241" class="phase-copy">CRS · provider</text>
+        <text x="344" y="265" class="phase-copy">{{ tr('license each', '個別license') }}</text>
       </g>
 
       <g class="phase" :class="{ on: s >= 4, active: s === 4 }">
-        <a href="https://duckdb.org/docs/stable/core_extensions/spatial/functions" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :class="{ 'is-disabled': s < 4 }" :tabindex="s >= 4 ? 0 : -1"
-           :aria-label="tr('Open the DuckDB spatial function documentation in a new tab', 'DuckDB空間関数の文書を新しいタブで開く')" @click.stop>
-          <rect x="486" y="144" width="136" height="180" rx="16" class="card link-target" />
-          <circle cx="512" cy="174" r="15" class="number" />
-          <text x="512" y="179" text-anchor="middle" class="number-text">4</text>
-          <text x="534" y="179" class="phase-title link-label">{{ tr('COMPUTE', '計算') }}</text>
-          <lucide-square-terminal x="506" y="206" width="22" height="22" class="phase-icon" />
-          <text x="534" y="221" class="mono file">DuckDB CLI</text>
-          <text x="506" y="258" class="phase-copy">{{ tr('5 km gives 4,726', '5 kmで4,726件') }}</text>
-          <text x="506" y="286" class="phase-copy">{{ tr('1% rounds to 48', '1%を48件に切上げ') }}</text>
-        </a>
+        <rect x="478" y="116" width="138" height="178" rx="15" class="card" />
+        <circle cx="501" cy="139" r="14" class="number" /><text x="501" y="144" text-anchor="middle" class="number-text">4</text>
+        <text x="522" y="144" class="phase-title">{{ tr('COMPUTE', '計算') }}</text>
+        <lucide-database-zap x="496" y="164" width="24" height="24" class="phase-icon" />
+        <text x="527" y="181" class="mono file">DuckDB</text>
+        <text x="496" y="217" class="phase-copy">3 explicit URLs</text>
+        <text x="496" y="241" class="phase-copy">union_by_name</text>
+        <text x="496" y="265" class="phase-copy">count(*)</text>
       </g>
 
       <g class="phase" :class="{ on: s >= 5, active: s === 5 }">
-        <rect x="640" y="144" width="136" height="180" rx="16" class="card" />
-        <circle cx="666" cy="174" r="15" class="number" />
-        <text x="666" y="179" text-anchor="middle" class="number-text">5</text>
-        <text x="688" y="179" class="phase-title">{{ tr('REPORT', '報告') }}</text>
-        <lucide-clipboard-check x="660" y="206" width="22" height="22" class="phase-icon" />
-        <text x="688" y="221" class="phase-copy">{{ tr('48 visits', '48件の訪問') }}</text>
-        <text x="660" y="258" class="phase-copy">{{ tr('method + limits', '手法 + 限界') }}</text>
-        <text x="660" y="286" class="phase-copy">{{ tr('license + sources', 'license + 出典') }}</text>
+        <rect x="630" y="116" width="148" height="178" rx="15" class="card" />
+        <circle cx="653" cy="139" r="14" class="number" /><text x="653" y="144" text-anchor="middle" class="number-text">5</text>
+        <text x="674" y="144" class="phase-title">{{ tr('REPORT', '報告') }}</text>
+        <lucide-clipboard-check x="648" y="164" width="24" height="24" class="phase-icon" />
+        <text x="679" y="181" class="mono file">2,630,704</text>
+        <text x="648" y="217" class="phase-copy">NL · 49.2%</text>
+        <text x="648" y="241" class="phase-copy">{{ tr('method + date', '手法 + 日付') }}</text>
+        <text x="648" y="265" class="phase-copy">{{ tr('licenses + limits', 'license + 限界') }}</text>
       </g>
 
       <g class="roles" :class="{ on: s >= 5 }">
-        <rect x="28" y="352" width="744" height="70" rx="13" />
-        <text x="62" y="382" class="role-model">{{ tr('MODEL', 'モデル') }}</text>
-        <text x="62" y="405" class="role-copy">{{ tr('plans and explains', '計画して説明') }}</text>
-        <path d="M224 387 H270" class="role-arrow" marker-end="url(#aqp-arrow)" />
-        <text x="300" y="382" class="role-engine">{{ tr('OPEN DATA + DUCKDB', '公開データ + DUCKDB') }}</text>
-        <text x="300" y="405" class="role-copy">{{ tr('compute the result', '結果を計算') }}</text>
-        <path d="M520 387 H566" class="role-arrow" marker-end="url(#aqp-arrow)" />
-        <text x="596" y="382" class="role-answer">{{ tr('AUDITABLE ANSWER', '検証可能な回答') }}</text>
-        <text x="596" y="405" class="role-copy">{{ tr('links and limits included', 'リンクと限界を明記') }}</text>
+        <rect x="28" y="332" width="744" height="88" rx="14" />
+        <text x="58" y="365" class="role-model">{{ tr('MODEL', 'モデル') }}</text>
+        <text x="58" y="390" class="role-copy">{{ tr('follows links · plans · explains', 'リンク追跡 · 計画 · 説明') }}</text>
+        <path d="M235 376 H282" class="role-arrow" marker-end="url(#aqp-arrow)" />
+        <text x="311" y="365" class="role-engine">{{ tr('CATALOG + DUCKDB', 'カタログ + DUCKDB') }}</text>
+        <text x="311" y="390" class="role-copy">{{ tr('define scope · compute result', '範囲定義 · 結果計算') }}</text>
+        <path d="M524 376 H570" class="role-arrow" marker-end="url(#aqp-arrow)" />
+        <text x="598" y="365" class="role-answer">{{ tr('AUDITABLE ANSWER', '検証可能な回答') }}</text>
+        <text x="598" y="390" class="role-copy">{{ tr('URLs · query · limits', 'URL · クエリ · 限界') }}</text>
       </g>
     </svg>
   </div>
 </template>
 
 <style scoped>
-@keyframes aqp-focus {
-  from { opacity: 0.18; transform: translateY(7px); }
-  to { opacity: 1; transform: none; }
-}
-
-@keyframes aqp-rise {
-  from { opacity: 0; transform: translateY(7px); }
-  to { opacity: 1; transform: none; }
-}
-
+@keyframes aqp-focus { from { opacity: 0.18; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+@keyframes aqp-rise { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
 .question rect { fill: var(--c-fg); stroke: var(--c-fg); stroke-width: 2.5; }
 .question circle { fill: var(--c-accent); }
 .question :deep(svg) { color: var(--c-bg); }
-.question-label { fill: var(--c-bg); font-size: 11px; font-weight: 900; letter-spacing: 0.075em; }
-.question-copy { fill: var(--c-bg); font-size: 20px; font-weight: 900; }
+.question-label { fill: var(--c-bg); font-size: 10px; font-weight: 900; letter-spacing: 0.075em; }
+.question-copy { fill: var(--c-bg); font-size: 17px; font-weight: 900; }
 .flow, .role-arrow { fill: none; stroke: var(--c-portolan); stroke-width: var(--w-connector-active); stroke-linecap: round; }
 .marker-head { fill: none; stroke: var(--c-portolan); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
 .phase { opacity: 0.18; }
@@ -142,18 +121,18 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .phase.active .card { stroke: var(--c-accent); stroke-width: 3; }
 .number { fill: var(--c-fg); }
 .phase.active .number { fill: var(--c-accent); }
-.number-text { fill: var(--c-bg); font-size: 13px; font-weight: 900; }
-.phase-title { fill: var(--c-fg); font-size: 12px; font-weight: 900; letter-spacing: 0.04em; }
+.number-text { fill: var(--c-bg); font-size: 12px; font-weight: 900; }
+.phase-title { fill: var(--c-fg); font-size: 10px; font-weight: 900; letter-spacing: 0.035em; }
 .phase-icon { color: var(--c-portolan); }
 .phase.active .phase-icon { color: var(--c-accent); }
-.file { fill: var(--c-fg); font-size: 10.5px; font-weight: 850; }
-.phase-copy { fill: var(--c-muted); font-size: 11px; font-weight: 750; }
+.file { fill: var(--c-fg); font-size: 9px; font-weight: 850; }
+.phase-copy { fill: var(--c-muted); font-size: 9.5px; font-weight: 750; }
 .roles { opacity: 0; }
 .roles.on { animation: aqp-rise 420ms ease-out both; }
 .roles rect { fill: var(--c-panel); stroke: var(--c-portolan); stroke-width: 2.5; }
-.role-model, .role-engine, .role-answer { font-size: 11px; font-weight: 900; letter-spacing: 0.035em; }
+.role-model, .role-engine, .role-answer { font-size: 10px; font-weight: 900; letter-spacing: 0.035em; }
 .role-model { fill: var(--c-accent); }
 .role-engine { fill: var(--c-portolan); }
 .role-answer { fill: var(--c-ok); }
-.role-copy { fill: var(--c-muted); font-size: 10.5px; font-weight: 750; }
+.role-copy { fill: var(--c-muted); font-size: 9.5px; font-weight: 750; }
 </style>

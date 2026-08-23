@@ -3,35 +3,30 @@ clicks: 2
 layout: default
 ---
 
-# Japanese field boundaries in a Portolan catalog
-<p class="ja">日本のデータは、すでにPortolanカタログから利用できます。</p>
+# Skills made a real catalog easy to publish
+<p class="ja">スキルを使って、実際のカタログを簡単に公開できました。</p>
 
 <VizJapanCatalog />
 
 <div class="bi">
-  <span class="en">Fields of the World publishes 5,384,929 Japanese field boundaries as GeoParquet and PMTiles under CC BY 4.0.</span>
-  <span class="deck-ja">Fields of the Worldは、日本の農地区画5,384,929件をGeoParquetとPMTilesでCC BY 4.0公開しています。</span>
+  <span class="en">One prompt plus open Portolan skills turned existing source data into a Git-backed, browsable public catalog.</span>
+  <span class="deck-ja">1つのプロンプトとオープンなPortolanスキルで、既存データがGit管理の閲覧可能な公開カタログになりました。</span>
 </div>
 
 <!--
 [Say in English]
-"Here is a real catalog path. We start at catalog JSON, open the Japan STAC Item JSON, and reach two useful assets. The item has more than 5.3 million field boundaries under CC BY 4.0. Credit belongs to Fields of the World, Taylor Geospatial Institute, and Microsoft AI for Good Research Lab. This is global research data, not Japanese government data."
+"This is the proof that the skills are usable, not just an inventory slide. Ivor Bosloper started with an already published source and one bootstrap prompt. Claude followed the Portolan skills to create the Git-backed publication workflow. The human still chose the source, the conversion tool, the update model, and the release goal."
 
 [Click 1]
-"GeoParquet is the analysis asset."
+"The prompt made the contract explicit: keep using fiboa-cli for conversion, keep the catalog Git-backed, and make future updates repeatable. Skills supplied the procedure and checks; they did not make those publishing decisions."
 
 [Click 2]
-"PMTiles is the map asset."
+"The result is live and hosted by Fields of the World on Source Cooperative: one Portolan root links the Netherlands, Flanders, and North Rhine-Westphalia collections. At the time checked, the three latest editions contain 2,630,704 official, non-AI field records. Each collection keeps its own source license and attribution."
 
 [Sources]
-- https://portolan-sdi.org/
-- https://data.source.coop/ftw/global-data/catalog.json
-- https://data.source.coop/ftw/global-data/predictions/vectors/alpha/results-by-admin-conf/admin:country_code=JP/Japan.json
-- https://data.source.coop/ftw/global-data/predictions/vectors/alpha/results-by-admin-conf/admin:country_code=JP/Japan.parquet
-- https://data.source.coop/ftw/global-data/predictions/vectors/alpha/results-by-admin-conf/admin:country_code=JP/Japan.pmtiles
-- https://fieldsofthe.world/
-- https://github.com/fieldsoftheworld/ftw-data-catalog
-- https://creativecommons.org/licenses/by/4.0/
-- https://github.com/fieldsoftheworld/fieldsoftheworld.github.io/tree/main/static/images/brand/logos
-- https://github.com/fieldsoftheworld/fieldsoftheworld.github.io/blob/main/LICENSE
+- Speaker-provided Cloud Native Geospatial Slack screenshot, 22 August 2026
+- https://data.source.coop/ftw/harmonized-field-data/catalog.json
+- https://source.coop/ftw/harmonized-field-data
+- https://github.com/fieldsoftheworld/harmonized-field-data-catalog
+- https://github.com/portolan-sdi/portolan-skills
 -->

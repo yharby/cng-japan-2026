@@ -10,113 +10,86 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
 <template>
   <div class="stage">
-    <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('A Portolan catalog leads from catalog.json to the Japan STAC Item named Japan.json and then to GeoParquet and PMTiles assets. The Japan item contains 5,384,929 field boundaries under CC BY 4.0.', 'Portolanカタログはcatalog.jsonから日本のSTAC ItemであるJapan.jsonへ、さらにGeoParquetとPMTiles資産へつながります。日本のItemにはCC BY 4.0で5,384,929件の農地区画があります。')">
-      <text x="400" y="28" text-anchor="middle" class="kicker">{{ tr('A REAL PORTOLAN CATALOG PATH', '実在するPORTOLANカタログの経路') }}</text>
+    <div class="canvas community-proof" data-view-box="0 0 800 460" role="group"
+         :aria-label="tr('A Cloud Native Geospatial community message reports that one prompt and Portolan Claude skills turned existing field-boundary data into a Git-backed, browsable Portolan catalog. The public catalog links three collections and 2,630,704 latest field records.', 'Cloud Native Geospatialコミュニティの投稿では、1つのプロンプトとPortolan Claudeスキルにより、既存の農地区画データがGit管理の閲覧可能なPortolanカタログになったと報告されています。公開カタログは3つのCollectionと最新版2,630,704件をリンクしています。')">
+      <figure class="shot-card">
+        <img src="/community-harmonized-field-data.png"
+             :alt="tr('Community screenshot describing the first Harmonized Field Boundary Data Portolan catalog and the bootstrap prompt used to create it', 'Harmonized Field Boundary Dataの最初のPortolanカタログと、作成に使ったブートストラップ用プロンプトを説明するコミュニティのスクリーンショット')" />
+        <figcaption>{{ tr('COMMUNITY REPORT · 22 AUG 2026', 'コミュニティ報告 · 2026年8月22日') }}</figcaption>
+      </figure>
 
-      <path d="M220 226 H268 M261 220 L268 226 L261 232" class="flow" />
-      <path d="M512 226 H546 M539 220 L546 226 L539 232" class="flow" />
+      <div class="proof-story">
+        <div class="eyebrow">{{ tr('FROM ONE PROMPT TO A PUBLICATION', '1つのプロンプトから公開へ') }}</div>
 
-      <g class="catalog-root">
-        <rect x="38" y="86" width="182" height="280" rx="20" class="catalog-body" />
-        <text x="62" y="122" class="label">{{ tr('PORTOLAN CATALOG', 'PORTOLANカタログ') }}</text>
-        <a href="https://data.source.coop/ftw/global-data/catalog.json" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr('Open the Fields of the World root catalog.json file in a new tab', 'Fields of the Worldのルートcatalog.jsonを新しいタブで開く')" @click.stop>
-        <lucide-folder-open x="62" y="145" width="42" height="42" class="folder" />
-        <text x="116" y="176" class="file-name small-file link-label">catalog.json</text>
+        <blockquote>
+          “{{ tr('It was really easy with the Portolan Claude skills.', 'Portolan Claudeスキルで本当に簡単でした。') }}”
+        </blockquote>
+
+        <div class="step" :class="{ on: s >= 1, active: s === 1 }">
+          <span class="step-number">1</span>
+          <div>
+            <strong>{{ tr('HUMAN SETS THE CONTRACT', '人が公開方針を決める') }}</strong>
+            <p>{{ tr('existing source · fiboa-cli · Git-backed · repeatable updates', '既存ソース · fiboa-cli · Git管理 · 継続更新') }}</p>
+          </div>
+        </div>
+
+        <div class="connector" :class="{ on: s >= 1 }"><lucide-arrow-down /></div>
+
+        <div class="step" :class="{ on: s >= 1, active: s === 1 }">
+          <span class="step-number">2</span>
+          <div>
+            <strong>{{ tr('SKILLS GUIDE THE WORK', 'スキルが作業を導く') }}</strong>
+            <p>portolan-bootstrap · git-backed-catalog</p>
+          </div>
+        </div>
+
+        <div class="connector" :class="{ on: s >= 2 }"><lucide-arrow-down /></div>
+
+        <a class="step result source-link" :class="{ on: s >= 2, active: s >= 2 }"
+           href="https://data.source.coop/ftw/harmonized-field-data/catalog.json"
+           target="_blank" rel="noopener noreferrer" @click.stop>
+          <span class="step-number"><lucide-external-link /></span>
+          <div>
+            <strong>{{ tr('PUBLIC PORTOLAN CATALOG', '公開PORTOLANカタログ') }}</strong>
+            <p>{{ tr('3 linked collections · 2,630,704 latest records', '3 Collection · 最新2,630,704件') }}</p>
+          </div>
         </a>
-        <a href="https://fieldsofthe.world/" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr('Open the Fields of the World website in a new tab', 'Fields of the Worldのウェブサイトを新しいタブで開く')" @click.stop>
-        <image href="/fields-of-world-mark.svg" x="62" y="211" width="34" height="34" preserveAspectRatio="xMidYMid meet" />
-        <text x="103" y="226" class="publisher link-label">Fields of the</text>
-        <text x="103" y="244" class="publisher link-label">World</text>
-        </a>
-        <line x1="62" y1="260" x2="196" y2="260" class="rule" />
-        <text x="62" y="282" class="meta">{{ tr('static files', '静的ファイル') }}</text>
-        <text x="62" y="310" class="meta">Portolan 0.1</text>
-        <text x="62" y="338" class="meta">{{ tr('open license', 'オープンライセンス') }}</text>
-      </g>
 
-      <g class="collection">
-        <a href="https://data.source.coop/ftw/global-data/predictions/vectors/alpha/results-by-admin-conf/admin:country_code=JP/Japan.json"
-           target="_blank" rel="noopener noreferrer" class="svg-source-link"
-           :aria-label="tr('Open the Japan STAC Item JSON in a new tab', '日本のSTAC Item JSONを新しいタブで開く')" @click.stop>
-        <rect x="274" y="68" width="238" height="316" rx="22" class="collection-body link-target" />
-        <text x="298" y="105" class="label">{{ tr('JAPAN STAC ITEM', '日本のSTAC ITEM') }}</text>
-        <text x="298" y="143" class="file-name link-label">Japan.json</text>
-        <text x="298" y="197" class="big">5,384,929</text>
-        <text x="298" y="224" class="small">{{ tr('field boundaries', '農地区画') }}</text>
-        <g transform="translate(300 248)">
-          <path d="M0 0 H54 V40 H0 Z M60 0 H116 V40 H60 Z M122 0 H184 V40 H122 Z M0 46 H44 V86 H0 Z M50 46 H112 V86 H50 Z M118 46 H184 V86 H118 Z" class="fields" />
-          <path d="M18 0 V40 M81 0 V40 M146 0 V40 M16 46 V86 M76 46 V86 M150 46 V86" class="furrows" />
-        </g>
-        </a>
-        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer"
-           class="svg-source-link" :aria-label="tr('Open the Creative Commons Attribution 4.0 license in a new tab', 'Creative Commons Attribution 4.0ライセンスを新しいタブで開く')" @click.stop>
-        <rect x="298" y="347" width="104" height="27" rx="13" class="license" />
-        <text x="350" y="366" text-anchor="middle" class="license-text link-label">CC BY 4.0</text>
-        </a>
-      </g>
-
-      <a href="https://data.source.coop/ftw/global-data/predictions/vectors/alpha/results-by-admin-conf/admin:country_code=JP/Japan.parquet"
-         target="_blank" rel="noopener noreferrer" class="svg-source-link"
-         :aria-label="tr('Open the Japan GeoParquet asset in a new tab', '日本のGeoParquet資産を新しいタブで開く')" @click.stop>
-      <g class="asset" :class="{ visited: s >= 1, active: s === 1 }">
-        <rect x="552" y="95" width="208" height="125" rx="18" class="asset-body link-target" />
-        <circle cx="587" cy="136" r="22" class="icon-disc" />
-        <lucide-table-2 x="574" y="123" width="26" height="26" class="asset-icon" />
-        <text x="620" y="130" class="asset-name link-label">GeoParquet</text>
-        <text x="620" y="156" class="asset-use">{{ tr('analysis', '分析') }}</text>
-        <text x="576" y="195" class="asset-detail">{{ tr('841.6 MB · direct HTTPS', '841.6 MB · HTTPS直接配信') }}</text>
-      </g>
-      </a>
-
-      <a href="https://data.source.coop/ftw/global-data/predictions/vectors/alpha/results-by-admin-conf/admin:country_code=JP/Japan.pmtiles"
-         target="_blank" rel="noopener noreferrer" class="svg-source-link"
-         :aria-label="tr('Open the Japan PMTiles asset in a new tab', '日本のPMTiles資産を新しいタブで開く')" @click.stop>
-      <g class="asset" :class="{ visited: s >= 2, active: s === 2 }">
-        <rect x="552" y="240" width="208" height="125" rx="18" class="asset-body link-target" />
-        <circle cx="587" cy="281" r="22" class="icon-disc" />
-        <lucide-map x="574" y="268" width="26" height="26" class="asset-icon" />
-        <text x="620" y="275" class="asset-name link-label">PMTiles</text>
-        <text x="620" y="301" class="asset-use">{{ tr('maps', '地図') }}</text>
-        <text x="647" y="329" text-anchor="middle" class="asset-detail">{{ tr('one archive', '単一アーカイブ') }}</text>
-        <text x="647" y="350" text-anchor="middle" class="asset-detail">{{ tr('reusable style', '再利用可能なスタイル') }}</text>
-      </g>
-      </a>
-
-      <text x="400" y="430" text-anchor="middle" class="provenance">{{ tr('Publisher-provided global research data · not Japanese government data', '公開者提供の世界研究データ · 日本政府のデータではありません') }}</text>
-    </svg>
+        <div class="license-note" :class="{ on: s >= 2 }">
+          <lucide-badge-check />
+          <span>{{ tr('Official, non-AI sources · license stays with each collection', '公的な非AIデータ · ライセンスは各Collectionに保持') }}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.kicker { fill: var(--c-muted); font-size: 17px; font-weight: 900; letter-spacing: 0.09em; }
-.flow { fill: none; stroke: var(--c-portolan); stroke-width: var(--w-connector-active); stroke-linecap: round; stroke-linejoin: round; }
-.catalog-body, .collection-body, .asset-body { fill: var(--c-panel); stroke: var(--c-line); stroke-width: 3; }
-.catalog-body { stroke: var(--c-fg); }
-.collection-body { stroke: var(--c-portolan); }
-.label { fill: var(--c-muted); font-size: 12px; font-weight: 900; letter-spacing: 0.065em; }
-.folder { color: var(--c-portolan); }
-.file-name { fill: var(--c-fg); font-size: 21px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', monospace; }
-.small-file { font-size: 13px; }
-.publisher { fill: var(--c-fg); font-size: 15px; font-weight: 900; }
-.rule { stroke: var(--c-line); stroke-width: 2; }
-.meta, .small, .asset-detail, .provenance { fill: var(--c-muted); font-size: 14px; font-weight: 700; }
-.big { fill: var(--c-accent); font-family: ui-monospace, 'JetBrains Mono', monospace; font-size: 34px; font-weight: 900; }
-.small { font-size: 16px; }
-.fields { fill: color-mix(in srgb, var(--c-ok) 17%, var(--c-panel)); stroke: var(--c-ok); stroke-width: 2; }
-.furrows { stroke: var(--c-ok); stroke-width: 2; opacity: 0.72; }
-.license { fill: var(--c-fg); }
-.license-text { fill: var(--c-bg); font-size: 14px; font-weight: 900; }
-.asset { opacity: 0.38; transition: opacity 300ms ease, transform 300ms ease; }
-.asset.visited { opacity: 0.72; }
-.asset.active { opacity: 1; transform: translateX(5px); }
-.asset.active .asset-body, .asset.active .icon-disc { stroke: var(--c-accent); }
-.icon-disc { fill: var(--c-bg); stroke: var(--c-fg); stroke-width: 2.5; }
-.asset-icon { color: var(--c-fg); }
-.asset.active .asset-icon { color: var(--c-accent); }
-.asset-name { fill: var(--c-fg); font-size: 20px; font-weight: 900; }
-.asset-use { fill: var(--c-accent); font-size: 16px; font-weight: 900; }
-.provenance { font-size: 14px; }
+@keyframes proof-rise {
+  from { opacity: 0.2; transform: translateY(7px); }
+  to { opacity: 1; transform: none; }
+}
+
+.community-proof { display: grid !important; grid-template-columns: 455px 1fr; gap: 24px; }
+.shot-card { position: relative; min-width: 0; margin: 0; overflow: hidden; border: 3px solid var(--c-fg); border-radius: 18px; background: white; box-shadow: 8px 8px 0 color-mix(in srgb, var(--c-portolan) 22%, transparent); }
+.shot-card img { display: block; width: 100%; height: 100%; object-fit: contain; background: white; }
+.shot-card figcaption { position: absolute; left: 12px; bottom: 12px; padding: 6px 9px; border-radius: 7px; background: color-mix(in srgb, var(--c-fg) 92%, transparent); color: var(--c-bg); font-size: 9px; font-weight: 900; letter-spacing: 0.065em; }
+.proof-story { display: flex; flex-direction: column; min-width: 0; padding: 6px 0; }
+.eyebrow { color: var(--c-portolan); font-size: 13px; font-weight: 900; letter-spacing: 0.07em; }
+blockquote { margin: 12px 0 16px; padding: 13px 14px; border-left: 5px solid var(--c-accent); background: var(--c-panel); color: var(--c-fg); font-size: 18px; font-weight: 900; line-height: 1.22; }
+.step { display: flex; align-items: center; gap: 11px; min-height: 68px; box-sizing: border-box; padding: 9px 11px; border: 2.5px solid var(--c-line); border-radius: 13px; background: var(--c-panel); opacity: 0.25; color: var(--c-fg); text-decoration: none; }
+.step.on { animation: proof-rise 360ms ease-out both; }
+.step.active { border-color: var(--c-accent); }
+.step.result.active { border-color: var(--c-ok); }
+.step-number { display: grid; place-items: center; width: 32px; height: 32px; flex: 0 0 auto; border-radius: 50%; background: var(--c-fg); color: var(--c-bg); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; font-weight: 900; }
+.result .step-number { background: var(--c-ok); }
+.step-number :deep(svg) { width: 15px; height: 15px; }
+.step strong { display: block; color: inherit; font-size: 12px; font-weight: 900; letter-spacing: 0.04em; }
+.step p { margin: 4px 0 0; color: var(--c-muted); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9.5px; font-weight: 750; line-height: 1.25; }
+.connector { display: grid; place-items: center; height: 20px; color: var(--c-line); opacity: 0.3; }
+.connector.on { color: var(--c-portolan); opacity: 1; }
+.connector :deep(svg) { width: 17px; height: 17px; stroke-width: 3; }
+.license-note { display: flex; align-items: center; gap: 8px; margin-top: 11px; color: var(--c-muted); font-size: 9.5px; font-weight: 800; opacity: 0; }
+.license-note.on { animation: proof-rise 360ms ease-out both; }
+.license-note :deep(svg) { width: 17px; height: 17px; color: var(--c-ok); }
 </style>

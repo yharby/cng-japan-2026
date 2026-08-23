@@ -3,65 +3,55 @@ clicks: 3
 layout: default
 ---
 
-# Published data turns a survey question into a reproducible estimate
-<p class="ja">公開データが、調査計画の質問を再現可能な見積もりに変えます。</p>
+# The catalog boundary makes the answer reproducible
+<p class="ja">カタログの境界が、答えを再現可能にします。</p>
 
 <VizTsukubaAnswer />
 
 <div class="bi">
-  <span class="en">DuckDB found 4,726 candidate predicted fields. A simple 1% pilot means budgeting 48 visits before access and permission checks.</span>
-  <span class="deck-ja">DuckDBは候補となる予測農地区画4,726件を抽出しました。単純な1%試行では、立入・許可確認前に48件を見込みます。</span>
+  <span class="en">DuckDB counted 2,630,704 latest records across three linked collections. The Netherlands contributes 49.2%.</span>
+  <span class="deck-ja">DuckDBはリンクされた3 Collectionの最新版2,630,704件を集計し、オランダが49.2%を占めました。</span>
 </div>
 
 <!--
 [Say in English]
-"This is the real experiment, run on 21 August 2026 with DuckDB 1.5.5 against the live Japan GeoParquet over HTTPS. The business question is how many candidate visits to budget for a simple one-percent field-survey pilot. The compact terminal on screen shows the important operations; here is the exact query."
+"This is the real experiment, run on 23 August 2026 with DuckDB 1.5.5. I used the three latest GeoParquet URLs resolved from the root's child Collections. I did not glob the whole storage prefix, because unlinked files are not part of the public catalog. Here is the exact query."
 
 ```sql
-LOAD spatial;
-SET geometry_always_xy = true;
-
-WITH candidates AS (
-  SELECT geometry, confidence
-  FROM read_parquet(
-    'https://data.source.coop/ftw/global-data/predictions/vectors/alpha/results-by-admin-conf/admin:country_code=JP/Japan.parquet'
-  )
-  WHERE bbox.xmax >= 140.055 AND bbox.xmin <= 140.168
-    AND bbox.ymax >= 36.037 AND bbox.ymin <= 36.129
-), nearby AS (
-  SELECT *
-  FROM candidates
-  WHERE ST_Distance_Sphere(
-    ST_Centroid(geometry),
-    ST_Point(140.1114111, 36.0827667)
-  ) <= 5000
+LOAD httpfs;
+WITH counts AS (
+  SELECT regexp_extract(filename,
+           '/harmonized-field-data/([^/]+)/latest/', 1) AS collection,
+         count(*) AS fields
+  FROM read_parquet([
+    'https://data.source.coop/ftw/harmonized-field-data/be_vlg/latest/be_vlg.parquet',
+    'https://data.source.coop/ftw/harmonized-field-data/de_nrw/latest/de_nrw.parquet',
+    'https://data.source.coop/ftw/harmonized-field-data/nl/latest/nl.parquet'
+  ], union_by_name = true, filename = true)
+  GROUP BY 1
 )
 SELECT
-  count(*) AS predicted_fields,
-  ceil(count(*) * 0.01)::INTEGER AS pilot_visits,
-  round(median(ST_Area(ST_Transform(
-    geometry, 'EPSG:4326', 'EPSG:32654', always_xy := true
-  )))) AS median_area_m2
-FROM nearby;
+  collection, fields,
+  round(fields * 100.0 / sum(fields) OVER (), 1) AS share_pct,
+  sum(fields) OVER () AS total_fields
+FROM counts ORDER BY fields DESC;
 ```
 
 [Click 1]
-"DuckDB reads the GeoParquet asset directly from its public URL. The bounding-box predicate narrows the candidates before the centroid-distance test and projected-area calculation."
+"DuckDB reads the three latest GeoParquet assets directly over HTTPS. Union by name is necessary because the source schemas differ. The filename keeps each count attached to its Collection."
 
 [Click 2]
-"The measured candidate pool is 4,726 predicted field boundaries. One percent is 47.26, so the budget estimate rounds up to 48 visits. The median polygon area is 2,981 square meters, useful context for survey planning. DuckDB produced these numbers; the agent turns them into a decision estimate."
+"The measured total is 2,630,704 records: 1,293,962 for the Netherlands, 742,010 for North Rhine-Westphalia, and 594,732 for Flanders. The Netherlands share is 49.2 percent. DuckDB produced the numbers; the agent selected and explained the evidence."
 
 [Click 3]
-"The caveat matters. This is a simple one-percent budget estimate, not a statistically representative sampling design. The radius is not the legal boundary of Tsukuba city. Access, permission, and routing are not modeled, and the polygons are research predictions, not cadastral truth. Credit Fields of the World, Taylor Geospatial Institute, and Microsoft AI for Good Research Lab under CC BY 4.0."
+"The scope matters. These are records in the latest editions of the three linked collections, not a count of unique farms or a time series. One source contains field blocks rather than individual crop fields. CRS and licenses differ. Credit RVO / PDOK for the Netherlands, Land Nordrhein-Westfalen / Open.NRW under DL-DE-BY-2.0 for NRW, and Dept. LV for Flanders."
 
 [Sources]
-- https://data.source.coop/ftw/global-data/catalog.json
-- https://data.source.coop/ftw/global-data/predictions/vectors/alpha/results-by-admin-conf/admin:country_code=JP/Japan.json
-- https://data.source.coop/ftw/global-data/predictions/vectors/alpha/results-by-admin-conf/admin:country_code=JP/Japan.parquet
-- https://github.com/fieldsoftheworld/ftw-data-catalog
+- https://data.source.coop/ftw/harmonized-field-data/catalog.json
+- https://data.source.coop/ftw/harmonized-field-data/AGENTS.md
+- https://data.source.coop/ftw/harmonized-field-data/be_vlg/collection.json
+- https://data.source.coop/ftw/harmonized-field-data/de_nrw/collection.json
+- https://data.source.coop/ftw/harmonized-field-data/nl/collection.json
+- https://github.com/fieldsoftheworld/harmonized-field-data-catalog
 - https://duckdb.org/docs/stable/data/parquet/overview
-- https://duckdb.org/docs/stable/core_extensions/spatial/overview
-- https://duckdb.org/docs/stable/core_extensions/spatial/functions
-- https://www.wikidata.org/wiki/Q1069714
-- https://creativecommons.org/licenses/by/4.0/
 -->

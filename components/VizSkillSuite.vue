@@ -44,7 +44,6 @@ const skillUrl = (skill: string) => `https://github.com/portolan-sdi/portolan-sk
       <g v-for="phase in phases" :key="phase.name" :transform="`translate(${phase.x} ${phase.y})`">
         <g class="phase" :class="{ visited: s >= phase.reveal, active: s === phase.reveal }">
           <rect width="290" height="154" rx="18" class="phase-body" />
-          <rect width="9" height="154" rx="5" class="tone-bar" />
           <text x="26" y="35" class="phase-name">{{ phase.name }}</text>
           <text x="26" y="56" class="phase-hint">{{ phase.hint }}</text>
           <circle cx="258" cy="31" r="17" class="count-disc" />
@@ -78,7 +77,6 @@ const skillUrl = (skill: string) => `https://github.com/portolan-sdi/portolan-sk
 .phase.active { opacity: 1; transform: scale(1.025); }
 .phase-body { fill: var(--c-panel); stroke: var(--c-line); stroke-width: 3; }
 .phase.active .phase-body { stroke: var(--c-accent); }
-.tone-bar { fill: var(--c-accent); }
 .phase-name { fill: var(--c-fg); font-size: 22px; font-weight: 900; letter-spacing: 0.07em; }
 .phase.active .phase-name { fill: var(--c-accent); }
 .phase-hint { fill: var(--c-muted); font-size: 13px; font-weight: 800; }

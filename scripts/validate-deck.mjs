@@ -102,7 +102,7 @@ export const EXCLUDED_EXAMPLES = [
 
 // Attribution that must survive anywhere in the deck, notes included.
 export const REQUIRED = [
-  'Matsumura', 'Fields of the World', 'Taylor Geospatial Institute', 'Microsoft AI for Good',
+  'Matsumura', 'Fields of the World', 'RVO / PDOK', 'Land Nordrhein-Westfalen', 'Dept. LV',
 ]
 
 function frontmatter(src) {
@@ -308,7 +308,7 @@ function checkComponent(name, errors, needsClicks = false) {
   if (/useSlideContext/.test(body)) {
     errors.push(`${label}: names the slide context composable, which disables $clicks injection`)
   }
-  const hasDeckViewBox = /viewBox="0 0 (800 460|600 400)"/.test(body)
+  const hasDeckViewBox = /(?:viewBox|data-view-box)="0 0 (800 460|600 400)"/.test(body)
   const hasBrowserFallback = name === 'VizLiveBrowser' && /viewBox="0 0 800 410"/.test(body)
   if (!hasDeckViewBox && !hasBrowserFallback) {
     errors.push(`${label}: no supported deck or browser-fallback viewBox`)
