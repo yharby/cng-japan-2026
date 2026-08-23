@@ -51,14 +51,6 @@ const steps = computed(() => [
     copy1: tr('Manage identity groups, roles and access.', 'IDグループ、ロール、アクセスを管理します。'),
     copy2: tr('Keep policy connected to every catalog.', 'ポリシーを各カタログに結び付けます。'),
   },
-  {
-    title: tr('Commercial workflows', '商用ワークフロー'),
-    label: tr('Commercial', '商用'),
-    short: tr('plans · metering', 'プラン · 契約 · 計測'),
-    image: `${assetBase}carto-sdi-monetization.png`,
-    copy1: tr('Manage plans, subscriptions and metering.', 'プラン、契約、利用量計測を管理します。'),
-    copy2: tr('Add automation, scale and integrations.', '自動化、スケール、連携を追加します。'),
-  },
 ])
 
 const s = computed(() => (isPrintMode.value ? steps.value.length - 1 : Math.min($clicks.value, steps.value.length - 1)))
@@ -68,7 +60,7 @@ const active = computed(() => steps.value[s.value])
 <template>
   <div class="stage control-stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('A seven-step walkthrough of CARTO SDI, from publisher overview and access to data quality, governance, and commercial workflows.', 'CARTO SDIの7つのステップを、公開者向け概要とアクセスからデータ品質、ガバナンス、商用ワークフローまでたどります。')">
+         :aria-label="tr('A six-step walkthrough of CARTO SDI, from publisher overview and access to data quality and governance.', 'CARTO SDIの6つのステップを、公開者向け概要とアクセスからデータ品質とガバナンスまでたどります。')">
       <defs>
         <clipPath id="carto-control-walkthrough-shot">
           <rect x="232" y="12" width="560" height="355" rx="12" />
@@ -79,7 +71,7 @@ const active = computed(() => steps.value[s.value])
         <circle cx="25" cy="21" r="5" class="status-dot" />
         <text x="38" y="26" class="section-label">CARTO SDI</text>
 
-        <g v-for="(step, i) in steps" :key="step.title" :transform="`translate(22 ${62 + i * 47})`"
+        <g v-for="(step, i) in steps" :key="step.title" :transform="`translate(22 ${62 + i * 55})`"
            class="step" :class="{ active: i === s, done: i < s, future: i > s }">
           <circle cx="14" cy="-7" r="12" class="step-disc" />
           <text x="14" y="-2" text-anchor="middle" class="step-number">{{ String(i + 1).padStart(2, '0') }}</text>

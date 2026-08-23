@@ -53,15 +53,11 @@ src: ./slides/08-stac-superhero.md
 ---
 
 ---
-src: ./slides/09-stac-flexibility.md
----
-
----
 src: ./slides/07-stac-model.md
 ---
 
 ---
-src: ./slides/08-japan-pilot.md
+src: ./slides/09-stac-flexibility.md
 ---
 
 ---

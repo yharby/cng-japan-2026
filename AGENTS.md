@@ -25,7 +25,7 @@
 - Keep the publisher flow concrete: `init` → `add` → `check --fix` → `push`; use `sync` for the later publisher-controlled update round trip.
 - Do not present CLI automation as removing publisher responsibility. The publisher still controls source data, metadata, credentials, destination, update timing, review, and release decisions.
 
-## Main Narrative (slides 1–19, then slide 29)
+## Main Narrative (slides 1–18, then slide 28)
 1. Cover: exact agenda title, event, speaker, CARTO identity.
 2. Minimal bio: portrait, role, email.
 3. Legacy files: a small subset can require downloading the whole CSV/GeoTIFF.
@@ -34,32 +34,31 @@
 6. GeoParquet + COG make practical partial reads for vector and raster data.
 7. Open files alone do not provide catalog discovery or metadata.
 8. Use one short comic-relief beat: an original catalog superhero introduces STAC as linked JSON that organizes scattered assets without moving them.
-9. Turn the joke into the central tension: STAC is deliberately flexible and extensible, but the core standard does not enforce one operational publishing playbook.
-10. STAC organizes Catalog → Collection → Item → Asset using linked JSON.
-11. Define one concrete Japanese pilot deliverable from a candidate input to a validated public catalog.
-12. Portolan combines those existing pieces into a publishing practice.
-13. STAC describes data; Portolan defines layout, access, docs, provenance, and hosting rules.
-14. One publication serves software, people, and AI agents.
-15. Publishing rules are machine-checkable; Rashid validates conformance.
-16. Show the Japanese field-boundary catalog example.
-17. Explain what happens behind an AI-agent question: discover the catalog, inspect metadata, plan a query, compute with DuckDB, and report sources and limits.
-18. Show the real Tsukuba Station experiment and distinguish a computed result from model output.
-19. Compare a horizontal static-first portal architecture with a service-first portal, then make remaining publishing, operational, and governance work explicit.
-29. Close with Q&A and one action: publish one dataset using open files, stable URLs, and checkable rules.
+9. STAC organizes Catalog → Collection → Item → Asset using linked JSON.
+10. Turn the joke into the central tension: STAC is deliberately flexible and extensible, but the core standard does not enforce one operational publishing playbook.
+11. Portolan combines those existing pieces into a publishing practice.
+12. STAC describes data; Portolan defines layout, access, docs, provenance, and hosting rules.
+13. One publication serves software, people, and AI agents.
+14. Publishing rules are machine-checkable; Rashid validates conformance.
+15. Show the Japanese field-boundary catalog example.
+16. Explain what happens behind an AI-agent question: discover the catalog, inspect metadata, plan a query, compute with DuckDB, and report sources and limits.
+17. Show the real Tsukuba Station experiment and distinguish a computed result from model output.
+18. Compare a horizontal static-first portal architecture with a service-first portal, then make remaining publishing, operational, and governance work explicit.
+28. Close with Q&A and one action: publish one dataset using open files, stable URLs, and checkable rules.
 
 ## Appendix
 - The appendix is intentionally ordered from evidence to implementation detail:
-  20. Live catalog: begin with a concrete publication before listing tools.
-  21. Open toolchain: show the replaceable implementation pieces.
-  22. Skill workflow: show how an agent follows the publication contract.
-  23. Ten skills: inventory the supporting capabilities only after the workflow is understood.
-  24. Three scales: retain the broader scale comparison as optional depth.
-  25. Publisher CLI: show the released publish and update commands.
-  26. Current scope: separate implemented validation from roadmap formats.
-  27. CARTO SDI interface: click through seven continuous steps covering the publisher overview, datasets, grants, usage, quality, governance, and commercial workflows.
-  28. CARTO SDI catalog browser: click through catalog selection, dataset discovery, map exploration, and AI-assisted questions using the latest `dev` interface.
-- Keep appendix slides between the 19-slide main narrative and the final closing slide. `deck.config.mjs` defines both the main narrative boundary and the closing-slide position for validation.
-- All export commands include the complete 29-slide presentation, including the appendix. Do not restore an `--range` restriction in `scripts/export.mjs`.
+  19. Live catalog: begin with a concrete publication before listing tools.
+  20. Open toolchain: show the replaceable implementation pieces.
+  21. Skill workflow: show how an agent follows the publication contract.
+  22. Ten skills: inventory the supporting capabilities only after the workflow is understood.
+  23. Three scales: retain the broader scale comparison as optional depth.
+  24. Publisher CLI: show the released publish and update commands.
+  25. Current scope: separate implemented validation from roadmap formats.
+  26. CARTO SDI interface: click through six continuous steps covering the publisher overview, datasets, grants, usage, quality, and governance.
+  27. CARTO SDI catalog browser: click through catalog selection, dataset discovery, map exploration, and AI-assisted questions using the latest `dev` interface.
+- Keep appendix slides between the 18-slide main narrative and the final closing slide. `deck.config.mjs` defines both the main narrative boundary and the closing-slide position for validation.
+- All export commands include the complete 28-slide presentation, including the appendix. Do not restore an `--range` restriction in `scripts/export.mjs`.
 - Do not move product inventories or install instructions into the main story unless talk duration changes.
 - Do not delete a main slide merely to shorten the talk. First consolidate repeated claims inside its visualization or speaker notes; delete only when the slide has no distinct narrative job.
 
@@ -89,8 +88,8 @@
 - Never call the five goals “ideologies.”
 - Never imply the Japanese examples are Portolan deployments.
 - Do not claim servers disappear; object storage, CDN, IAM, DNS, monitoring, and publishing jobs still exist.
-- Slide 19 is the architecture and honesty checkpoint. Preserve its horizontal arrows: source → publish job → object storage/open assets → STAC → clients, with optional compute branching on demand. Contrast that with files/database → GIS server → gateway → APIs/tiles → clients.
-- On slide 19, say that the query path can shrink; never imply that infrastructure or human accountability disappears.
+- Slide 18 is the architecture and honesty checkpoint. Preserve its horizontal arrows: source → publish job → object storage/open assets → STAC → clients, with optional compute branching on demand. Contrast that with files/database → GIS server → gateway → APIs/tiles → clients.
+- On slide 18, say that the query path can shrink; never imply that infrastructure or human accountability disappears.
 - Keep factual claims source-backed in speaker notes; preserve the `[Sources]` section format.
 - Public access is not license clearance. Only Green sources from `docs/data-license-audit.md` may appear as conversion, reuse, or pilot examples. Before proposing one, verify the exact asset or STAC collection license, upstream providers, attribution, modification notice, and commercial-use terms.
 - Keep illustrative filenames visibly distinct from real downloadable assets. Do not infer a data license from a software repository license, a host, or a logo.
@@ -122,7 +121,7 @@
 - Render check: `pnpm smoke`, or `pnpm smoke <url>` against a deployment.
 - Full check: `pnpm test` runs validate, build, and smoke.
 - Export the full English presentation: `pnpm export` or `pnpm export:en`.
-- Export the full Japanese presentation: `pnpm export:ja`; export both complete 29-slide presentations: `pnpm export:all`.
+- Export the full Japanese presentation: `pnpm export:ja`; export both complete 28-slide presentations: `pnpm export:all`.
 - Before committing, require `pnpm test` and visual inspection of changed slides.
 - Do not override the production base on the command line. `deck.config.mjs` is the source of truth.
 - Restart `pnpm preview` after rebuilding; a preview is a view of one completed static artifact.

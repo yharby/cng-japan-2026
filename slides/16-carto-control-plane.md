@@ -1,5 +1,5 @@
 ---
-clicks: 6
+clicks: 5
 layout: default
 hideInToc: true
 ---
@@ -29,9 +29,6 @@ hideInToc: true
 
 [Click 5]
 "Governance connects identity groups and roles to catalog access policies."
-
-[Click 6]
-"Commercial workflows connect plans, subscriptions, and metering, with automation, scale, and integrations across CARTO SDI."
 
 [Sources]
 - https://github.com/CartoDB/carto-sdi-publisher/pull/42
