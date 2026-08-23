@@ -11,7 +11,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 <template>
   <div class="stage">
     <svg class="canvas" viewBox="0 0 800 460" role="group"
-         :aria-label="tr('Portolan release 0.1.2 contains 128 requirements: 106 are assigned to deterministic validator enforcement and 22 to publishing process. Rashid checks catalog structure, metadata, and real data bytes, while publishers still judge source meaning, translation quality, and publishing decisions.', 'Portolanリリース0.1.2には128要件があり、106件は決定的なバリデーター検証、22件は公開プロセスに割り当てられています。Rashidはカタログ構造、メタデータ、実データのバイト列を検査し、原典の意味、翻訳品質、公開判断は公開者が引き続き評価します。')">
+         :aria-label="tr('People, continuous integration jobs, and AI agents can run the same Rashid checklist. Portolan release 0.1.2 contains 128 requirements: 106 are assigned to deterministic validator enforcement and 22 to publishing process. Rashid checks catalog structure, metadata, and real data bytes, while publishers still judge source meaning, translation quality, and publishing decisions.', '人、継続的インテグレーション、AIエージェントが同じRashidチェックリストを実行できます。Portolanリリース0.1.2には128要件があり、106件は決定的なバリデーター検証、22件は公開プロセスに割り当てられています。Rashidはカタログ構造、メタデータ、実データのバイト列を検査し、原典の意味、翻訳品質、公開判断は公開者が引き続き評価します。')">
       <text x="400" y="28" text-anchor="middle" class="kicker">{{ tr('WHAT MACHINES CAN CHECK · WHAT PEOPLE MUST JUDGE', '機械が検証すること · 人が判断すること') }}</text>
 
       <g class="status">
@@ -32,7 +32,8 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
         </a>
       </g>
 
-      <text x="42" y="124" class="section-label">{{ tr('MACHINE-CHECKABLE', '機械で検証可能') }}</text>
+      <text x="42" y="124" class="section-label">{{ tr('HUMAN · CI · AI AGENT', '人 · CI · AIエージェント') }}</text>
+      <text x="758" y="124" text-anchor="end" class="check-command">$ rashid check catalog.json --json</text>
       <path d="M154 221 H214 M426 221 H478" class="flow" />
       <path d="M207 215 L214 221 L207 227 M471 215 L478 221 L471 227" class="flow" />
 
@@ -60,7 +61,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
         <text x="558" y="251" text-anchor="middle" class="opt-title">--schema</text>
         <rect x="626" y="226" width="104" height="40" rx="10" class="opt-chip live-chip" />
         <text x="678" y="251" text-anchor="middle" class="opt-title">--live</text>
-        <text x="621" y="290" text-anchor="middle" class="opt-copy">{{ tr('optional deeper checks', '任意の詳細検査') }}</text>
+        <text x="621" y="290" text-anchor="middle" class="opt-copy">JSON → PTL-* · {{ tr('file · fix hint', 'ファイル · 修正ヒント') }}</text>
       </g>
 
       <g class="human-step" :class="{ visited: s >= 3, active: s === 3 }">
@@ -88,6 +89,7 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .process-number { fill: var(--c-warn); }
 .status-divider { stroke: var(--c-line); stroke-width: 2; }
 .section-label { fill: var(--c-muted); font-size: 14px; font-weight: 900; letter-spacing: 0.1em; }
+.check-command { fill: var(--c-ok); font-size: 12px; font-weight: 900; font-family: ui-monospace, 'JetBrains Mono', monospace; }
 .flow { fill: none; stroke: var(--c-line); stroke-width: var(--w-connector); stroke-linecap: round; stroke-linejoin: round; }
 .rashid-disc { fill: var(--c-fg); }
 .rashid-icon { color: var(--c-ok); }

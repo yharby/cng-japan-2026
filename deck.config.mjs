@@ -1,7 +1,7 @@
 export const DECK = Object.freeze({
   base: '/cng-japan-2026/',
   mainSlides: 19,
-  closingSlide: 25,
+  closingSlide: 26,
   clickBudget: 49,
   dist: 'dist',
   exportFile: 'dist/cng-japan-2026.pdf',

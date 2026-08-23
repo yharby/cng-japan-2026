@@ -105,6 +105,10 @@ src: ./slides/14-get-started.md
 ---
 
 ---
+src: ./slides/08-testable-rules.md
+---
+
+---
 src: ./slides/15-current-scope.md
 ---
 
