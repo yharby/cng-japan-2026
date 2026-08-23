@@ -5,6 +5,7 @@ import { useDeckLocale } from '../composables/useDeckLocale'
 
 const { isPrintMode } = useNav()
 const { tr } = useDeckLocale()
+const assetBase = import.meta.env.BASE_URL
 const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 </script>
 
@@ -65,7 +66,9 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 
       <g class="product-label" :class="{ on: s >= 1 }">
         <rect x="310" y="292" width="180" height="52" rx="26" />
-        <text x="400" y="325" text-anchor="middle">CARTO SDI</text>
+        <image :href="`${assetBase}carto-logo-positive.svg`" x="334" y="301" width="88" height="34"
+               preserveAspectRatio="xMidYMid meet" class="product-logo" aria-hidden="true" />
+        <text x="434" y="324">SDI</text>
       </g>
 
       <g class="foundation">
@@ -100,9 +103,14 @@ const s = computed(() => (isPrintMode.value ? 99 : $clicks.value))
 .product-label { opacity: 0.24; }
 .product-label.on { animation: carto-extension-reveal 420ms 80ms ease-out both; }
 .product-label rect { fill: var(--c-accent); }
-.product-label text { fill: var(--c-bg); font-size: 20px; font-weight: 900; letter-spacing: 0.055em; }
+.product-logo { filter: brightness(0) invert(1); }
+.product-label text { fill: var(--c-bg); font-size: 15px; font-weight: 900; letter-spacing: 0.06em; }
 .foundation-body { fill: var(--c-fg); }
 .foundation-name { fill: var(--c-bg); font-size: 23px; font-weight: 900; letter-spacing: 0.055em; }
 .foundation-copy { fill: var(--c-bg); opacity: 0.78; font-size: 14px; font-weight: 700; }
 .foundation-label { fill: var(--c-bg); opacity: 0.64; font-size: 11px; font-weight: 900; letter-spacing: 0.08em; }
+</style>
+
+<style>
+html.dark .product-label .product-logo { filter: none; }
 </style>
