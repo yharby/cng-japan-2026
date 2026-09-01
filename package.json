@@ -20,7 +20,7 @@
     "test": "pnpm validate && pnpm build && pnpm smoke"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.124",
+    "@iconify-json/lucide": "^1.2.127",
     "@slidev/cli": "52.19.0",
     "@slidev/theme-default": "^0.25.0",
     "vue": "^3.5.13"
